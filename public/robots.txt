@@ -6,4 +6,4 @@ Allow: /assets/logos/
 Allow: /assets/mockups/
 
 # Sitemaps
-Sitemap: https://blotx3d-of.vercel.app/sitemap.xml
+Sitemap: https://blotxtech.site/sitemap.xml
