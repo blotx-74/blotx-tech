@@ -52,7 +52,6 @@ export function App() {
               }}
             />
           )}
-          {config?.images?.logo && <div className="absolute top-4 left-4 z-50"><img src={config.images.logo} alt="Dynamic Logo" className="h-16" /></div>}
           <HeroCinematic />
           <InteractiveDeviceShowcase />
           <InteractiveBalataExperience />

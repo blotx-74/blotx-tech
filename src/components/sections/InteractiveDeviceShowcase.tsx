@@ -41,24 +41,30 @@ export const InteractiveDeviceShowcase: FC = () => {
 
   // Real app screenshot URLs from Firebase CMS with high-def default fallbacks
   const tahtScreenshotUrl = config?.mockupScreens?.tahtElBalata || '/assets/mockups/taht-screen.png';
-  const eftekerScreenshotUrl = config?.mockupScreens?.efteker || '/assets/mockups/afteker-screen.png';
+  const eftekerScreenshotUrl = config?.mockupScreens?.efteker || '/assets/mockups/efteker-screen.png';
 
   // Live interactive state inside Taht El Balata phone
   const [balataBalance, setBalataBalance] = useState<number>(142580);
 
-  // 3D Parallax Tilt state
+  // 3D Parallax Tilt state with requestAnimationFrame throttling for smooth 60fps scroll
   const stageRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const rafRef = useRef<number | null>(null);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!stageRef.current || viewMode !== 'perspective') return;
     const rect = stageRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 16;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -16;
-    setTilt({ x: y, y: x });
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;
+    
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = requestAnimationFrame(() => {
+      setTilt({ x: y, y: x });
+    });
   };
 
   const handleMouseLeave = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
     setTilt({ x: 0, y: 0 });
   };
 
@@ -345,72 +351,67 @@ export const InteractiveDeviceShowcase: FC = () => {
                 {/* Inner Screen Bezel */}
                 <div className="relative rounded-[42px] bg-black p-2 overflow-hidden shadow-inner">
                   {/* The Screen Display */}
-                  <div className="relative rounded-[36px] bg-[#f8fafc] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/10">
+                  <div className="relative rounded-[36px] bg-[#070b14] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
                     {/* Gloss Glass Reflection */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-30" />
 
-                    {/* Top Status Bar & Morphing Dynamic Island */}
-                    <div className="pt-2.5 px-5 flex items-center justify-between z-20 text-[11px] font-bold text-neutral-800">
-                      <span>09:41</span>
-
-                      {/* Morphing Dynamic Island with iOS AirDrop Effect */}
-                      <div
-                        className={`transition-all duration-500 rounded-full bg-black flex items-center justify-center px-3 shadow-md ${
-                          airDropStage === 'received'
-                            ? 'w-60 h-8 ring-2 ring-emerald-400 bg-neutral-950'
-                            : 'w-24 h-5'
-                        }`}
-                      >
-                        {airDropStage === 'received' ? (
-                          <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold whitespace-nowrap animate-fadeIn">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                            <span>AirDrop: تم استلام القسط في الخزنة ✓</span>
-                          </div>
-                        ) : (
-                          <>
-                            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-auto" />
-                            <span className="text-[9px] text-white font-mono">BLOTX SAFE</span>
-                          </>
-                        )}
-                      </div>
-
-                      <div className="flex items-center gap-1 font-mono text-[10px]">
-                        <span>5G</span>
-                        <div className="w-4 h-2 rounded-sm border border-neutral-800 p-[1px] flex items-center">
-                          <div className="w-full h-full bg-neutral-800 rounded-xs" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {screenMode === 'screenshot' && tahtScreenshotUrl ? (
-                      <div className="relative flex-1 w-full h-full overflow-hidden bg-slate-950 flex flex-col justify-between group">
+                    {screenMode === 'screenshot' ? (
+                      <div className="relative w-full h-full overflow-hidden bg-[#070b14] flex flex-col items-center justify-center">
                         <img
                           src={tahtScreenshotUrl}
-                          alt="شاشة تطبيق تحت البلاطة"
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          alt="شاشة تطبيق تحت البلاطة الحقيقية"
+                          className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
-                          <p className="text-xs font-bold flex items-center gap-1.5 text-emerald-400">
-                            <Sparkles className="w-3.5 h-3.5" />
-                            <span>لقطة شاشة حقيقية • تطبيق تحت البلاطة</span>
-                          </p>
-                          <p className="text-[10px] text-slate-300 mt-0.5">تفاصيل الواجهة الرسمية للتطبيق</p>
-                        </div>
                       </div>
                     ) : (
-                      <div className="flex-1 w-full h-full overflow-hidden">
-                        <TahtBalataScreen
-                          balance={balataBalance}
-                          onBalanceChange={setBalataBalance}
-                          isAirDropReceived={airDropStage === 'received'}
-                        />
-                      </div>
-                    )}
+                      <>
+                        {/* Top Status Bar & Morphing Dynamic Island */}
+                        <div className="pt-2.5 px-5 flex items-center justify-between z-20 text-[11px] font-bold text-neutral-800 bg-[#f8fafc]">
+                          <span>09:41</span>
 
-                    {/* Home Indicator Bar */}
-                    <div className="pb-1.5 flex justify-center">
-                      <div className="w-32 h-1 bg-black/30 rounded-full" />
-                    </div>
+                          {/* Morphing Dynamic Island with iOS AirDrop Effect */}
+                          <div
+                            className={`transition-all duration-500 rounded-full bg-black flex items-center justify-center px-3 shadow-md ${
+                              airDropStage === 'received'
+                                ? 'w-60 h-8 ring-2 ring-emerald-400 bg-neutral-950'
+                                : 'w-24 h-5'
+                            }`}
+                          >
+                            {airDropStage === 'received' ? (
+                              <div className="flex items-center gap-1.5 text-[10px] text-emerald-400 font-bold whitespace-nowrap animate-fadeIn">
+                                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                                <span>AirDrop: تم استلام القسط في الخزنة ✓</span>
+                              </div>
+                            ) : (
+                              <>
+                                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse mr-auto" />
+                                <span className="text-[9px] text-white font-mono">BLOTX SAFE</span>
+                              </>
+                            )}
+                          </div>
+
+                          <div className="flex items-center gap-1 font-mono text-[10px]">
+                            <span>5G</span>
+                            <div className="w-4 h-2 rounded-sm border border-neutral-800 p-[1px] flex items-center">
+                              <div className="w-full h-full bg-neutral-800 rounded-xs" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex-1 w-full h-full overflow-hidden">
+                          <TahtBalataScreen
+                            balance={balataBalance}
+                            onBalanceChange={setBalataBalance}
+                            isAirDropReceived={airDropStage === 'received'}
+                          />
+                        </div>
+
+                        {/* Home Indicator Bar */}
+                        <div className="pb-1.5 flex justify-center bg-[#f8fafc]">
+                          <div className="w-32 h-1 bg-black/30 rounded-full" />
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -449,74 +450,68 @@ export const InteractiveDeviceShowcase: FC = () => {
                 {/* Inner Screen Bezel */}
                 <div className="relative rounded-[42px] bg-black p-2 overflow-hidden shadow-inner">
                   {/* The Screen Display */}
-                  <div className="relative rounded-[36px] bg-[#f8fafc] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/10">
+                  <div className="relative rounded-[36px] bg-[#070b14] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
                     {/* Gloss Glass Reflection */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-30" />
 
-                    {/* Top Status Bar & Morphing Dynamic Island */}
-                    <div className="pt-2.5 px-5 flex items-center justify-between z-20 text-[11px] font-bold text-neutral-800">
-                      <span>09:41</span>
-
-                      {/* Morphing Dynamic Island with iOS AirDrop Effect */}
-                      <div
-                        className={`transition-all duration-500 rounded-full bg-black flex items-center justify-center px-3 shadow-md ${
-                          airDropStage === 'radar' || airDropStage === 'beaming'
-                            ? 'w-56 h-8 ring-2 ring-blue-400 bg-neutral-950'
-                            : 'w-24 h-5'
-                        }`}
-                      >
-                        {airDropStage === 'radar' || airDropStage === 'beaming' ? (
-                          <div className="flex items-center gap-1.5 text-[10px] text-blue-300 font-bold whitespace-nowrap animate-fadeIn">
-                            <Radio className="w-3.5 h-3.5 text-blue-400 animate-spin" />
-                            <span>AirDrop: بث موعد القسط...</span>
-                          </div>
-                        ) : (
-                          <>
-                            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse mr-auto" />
-                            <span className="text-[9px] text-white font-mono">EFTEKER BRAIN</span>
-                          </>
-                        )}
-                      </div>
-
-                      <div className="flex items-center gap-1 font-mono text-[10px]">
-                        <span>5G</span>
-                        <div className="w-4 h-2 rounded-sm border border-neutral-800 p-[1px] flex items-center">
-                          <div className="w-full h-full bg-neutral-800 rounded-xs" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {screenMode === 'screenshot' && eftekerScreenshotUrl ? (
-                      <div className="relative flex-1 w-full h-full overflow-hidden bg-slate-950 flex flex-col justify-between group">
+                    {screenMode === 'screenshot' ? (
+                      <div className="relative w-full h-full overflow-hidden bg-[#070b14] flex flex-col items-center justify-center">
                         <img
                           src={eftekerScreenshotUrl}
-                          alt="شاشة تطبيق افتكر"
-                          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                          alt="شاشة تطبيق افتكر الحقيقية"
+                          className="w-full h-full object-cover object-top transition-transform duration-700 hover:scale-[1.02]"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-4 text-white">
-                          <p className="text-xs font-bold flex items-center gap-1.5 text-blue-400">
-                            <Sparkles className="w-3.5 h-3.5" />
-                            <span>لقطة شاشة حقيقية • تطبيق افتكر</span>
-                          </p>
-                          <p className="text-[10px] text-slate-300 mt-0.5">تفاصيل الواجهة الرسمية للتطبيق</p>
-                        </div>
                       </div>
                     ) : (
-                      <div className="flex-1 w-full h-full overflow-hidden">
-                        <EftekirScreen
-                          onTriggerAirDropSync={(amount, title) =>
-                            triggerAirDropSync(amount, title)
-                          }
-                          isSyncedFromBalata={airDropStage === 'received'}
-                        />
-                      </div>
+                      <>
+                        {/* Top Status Bar & Morphing Dynamic Island */}
+                        <div className="pt-2.5 px-5 flex items-center justify-between z-20 text-[11px] font-bold text-neutral-800 bg-[#f8fafc]">
+                          <span>09:41</span>
 
+                          {/* Morphing Dynamic Island with iOS AirDrop Effect */}
+                          <div
+                            className={`transition-all duration-500 rounded-full bg-black flex items-center justify-center px-3 shadow-md ${
+                              airDropStage === 'radar' || airDropStage === 'beaming'
+                                ? 'w-56 h-8 ring-2 ring-blue-400 bg-neutral-950'
+                                : 'w-24 h-5'
+                            }`}
+                          >
+                            {airDropStage === 'radar' || airDropStage === 'beaming' ? (
+                              <div className="flex items-center gap-1.5 text-[10px] text-blue-300 font-bold whitespace-nowrap animate-fadeIn">
+                                <Radio className="w-3.5 h-3.5 text-blue-400 animate-spin" />
+                                <span>AirDrop: بث موعد القسط...</span>
+                              </div>
+                            ) : (
+                              <>
+                                <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse mr-auto" />
+                                <span className="text-[9px] text-white font-mono">EFTEKER BRAIN</span>
+                              </>
+                            )}
+                          </div>
+
+                          <div className="flex items-center gap-1 font-mono text-[10px]">
+                            <span>5G</span>
+                            <div className="w-4 h-2 rounded-sm border border-neutral-800 p-[1px] flex items-center">
+                              <div className="w-full h-full bg-neutral-800 rounded-xs" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex-1 w-full h-full overflow-hidden">
+                          <EftekirScreen
+                            onTriggerAirDropSync={(amount, title) =>
+                              triggerAirDropSync(amount, title)
+                            }
+                            isSyncedFromBalata={airDropStage === 'received'}
+                          />
+                        </div>
+
+                        {/* Home Indicator Bar */}
+                        <div className="pb-1.5 flex justify-center bg-[#f8fafc]">
+                          <div className="w-32 h-1 bg-black/30 rounded-full" />
+                        </div>
+                      </>
                     )}
-
-                    {/* Home Indicator Bar */}
-                    <div className="pb-1.5 flex justify-center">
-                      <div className="w-32 h-1 bg-black/30 rounded-full" />
-                    </div>
                   </div>
                 </div>
               </div>
