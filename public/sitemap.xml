@@ -2,54 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://blotxtech.com/</loc>
+    <loc>https://blotx3d-of.vercel.app/</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://blotxtech.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://blotxtech.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://blotxtech.com/?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://blotxtech.com/?lang=es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://blotxtech.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://blotx3d-of.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blotx3d-of.vercel.app/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://blotx3d-of.vercel.app/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://blotx3d-of.vercel.app/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://blotx3d-of.vercel.app/" />
   </url>
   <url>
-    <loc>https://blotxtech.com/#devices</loc>
+    <loc>https://blotx3d-of.vercel.app/#devices</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#taht-experience</loc>
+    <loc>https://blotx3d-of.vercel.app/#taht-experience</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#efteker-experience</loc>
+    <loc>https://blotx3d-of.vercel.app/#efteker-experience</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#synergy-matrix</loc>
+    <loc>https://blotx3d-of.vercel.app/#synergy-matrix</loc>
     <lastmod>2026-09-11</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#philosophy</loc>
+    <loc>https://blotx3d-of.vercel.app/#philosophy</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#calculator</loc>
+    <loc>https://blotx3d-of.vercel.app/#calculator</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://blotxtech.com/#faq</loc>
+    <loc>https://blotx3d-of.vercel.app/#faq</loc>
     <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
