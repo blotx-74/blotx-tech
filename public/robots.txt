@@ -1,0 +1,9 @@
+# Robots.txt for Blotx Tech Ecosystem (Taht El Balata & Eftekir)
+User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /assets/logos/
+Allow: /assets/mockups/
+
+# Sitemaps
+Sitemap: https://blotxtech.com/sitemap.xml
