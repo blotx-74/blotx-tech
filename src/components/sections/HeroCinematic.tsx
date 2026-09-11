@@ -91,7 +91,7 @@ export const HeroCinematic: FC = () => {
           {/* Master Jewel Housing */}
           <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-black p-3 shadow-2xl border-2 border-white/30 flex items-center justify-center overflow-hidden">
             <img
-              src="/assets/logos/blotx-tech-logo.png"
+              src={config?.images?.logo || "/assets/logos/blotx-tech-logo.png"}
               alt="Blotx Tech Official Emblem"
               className="w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform"
             />
@@ -138,7 +138,7 @@ export const HeroCinematic: FC = () => {
       {/* Eyebrow Formal Tag */}
       <div className="mb-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/[0.04] border border-black/[0.06] text-xs font-bold text-[#6e6e73]">
         <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-        <span>{t.heroBadge}</span>
+        <span>{config?.content?.heroBadge || t.heroBadge}</span>
       </div>
 
       {/* Main Majestic Headline */}

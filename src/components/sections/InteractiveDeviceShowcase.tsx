@@ -1,4 +1,4 @@
-import { useState, useRef, type FC } from 'react';
+import { useState, useEffect, useRef, type FC } from 'react';
 import { useConfig } from '../../ConfigContext';
 import { useLanguage } from '../../LanguageContext';
 import {
@@ -25,14 +25,22 @@ export const InteractiveDeviceShowcase: FC = () => {
   const { language, t } = useLanguage();
   const [viewMode, setViewMode] = useState<ViewMode>('perspective');
   const [screenMode, setScreenMode] = useState<'screenshot' | 'interactive'>(
-    config?.mockupScreens?.defaultMode || 'interactive'
+    config?.mockupScreens?.defaultMode || 'screenshot'
   );
+
+  // Sync screenMode if config changes
+  useEffect(() => {
+    if (config?.mockupScreens?.defaultMode) {
+      setScreenMode(config.mockupScreens.defaultMode);
+    }
+  }, [config?.mockupScreens?.defaultMode]);
+
   const [airDropStage, setAirDropStage] = useState<AirDropStage>('idle');
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
   const [capsuleTitle, setCapsuleTitle] = useState<string>('صيانة السيارة الدورية (3,500 ج.م)');
 
-  // Real app screenshot URLs from Firebase CMS
-  const tahtScreenshotUrl = config?.mockupScreens?.tahtElBalata || '';
+  // Real app screenshot URLs from Firebase CMS with high-def default fallbacks
+  const tahtScreenshotUrl = config?.mockupScreens?.tahtElBalata || '/assets/mockups/taht-screen.png';
   const eftekerScreenshotUrl = config?.mockupScreens?.efteker || '/assets/mockups/afteker-screen.png';
 
   // Live interactive state inside Taht El Balata phone

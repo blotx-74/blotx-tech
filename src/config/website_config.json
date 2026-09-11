@@ -1,0 +1,30 @@
+{
+  "colors": {
+    "primary": "#1d1d1f",
+    "secondary": "#fbfbfd",
+    "accent": "#0071e3",
+    "cardBg": "#ffffff"
+  },
+  "typography": {
+    "fontSize": "22px",
+    "fontFamily": "IBM Plex Sans Arabic"
+  },
+  "images": {
+    "logo": "/assets/logos/blotx-tech-logo.png",
+    "hero": "",
+    "banner": ""
+  },
+  "mockupScreens": {
+    "tahtElBalata": "/assets/mockups/taht-screen.png",
+    "efteker": "/assets/mockups/afteker-screen.png",
+    "defaultMode": "screenshot"
+  },
+  "content": {
+    "heroTitle": "مش مجرد تكنولوجيا..\nإحنا بنصنع أسلوب حياة يفهمك.",
+    "heroSubtitle": "منظومة متكاملة تربط بين أمانك المالي وصفائك الذهني. كل شيء متزامن، مشفر، ومصمم خصيصاً لليق بتفاصيل يومك.",
+    "manifesto": "نحن نؤمن بأن التكنولوجيا يجب أن تخدم راحة الإنسان لا أن تشغله.",
+    "tahtDownloadUrl": "https://taht-el-balata.web.app",
+    "heroBadge": "منظومة Blotx المتكاملة 2026",
+    "eftekerDownloadUrl": "https://eftekir-app-f9116.web.app"
+  }
+}
