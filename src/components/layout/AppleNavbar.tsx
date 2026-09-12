@@ -1,4 +1,5 @@
 import { useState, useEffect, type FC } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X, ArrowUpRight, Volume2, VolumeX, Globe, HelpCircle, ShieldCheck } from 'lucide-react';
 import { playAppleClick, setMuted, getIsMuted } from '../../utils/soundEffects';
 import { handleSmoothScrollClick } from '../../utils/smoothScroll';
@@ -213,132 +214,169 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
-          {/* Mobile Menu Trigger */}
+          {/* Mobile Menu Trigger with Animated Icon Flip */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-full hover:bg-neutral-100 text-[#1d1d1f] shrink-0 active:scale-95 transition-transform cursor-pointer"
+            className="lg:hidden p-2 rounded-full hover:bg-neutral-100 text-[#1d1d1f] shrink-0 active:scale-90 transition-transform cursor-pointer"
             title="Menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            <AnimatePresence mode="wait" initial={false}>
+              {mobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <X className="w-5 h-5" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.18 }}
+                >
+                  <Menu className="w-5 h-5" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay (Floating Absolute without pushing page content) */}
-      {mobileMenuOpen && (
-        <>
-          {/* Backdrop overlay to close when clicking outside */}
-          <div
-            className="fixed inset-0 bg-black/20 backdrop-blur-xs z-40 lg:hidden"
-            onClick={() => setMobileMenuOpen(false)}
-          />
+      {/* Mobile Drawer Overlay with Smooth Open & Close Transitions */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <>
+            {/* Backdrop overlay to close when clicking outside */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease: 'easeOut' }}
+              className="fixed inset-0 bg-black/25 backdrop-blur-xs z-40 lg:hidden"
+              onClick={() => setMobileMenuOpen(false)}
+            />
 
-          {/* Floating Dropdown Card */}
-          <div className="absolute top-[calc(100%+8px)] inset-x-3 sm:inset-x-6 z-50 rounded-3xl bg-white/95 backdrop-blur-2xl border border-black/[0.08] p-4 sm:p-5 shadow-2xl space-y-3 lg:hidden animate-fadeIn max-h-[82vh] overflow-y-auto">
-            {/* Quick Primary Demo Button */}
-            <a
-              href="#devices"
-              onClick={(e) => {
-                handleSmoothScrollClick(e, '#devices', 85, 850, () => {
+            {/* Floating Dropdown Card with Apple Spring Motion */}
+            <motion.div
+              initial={{ opacity: 0, y: -16, scale: 0.95, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -12, scale: 0.96, filter: 'blur(6px)' }}
+              transition={{
+                duration: 0.25,
+                ease: [0.16, 1, 0.3, 1], // Apple cubic-bezier
+              }}
+              className="absolute top-[calc(100%+8px)] inset-x-3 sm:inset-x-6 z-50 rounded-3xl bg-white/95 backdrop-blur-2xl border border-black/[0.08] p-4 sm:p-5 shadow-2xl space-y-3 lg:hidden max-h-[82vh] overflow-y-auto"
+            >
+              {/* Quick Primary Demo Button */}
+              <a
+                href="#devices"
+                onClick={(e) => {
+                  handleSmoothScrollClick(e, '#devices', 85, 850, () => {
+                    playAppleClick();
+                    setActiveSection('#devices');
+                    setMobileMenuOpen(false);
+                  });
+                }}
+                className="w-full apple-pill-btn py-2.5 px-4 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
+              >
+                <span>{t.liveDemo}</span>
+                <ArrowUpRight className="w-3.5 h-3.5" />
+              </a>
+
+              {/* Mobile Language & Sound Quick Bar */}
+              <div className="grid grid-cols-2 gap-2 pb-2 border-b border-black/[0.06]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    toggleLanguage();
+                  }}
+                  className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
+                >
+                  <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
+                  <span>{language === 'ar' ? 'English (EN)' : 'العربية (AR)'}</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    toggleSound();
+                  }}
+                  className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
+                >
+                  {isAudioMuted ? (
+                    <>
+                      <VolumeX className="w-3.5 h-3.5 text-neutral-400" />
+                      <span>{language === 'ar' ? 'صوت مكتوم' : 'Muted'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Volume2 className="w-3.5 h-3.5 text-[#0071e3]" />
+                      <span>{language === 'ar' ? 'صوت مفعل' : 'Sound ON'}</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+              {/* Nav Links with Scroll Spy Highlight */}
+              <div className="space-y-1">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.href;
+
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => {
+                        handleSmoothScrollClick(e, link.href, 85, 850, () => {
+                          playAppleClick();
+                          setActiveSection(link.href);
+                          setMobileMenuOpen(false);
+                        });
+                      }}
+                      className={`block p-2.5 rounded-xl text-xs transition-all cursor-pointer ${
+                        isActive
+                          ? 'bg-neutral-100 text-[#0071e3] font-black border border-blue-200'
+                          : 'font-bold text-[#1d1d1f] hover:bg-neutral-50'
+                      }`}
+                    >
+                      {link.label}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* Support & Docs Trigger */}
+              <button
+                type="button"
+                onClick={() => {
                   playAppleClick();
-                  setActiveSection('#devices');
                   setMobileMenuOpen(false);
-                });
-              }}
-              className="w-full apple-pill-btn py-2.5 px-4 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
-            >
-              <span>{t.liveDemo}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-
-            {/* Mobile Language & Sound Quick Bar */}
-            <div className="grid grid-cols-2 gap-2 pb-2 border-b border-black/[0.06]">
-              <button
-                type="button"
-                onClick={() => {
-                  playAppleClick();
-                  toggleLanguage();
+                  onOpenSupport?.('team');
                 }}
-                className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
+                className="w-full text-start flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-[#0071e3] bg-blue-50/60 hover:bg-blue-100/60 border border-blue-200/60 transition-colors cursor-pointer"
               >
-                <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
-                <span>{language === 'ar' ? 'English (EN)' : 'العربية (AR)'}</span>
+                <HelpCircle className="w-4 h-4 text-[#0071e3]" />
+                <span>{t.footerSupport}</span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => {
-                  playAppleClick();
-                  toggleSound();
-                }}
-                className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
-              >
-                {isAudioMuted ? (
-                  <>
-                    <VolumeX className="w-3.5 h-3.5 text-neutral-400" />
-                    <span>{language === 'ar' ? 'صوت مكتوم' : 'Muted'}</span>
-                  </>
-                ) : (
-                  <>
-                    <Volume2 className="w-3.5 h-3.5 text-[#0071e3]" />
-                    <span>{language === 'ar' ? 'صوت مفعل' : 'Sound ON'}</span>
-                  </>
-                )}
-              </button>
-            </div>
-
-            {/* Nav Links with Scroll Spy Highlight */}
-            <div className="space-y-1">
-              {navLinks.map((link) => {
-                const isActive = activeSection === link.href;
-
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => {
-                      handleSmoothScrollClick(e, link.href, 85, 850, () => {
-                        playAppleClick();
-                        setActiveSection(link.href);
-                        setMobileMenuOpen(false);
-                      });
-                    }}
-                    className={`block p-2.5 rounded-xl text-xs transition-all cursor-pointer ${
-                      isActive
-                        ? 'bg-neutral-100 text-[#0071e3] font-black border border-blue-200'
-                        : 'font-bold text-[#1d1d1f] hover:bg-neutral-50'
-                    }`}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </div>
-
-            {/* Support & Docs Trigger */}
-            <button
-              type="button"
-              onClick={() => {
-                playAppleClick();
-                setMobileMenuOpen(false);
-                onOpenSupport?.('team');
-              }}
-              className="w-full text-start flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-[#0071e3] bg-blue-50/60 hover:bg-blue-100/60 border border-blue-200/60 transition-colors cursor-pointer"
-            >
-              <HelpCircle className="w-4 h-4 text-[#0071e3]" />
-              <span>{t.footerSupport}</span>
-            </button>
-
-            {/* Micro Footer */}
-            <div className="pt-2 border-t border-black/[0.06] flex items-center justify-between text-[11px] text-neutral-500 font-bold">
-              <span className="flex items-center gap-1 text-emerald-600">
-                <ShieldCheck className="w-3.5 h-3.5" /> {t.trustLocal}
-              </span>
-              <span>Blotx Tech Ecosystem</span>
-            </div>
-          </div>
-        </>
-      )}
+              {/* Micro Footer */}
+              <div className="pt-2 border-t border-black/[0.06] flex items-center justify-between text-[11px] text-neutral-500 font-bold">
+                <span className="flex items-center gap-1 text-emerald-600">
+                  <ShieldCheck className="w-3.5 h-3.5" /> {t.trustLocal}
+                </span>
+                <span>Blotx Tech Ecosystem</span>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
