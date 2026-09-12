@@ -45,15 +45,15 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/60 backdrop-blur-md animate-fadeIn font-cairo"
+      className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-6 bg-black/60 backdrop-blur-md animate-fadeIn font-cairo"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-black/[0.1] flex flex-col overflow-hidden animate-scaleUp"
+        className="relative w-full max-w-4xl max-h-[86dvh] sm:max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-black/[0.1] flex flex-col overflow-hidden animate-scaleUp"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-6 sm:p-8 border-b border-black/[0.06] bg-gradient-to-b from-neutral-50/90 to-white flex items-center justify-between gap-4 shrink-0">
+        <div className="p-4 sm:p-8 border-b border-black/[0.06] bg-gradient-to-b from-neutral-50/90 to-white flex items-center justify-between gap-4 shrink-0">
           <div className="text-start space-y-1">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
               <ShieldCheck className="w-4 h-4 text-emerald-600" />
@@ -94,7 +94,7 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Scrollable Body Content */}
-        <div className="p-6 sm:p-8 overflow-y-auto space-y-8 text-start text-[#1d1d1f] leading-relaxed text-sm sm:text-base">
+        <div className="p-4 sm:p-8 overflow-y-auto space-y-6 sm:space-y-8 text-start text-[#1d1d1f] leading-relaxed text-sm sm:text-base">
           {isAr ? (
             // ================= Arabic Legal Document =================
             <>
@@ -309,8 +309,8 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
         </div>
 
         {/* Footer actions */}
-        <div className="p-4 sm:p-5 border-t border-black/[0.06] bg-neutral-50 flex items-center justify-between shrink-0">
-          <span className="text-[11px] text-[#86868b]">
+        <div className="p-3.5 sm:p-5 border-t border-black/[0.06] bg-neutral-50 flex items-center justify-between gap-3 shrink-0">
+          <span className="text-[11px] text-[#86868b] truncate">
             {isAr ? 'وثيقة خصوصية Blotx Tech الرسمية • سارية المفعول قانونياً' : 'Official Blotx Tech Privacy Charter • Legally Binding'}
           </span>
           <button

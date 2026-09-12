@@ -208,6 +208,8 @@ export interface Translations {
   supportTeamSubheading: string;
   supportDevHeading: string;
   supportDevSubheading: string;
+  supportDocsHeading: string;
+  supportDocsSubheading: string;
   supportEmailLabel: string;
   supportWhatsAppLabel: string;
   supportCopyBtn: string;
@@ -437,6 +439,8 @@ export const translations: Record<Language, Translations> = {
     supportTeamSubheading: 'فريقنا متاح للرد على أي استفسارات عامة، مشاكل التشغيل، والتراخيص على مدار الساعة.',
     supportDevHeading: 'التواصل المباشر مع مطور المنظومة',
     supportDevSubheading: 'للمحادثات التقنية العميقة، الأفكار البرمجية، والشراكات الهندسية والاستثمارية مباشرة.',
+    supportDocsHeading: 'التوثيق الفني ومعايير الأمان',
+    supportDocsSubheading: 'دليل شامل للبنية التحتية البرمجية، آليات التشفير العسكري، وتدفق البيانات المحلي بالكامل.',
     supportEmailLabel: 'البريد الإلكتروني (Gmail):',
     supportWhatsAppLabel: 'واتساب مباشر (WhatsApp):',
     supportCopyBtn: 'نسخ',
@@ -665,6 +669,8 @@ export const translations: Record<Language, Translations> = {
     supportTeamSubheading: 'Our support team is available 24/7 for general inquiries, troubleshooting, license assistance, and operational questions.',
     supportDevHeading: 'Direct Developer & Engineering Line',
     supportDevSubheading: 'Direct access to the lead developer for deep technical inquiries, code discussions, system architecture, and strategic partnerships.',
+    supportDocsHeading: 'Technical Documentation & Security Standards',
+    supportDocsSubheading: 'Comprehensive architectural guides, zero-knowledge encryption protocols, and purely local data pipelines.',
     supportEmailLabel: 'Email Address (Gmail):',
     supportWhatsAppLabel: 'Direct WhatsApp Line:',
     supportCopyBtn: 'Copy',
