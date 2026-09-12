@@ -3,7 +3,12 @@ import { handleSmoothScrollClick } from '../../utils/smoothScroll';
 import { playAppleClick } from '../../utils/soundEffects';
 import { useLanguage } from '../../LanguageContext';
 
-export const AppleFooter: FC = () => {
+interface AppleFooterProps {
+  onOpenPrivacy?: () => void;
+  onOpenSupport?: (tab?: 'team' | 'developer' | 'docs') => void;
+}
+
+export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport }) => {
   const { language, t } = useLanguage();
 
   const onLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -60,8 +65,30 @@ export const AppleFooter: FC = () => {
           <div className="space-y-3">
             <h4 className="font-semibold text-[#1d1d1f]">{t.footerValuesHeader}</h4>
             <ul className="space-y-2">
-              <li><a href="#philosophy" onClick={(e) => onLinkClick(e, '#philosophy')} className="hover:text-[#1d1d1f] transition-colors cursor-pointer">{language === 'ar' ? 'الخصوصية أولاً (بدون تتبع)' : 'Privacy-First (No Telemetry)'}</a></li>
-              <li><a href="#philosophy" onClick={(e) => onLinkClick(e, '#philosophy')} className="hover:text-[#1d1d1f] transition-colors cursor-pointer">{language === 'ar' ? 'تشفير محلي 100%' : '100% On-Device Encryption'}</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    onOpenPrivacy?.();
+                  }}
+                  className="hover:text-[#1d1d1f] transition-colors cursor-pointer text-left rtl:text-right"
+                >
+                  {language === 'ar' ? 'الخصوصية أولاً (بدون تتبع)' : 'Privacy-First (No Telemetry)'}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    onOpenSupport?.('docs');
+                  }}
+                  className="hover:text-[#1d1d1f] transition-colors cursor-pointer text-left rtl:text-right"
+                >
+                  {language === 'ar' ? 'تشفير محلي 100% والتوثيق' : '100% On-Device Encryption & Docs'}
+                </button>
+              </li>
               <li><a href="#faq" onClick={(e) => onLinkClick(e, '#faq')} className="hover:text-[#1d1d1f] transition-colors cursor-pointer">{language === 'ar' ? 'الأسئلة الشائعة والأمان' : 'FAQ & Security Architecture'}</a></li>
             </ul>
           </div>
@@ -69,8 +96,30 @@ export const AppleFooter: FC = () => {
           <div className="space-y-3">
             <h4 className="font-semibold text-[#1d1d1f]">{t.footerAboutHeader}</h4>
             <ul className="space-y-2">
-              <li><a href="#devices" onClick={(e) => onLinkClick(e, '#devices')} className="hover:text-[#1d1d1f] transition-colors cursor-pointer">{language === 'ar' ? 'فريق العمل والابتكار' : 'Studios & Innovation'}</a></li>
-              <li><a href="#synergy-matrix" onClick={(e) => onLinkClick(e, '#synergy-matrix')} className="hover:text-[#1d1d1f] transition-colors cursor-pointer">{language === 'ar' ? 'المعمارية المتكاملة' : 'Integrated Architecture'}</a></li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    onOpenSupport?.('developer');
+                  }}
+                  className="hover:text-[#1d1d1f] transition-colors cursor-pointer text-left rtl:text-right"
+                >
+                  {language === 'ar' ? 'التواصل المباشر مع المطور' : 'Direct Developer Contact'}
+                </button>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    onOpenSupport?.('team');
+                  }}
+                  className="hover:text-[#1d1d1f] transition-colors cursor-pointer text-left rtl:text-right"
+                >
+                  {language === 'ar' ? 'فريق الدعم للويبسايت' : 'Website Support Team'}
+                </button>
+              </li>
               <li><span className="text-[#86868b]">{t.madeInEgypt}</span></li>
             </ul>
           </div>
@@ -81,12 +130,39 @@ export const AppleFooter: FC = () => {
           <div>
             {t.footerCopyright}
           </div>
-          <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#1d1d1f] transition-colors">{t.footerPrivacy}</a>
+          <div className="flex items-center gap-4 sm:gap-6">
+            <button
+              type="button"
+              onClick={() => {
+                playAppleClick();
+                onOpenPrivacy?.();
+              }}
+              className="hover:text-[#1d1d1f] transition-colors cursor-pointer font-medium"
+            >
+              {t.footerPrivacy}
+            </button>
             <span>•</span>
-            <a href="#" className="hover:text-[#1d1d1f] transition-colors">{t.footerTerms}</a>
+            <button
+              type="button"
+              onClick={() => {
+                playAppleClick();
+                onOpenPrivacy?.();
+              }}
+              className="hover:text-[#1d1d1f] transition-colors cursor-pointer font-medium"
+            >
+              {t.footerTerms}
+            </button>
             <span>•</span>
-            <a href="#" className="hover:text-[#1d1d1f] transition-colors">{t.footerSupport}</a>
+            <button
+              type="button"
+              onClick={() => {
+                playAppleClick();
+                onOpenSupport?.('team');
+              }}
+              className="hover:text-[#0071e3] transition-colors cursor-pointer font-bold text-[#1d1d1f]"
+            >
+              {t.footerSupport}
+            </button>
           </div>
         </div>
       </div>

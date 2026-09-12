@@ -13,12 +13,22 @@ import { TheLabSecrets } from './components/sections/TheLabSecrets';
 import { FaqSection } from './components/sections/FaqSection';
 import { AppleFooter } from './components/layout/AppleFooter';
 import { FloatingEcosystemDock } from './components/ui/FloatingEcosystemDock';
+import { PrivacyPolicyModal } from './components/ui/PrivacyPolicyModal';
+import { SupportDocsModal } from './components/ui/SupportDocsModal';
 
 import { ConfigContext } from './ConfigContext';
 import { LanguageProvider } from './LanguageContext';
 
 export function App() {
   const [config, setConfig] = useState<any>(null);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [supportTab, setSupportTab] = useState<'team' | 'developer' | 'docs'>('team');
+
+  const handleOpenSupport = (tab: 'team' | 'developer' | 'docs' = 'team') => {
+    setSupportTab(tab);
+    setIsSupportOpen(true);
+  };
 
   useEffect(() => {
     const unsubscribe = subscribeToConfig((data) => {
@@ -40,7 +50,7 @@ export function App() {
     <LanguageProvider>
       <ConfigContext.Provider value={config}>
       <div className="min-h-screen relative pb-20" style={{ backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', fontSize: 'var(--base-font-size)', fontFamily: 'var(--base-font-family)' }}>
-        <AppleNavbar />
+        <AppleNavbar onOpenSupport={handleOpenSupport} />
         <main>
           {config?.images?.banner && (
             <div
@@ -63,8 +73,22 @@ export function App() {
           <TheLabSecrets />
           <FaqSection />
         </main>
-        <AppleFooter />
+        <AppleFooter
+          onOpenPrivacy={() => setIsPrivacyOpen(true)}
+          onOpenSupport={handleOpenSupport}
+        />
         <FloatingEcosystemDock />
+
+        {/* Global Legal & Support Modals */}
+        <PrivacyPolicyModal
+          isOpen={isPrivacyOpen}
+          onClose={() => setIsPrivacyOpen(false)}
+        />
+        <SupportDocsModal
+          isOpen={isSupportOpen}
+          onClose={() => setIsSupportOpen(false)}
+          initialTab={supportTab}
+        />
       </div>
       </ConfigContext.Provider>
     </LanguageProvider>

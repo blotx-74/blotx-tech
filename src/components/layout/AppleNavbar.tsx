@@ -4,7 +4,11 @@ import { playAppleClick, setMuted, getIsMuted } from '../../utils/soundEffects';
 import { handleSmoothScrollClick } from '../../utils/smoothScroll';
 import { useLanguage } from '../../LanguageContext';
 
-export const AppleNavbar: FC = () => {
+interface AppleNavbarProps {
+  onOpenSupport?: (tab?: 'team' | 'developer' | 'docs') => void;
+}
+
+export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAudioMuted, setIsAudioMuted] = useState(getIsMuted());
   const { language, t, toggleLanguage } = useLanguage();
@@ -75,6 +79,16 @@ export const AppleNavbar: FC = () => {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              playAppleClick();
+              onOpenSupport?.('team');
+            }}
+            className="px-3 py-1.5 rounded-full text-xs font-bold text-[#0071e3] hover:bg-blue-50 transition-all cursor-pointer"
+          >
+            {t.footerSupport}
+          </button>
         </nav>
 
         {/* Right Controls Group */}
@@ -171,6 +185,17 @@ export const AppleNavbar: FC = () => {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              playAppleClick();
+              setMobileMenuOpen(false);
+              onOpenSupport?.('team');
+            }}
+            className="w-full text-start block p-2.5 rounded-xl text-xs font-bold text-[#0071e3] hover:bg-blue-50 transition-colors cursor-pointer"
+          >
+            {t.footerSupport}
+          </button>
           <div className="pt-3 border-t border-black/[0.06] flex items-center justify-between text-xs text-neutral-500 font-bold">
             <span className="flex items-center gap-1 text-emerald-600">
               <ShieldCheck className="w-3.5 h-3.5" /> {t.trustLocal}

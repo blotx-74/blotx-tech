@@ -1,58 +1,61 @@
 import type { FC } from 'react';
-import { Users, Ruler, Shield, Sparkles, ArrowLeft } from 'lucide-react';
+import { Users, Ruler, Shield, Sparkles, ArrowLeft, ArrowRight } from 'lucide-react';
+import { useLanguage } from '../../LanguageContext';
 
 export const TheLabSecrets: FC = () => {
+  const { isRTL, t } = useLanguage();
+
   const futureProjects = [
     {
-      code: 'NODE 03 // UNDER RESEARCH',
-      name: 'شباك (Shebbak)',
-      subtitle: 'نافذة تواصل إنساني هادئ للعائلات',
-      desc: 'سد ثغرة البعد والانفصال الإنساني؛ مساحة دافئة تشارك فيها لحظاتك مع دايرتك المقربة بدون خوارزميات رخيصة، ولا إعلانات، ولا دوشة السوشيال ميديا.',
+      code: t.labProject1Code,
+      name: t.labProject1Name,
+      subtitle: t.labProject1Subtitle,
+      desc: t.labProject1Desc,
       icon: Users,
-      badge: 'مرحلة النماذج الأولية',
+      badge: t.labProject1Badge,
       color: 'text-purple-600',
       bg: 'bg-purple-50',
     },
     {
-      code: 'NODE 04 // IN DEVELOPMENT',
-      name: 'المسطرة (El-Mastara)',
-      subtitle: 'معايرة العادات وإلغاء المماطلة',
-      desc: 'أداة ضبط وقياس صارمة للعادات اليومية، بتفهم سلوكك وبتساعدك تبني انضباط حقيقي بدون جلد ذات وبطريقة ممتعة ومستدامة.',
+      code: t.labProject2Code,
+      name: t.labProject2Name,
+      subtitle: t.labProject2Subtitle,
+      desc: t.labProject2Desc,
       icon: Ruler,
-      badge: 'قيد التطوير الفعلي',
+      badge: t.labProject2Badge,
       color: 'text-amber-600',
       bg: 'bg-amber-50',
     },
     {
-      code: 'NODE 05 // EXPERIMENTAL',
-      name: 'الكبسولة (El-Capsule)',
-      subtitle: 'التشفير والتوريث الرقمي الآمن',
-      desc: 'كبسولة تشفير محصنة لحفظ المستندات الحيوية، أسرار العمل، والذكريات الثمينة مع نظام ذكي لتسليمها لأحبائك في حالات الطوارئ.',
+      code: t.labProject3Code,
+      name: t.labProject3Name,
+      subtitle: t.labProject3Subtitle,
+      desc: t.labProject3Desc,
       icon: Shield,
-      badge: 'أبحاث الأمان والتشفير',
+      badge: t.labProject3Badge,
       color: 'text-emerald-600',
       bg: 'bg-emerald-50',
     },
   ];
 
   return (
-    <section id="lab" className="py-24 bg-white border-t border-black/[0.04]">
+    <section id="lab" className="py-24 bg-white border-t border-black/[0.04] font-cairo">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 text-[#1d1d1f] text-xs font-bold shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-[#0071e3]" />
-            <span>معمل أفكار Blotx Tech • The Secret Lab</span>
+            <span>{t.labBadge}</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-[#1d1d1f] tracking-tight">
-            عقولنا مش بتبطل تفكير.
+            {t.labTitle1}
             <br />
-            <span className="text-[#6e6e73]">إيه اللي بنجهزه لخدمتك بعد كده؟</span>
+            <span className="text-[#6e6e73]">{t.labTitle2}</span>
           </h2>
 
           <p className="text-base sm:text-lg text-[#6e6e73] leading-relaxed">
-            الرحلة بدأت بـ «تحت البلاطة» و«افتكر»، لكن الإيكوسيستم بيكبر كل يوم علشان يغطي كل ثغرة ممكن تقلقك أو تعطل حياتك.
+            {t.labDesc}
           </p>
         </div>
 
@@ -63,7 +66,7 @@ export const TheLabSecrets: FC = () => {
             return (
               <div
                 key={idx}
-                className="apple-card p-8 flex flex-col justify-between text-right border border-black/[0.06] hover:border-black/[0.12] transition-all"
+                className="apple-card p-8 flex flex-col justify-between text-start border border-black/[0.06] hover:border-black/[0.12] transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
@@ -94,22 +97,23 @@ export const TheLabSecrets: FC = () => {
 
         {/* Co-creation invitation banner */}
         <div className="mt-16 apple-card p-8 sm:p-10 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-right space-y-2">
-            <h4 className="text-xl sm:text-2xl font-bold">شايف مشكلة أو حاجة ناقصة الناس في حياتهم؟</h4>
+          <div className="text-start space-y-2">
+            <h4 className="text-xl sm:text-2xl font-bold">{t.labBannerTitle}</h4>
             <p className="text-xs sm:text-sm text-neutral-300 max-w-xl">
-              معمل Blotx مفتوح للأفكار الحقيقية اللي بتنبع من قلب الشارع وتفاصيل الحياة اليومية. شاركنا فكرتك وسيبنا نهندسها.
+              {t.labBannerDesc}
             </p>
           </div>
 
           <a
-            href="mailto:hello@blotx.tech"
+            href="mailto:blotx.tech@gmail.com"
             className="apple-pill-btn px-7 py-3 bg-white text-black hover:bg-neutral-100 font-bold text-xs flex items-center gap-2 shrink-0 shadow-lg"
           >
-            <span>شارك فكرتك مع المعمل</span>
-            <ArrowLeft className="w-4 h-4" />
+            <span>{t.labBannerBtn}</span>
+            {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
           </a>
         </div>
       </div>
     </section>
   );
 };
+

@@ -1,4 +1,4 @@
-import { useState, type FC } from 'react';
+import { useState, useEffect, type FC } from 'react';
 import { Brain, Sparkles, CheckCircle2, ArrowUpRight, BellRing, Heart, Smile } from 'lucide-react';
 import { useLanguage } from '../../LanguageContext';
 
@@ -32,6 +32,11 @@ export const InteractiveEftekerExperience: FC = () => {
   const [availableBubbles, setAvailableBubbles] = useState<string[]>(
     language === 'en' ? defaultBubblesEn : defaultBubblesAr
   );
+
+  useEffect(() => {
+    setCapturedThoughts(language === 'en' ? defaultThoughtsEn : defaultThoughtsAr);
+    setAvailableBubbles(language === 'en' ? defaultBubblesEn : defaultBubblesAr);
+  }, [language]);
 
   const handleCapture = (thought: string) => {
     setCapturedThoughts([thought, ...capturedThoughts]);

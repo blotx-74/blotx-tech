@@ -25,7 +25,7 @@ type HeroPillar = 'all' | 'taht' | 'efteker';
 
 export const HeroCinematic: FC = () => {
   const config = useConfig();
-  const { isRTL, t } = useLanguage();
+  const { language, isRTL, t } = useLanguage();
   const [activePillar, setActivePillar] = useState<HeroPillar>('all');
 
   const handlePillarSelect = (pillar: HeroPillar) => {
@@ -64,14 +64,14 @@ export const HeroCinematic: FC = () => {
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-white p-2.5 shadow-xl border border-emerald-200/80 flex items-center justify-center">
             <img
               src="/assets/logos/taht-elbalata-logo.png"
-              alt="تحت البلاطة"
+              alt={language === 'ar' ? 'تحت البلاطة' : 'Taht El Balata'}
               className="w-full h-full object-contain drop-shadow-md group-hover:scale-105 transition-transform"
             />
           </div>
 
           {/* Micro Floating Badge */}
           <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs text-[10px] font-bold">
-            تحت البلاطة
+            {language === 'ar' ? 'تحت البلاطة' : 'Taht El Balata'}
           </div>
         </div>
 
@@ -123,14 +123,14 @@ export const HeroCinematic: FC = () => {
           <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-2xl sm:rounded-3xl bg-white p-2.5 shadow-xl border border-blue-200/80 flex items-center justify-center">
             <img
               src="/assets/logos/efteker-logo.png"
-              alt="افتكر"
+              alt={language === 'ar' ? 'افتكر' : 'Eftekir'}
               className="w-full h-full object-contain drop-shadow-md rounded-xl group-hover:scale-105 transition-transform"
             />
           </div>
 
           {/* Micro Floating Badge */}
           <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200/80 shadow-xs text-[10px] font-bold">
-            افتكر
+            {language === 'ar' ? 'افتكر' : 'Eftekir'}
           </div>
         </div>
       </div>
@@ -138,13 +138,15 @@ export const HeroCinematic: FC = () => {
       {/* Eyebrow Formal Tag */}
       <div className="mb-4 inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/[0.04] border border-black/[0.06] text-xs font-bold text-[#6e6e73]">
         <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-        <span>{config?.content?.heroBadge || t.heroBadge}</span>
+        <span>{language === 'ar' && config?.content?.heroBadge ? config.content.heroBadge : t.heroBadge}</span>
       </div>
 
       {/* Main Majestic Headline */}
       <div className="max-w-4xl mx-auto space-y-5">
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#1d1d1f] tracking-tight leading-[1.12]">
-          {config?.content?.heroTitle || (
+          {language === 'ar' && config?.content?.heroTitle ? (
+            config.content.heroTitle
+          ) : (
             <>
               {t.heroTitle1}
               <br />
@@ -156,7 +158,7 @@ export const HeroCinematic: FC = () => {
         </h1>
 
         <p className="text-base sm:text-xl lg:text-2xl text-[#6e6e73] max-w-3xl mx-auto font-normal leading-relaxed">
-          {config?.content?.heroSubtitle || t.heroDesc}
+          {language === 'ar' && config?.content?.heroSubtitle ? config.content.heroSubtitle : t.heroDesc}
         </p>
       </div>
 

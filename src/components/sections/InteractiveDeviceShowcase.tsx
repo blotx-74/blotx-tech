@@ -73,26 +73,44 @@ export const InteractiveDeviceShowcase: FC = () => {
     playAppleClick();
     setBalataBalance(142580);
     setAirDropStage('idle');
-    setSyncMessage('تمت إعادة ضبط المحاكاة للوضع الافتراضي.');
+    setSyncMessage(
+      language === 'ar'
+        ? 'تمت إعادة ضبط المحاكاة للوضع الافتراضي.'
+        : 'Simulator reset to initial state.'
+    );
     setTimeout(() => setSyncMessage(null), 3000);
   };
 
   // Trigger Authentic iOS AirDrop Experience with Dynamic Payload
   const triggerAirDropSync = (
     amount: number = 3500,
-    title: string = 'صيانة السيارة الدورية (3,500 ج.م)'
+    title?: string
   ) => {
     if (airDropStage !== 'idle') return;
 
-    setCapsuleTitle(title);
+    const actualTitle =
+      title ||
+      (language === 'ar'
+        ? 'صيانة السيارة الدورية (3,500 ج.م)'
+        : 'Routine Car Maintenance (3,500 EGP)');
+
+    setCapsuleTitle(actualTitle);
     playAirDropChime();
     setAirDropStage('radar');
-    setSyncMessage('AirDrop: جاري استشعار الهاتف الآخر وبث موجات الرادار...');
+    setSyncMessage(
+      language === 'ar'
+        ? 'AirDrop: جاري استشعار الهاتف الآخر وبث موجات الرادار...'
+        : 'AirDrop: Scanning local peer radar...'
+    );
 
     // Stage 2: Beam & Flying AirDrop Capsule (after 500ms)
     setTimeout(() => {
       setAirDropStage('beaming');
-      setSyncMessage(`AirDrop: إرسال كبسولة ${title} عبر الأثير...`);
+      setSyncMessage(
+        language === 'ar'
+          ? `AirDrop: إرسال كبسولة ${actualTitle} عبر الأثير...`
+          : `AirDrop: Beaming capsule "${actualTitle}" over the air...`
+      );
     }, 550);
 
     // Stage 3: Reception & Acceptance in Taht El Balata (after 1450ms)
@@ -100,7 +118,11 @@ export const InteractiveDeviceShowcase: FC = () => {
       playVaultThud();
       setAirDropStage('received');
       setBalataBalance((prev) => Math.max(0, prev - amount));
-      setSyncMessage(`✓ تم استلام ${title} عبر AirDrop! اقتطاع المصروف وتوثيقه في الخزنة.`);
+      setSyncMessage(
+        language === 'ar'
+          ? `✓ تم استلام ${actualTitle} عبر AirDrop! اقتطاع المصروف وتوثيقه في الخزنة.`
+          : `✓ Received "${actualTitle}" via AirDrop! Allocated in vault.`
+      );
     }, 1450);
 
     // Stage 4: Reset back to idle (after 4500ms)
