@@ -50,7 +50,7 @@ export function App() {
   return (
     <LanguageProvider>
       <ConfigContext.Provider value={config}>
-      <div className="min-h-screen relative pb-20" style={{ backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', fontSize: 'var(--base-font-size)', fontFamily: 'var(--base-font-family)' }}>
+      <div className="min-h-screen relative pb-20 overflow-x-clip w-full max-w-full" style={{ backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', fontSize: 'var(--base-font-size)', fontFamily: 'var(--base-font-family)' }}>
         <AppleNavbar onOpenSupport={handleOpenSupport} />
         <main>
           {config?.images?.banner && (

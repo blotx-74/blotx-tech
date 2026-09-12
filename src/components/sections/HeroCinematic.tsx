@@ -36,16 +36,16 @@ export const HeroCinematic: FC = () => {
   };
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#ffffff] via-[#fbfbfd] to-[#f4f4f7] pt-14 pb-20 font-cairo">
+    <section className="relative min-h-[92vh] flex flex-col items-center justify-center text-center px-3 sm:px-6 lg:px-8 overflow-hidden bg-gradient-to-b from-[#ffffff] via-[#fbfbfd] to-[#f4f4f7] pt-14 pb-20 font-cairo w-full max-w-full">
       {/* Ambient Diffused Lighting Halos */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[720px] h-[720px] bg-gradient-to-tr from-blue-100/30 via-emerald-100/25 to-amber-100/15 rounded-full blur-3xl pointer-events-none -z-10" />
 
       {/* ======================================================== */}
       {/* 1. THE EXECUTIVE TRIAD CREST (THE 3 OFFICIAL LOGOS) */}
       {/* ======================================================== */}
-      <div className="relative mb-10 flex items-center justify-center gap-3 sm:gap-6">
+      <div className="relative mb-10 flex items-center justify-center gap-2 sm:gap-6 max-w-full">
         {/* Hairline Connecting Bridge Line behind emblems */}
-        <div className="absolute top-1/2 left-8 right-8 h-[1.5px] bg-gradient-to-r from-transparent via-black/[0.12] to-transparent pointer-events-none -z-10" />
+        <div className="absolute top-1/2 left-4 sm:left-8 right-4 sm:right-8 h-[1.5px] bg-gradient-to-r from-transparent via-black/[0.12] to-transparent pointer-events-none -z-10" />
 
         {/* 1. Right Wing: «تحت البلاطة» 3D Mascot Medallion */}
         <div
@@ -142,8 +142,8 @@ export const HeroCinematic: FC = () => {
       </div>
 
       {/* Main Majestic Headline */}
-      <div className="max-w-4xl mx-auto space-y-5">
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#1d1d1f] tracking-tight leading-[1.12]">
+      <div className="max-w-4xl mx-auto space-y-5 px-1">
+        <h1 className="text-3xl sm:text-6xl lg:text-7xl font-black text-[#1d1d1f] tracking-tight leading-[1.18] sm:leading-[1.12] break-words">
           {language === 'ar' && config?.content?.heroTitle ? (
             config.content.heroTitle
           ) : (
@@ -157,7 +157,7 @@ export const HeroCinematic: FC = () => {
           )}
         </h1>
 
-        <p className="text-base sm:text-xl lg:text-2xl text-[#6e6e73] max-w-3xl mx-auto font-normal leading-relaxed">
+        <p className="text-sm sm:text-xl lg:text-2xl text-[#6e6e73] max-w-3xl mx-auto font-normal leading-relaxed px-2">
           {language === 'ar' && config?.content?.heroSubtitle ? config.content.heroSubtitle : t.heroDesc}
         </p>
       </div>

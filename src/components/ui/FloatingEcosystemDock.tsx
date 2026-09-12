@@ -39,10 +39,10 @@ export const FloatingEcosystemDock: FC = () => {
   return (
     <>
       {/* Floating Dynamic Island Dock at Bottom Center */}
-      <div className="fixed bottom-5 inset-x-4 max-w-2xl mx-auto z-50 pointer-events-none font-cairo">
-        <div className="apple-card px-3 sm:px-4 py-2 bg-white/95 backdrop-blur-2xl border border-black/[0.12] shadow-[0_15px_45px_rgba(0,0,0,0.15)] flex items-center justify-between pointer-events-auto rounded-full">
+      <div className="fixed bottom-3 sm:bottom-5 inset-x-3 sm:inset-x-4 max-w-2xl mx-auto z-50 pointer-events-none font-cairo">
+        <div className="apple-card px-2.5 sm:px-4 py-1.5 sm:py-2 bg-white/95 backdrop-blur-2xl border border-black/[0.12] shadow-[0_15px_45px_rgba(0,0,0,0.15)] flex items-center justify-between pointer-events-auto rounded-full w-full max-w-full">
           {/* Left Quick Navigation Icons */}
-          <div className="flex items-center gap-1 sm:gap-2">
+          <div className="flex items-center gap-0.5 sm:gap-2">
             <a
               href="#devices"
               onClick={(e) => {
@@ -51,7 +51,7 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dock3d}
-              className="p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1.5 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
             >
               <SmartphoneNfc className="w-4 h-4 text-[#0071e3]" />
               <span className="hidden md:inline">{t.dock3d}</span>
@@ -67,12 +67,12 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dockTaht}
-              className="p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1.5 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
             >
               <img
                 src="/assets/logos/taht-elbalata-logo.png"
                 alt={t.dockTaht}
-                className="w-5 h-5 object-contain"
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain"
               />
               <span className="hidden sm:inline">{t.dockTaht}</span>
             </a>
@@ -87,12 +87,12 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dockEfteker}
-              className="p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1.5 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
             >
               <img
                 src="/assets/logos/efteker-logo.png"
                 alt={t.dockEfteker}
-                className="w-5 h-5 object-contain rounded-md"
+                className="w-4 h-4 sm:w-5 sm:h-5 object-contain rounded-md"
               />
               <span className="hidden sm:inline">{t.dockEfteker}</span>
             </a>
@@ -119,7 +119,7 @@ export const FloatingEcosystemDock: FC = () => {
               playAppleClick();
               setModalOpen(true);
             }}
-            className="apple-pill-btn px-4 py-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-bold shadow-md flex items-center gap-1.5 cursor-pointer"
+            className="apple-pill-btn px-3 sm:px-4 py-1.5 sm:py-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[11px] sm:text-xs font-bold shadow-md flex items-center gap-1 sm:gap-1.5 cursor-pointer shrink-0"
           >
             <Download className="w-3.5 h-3.5" />
             <span>{t.dockGetApps}</span>

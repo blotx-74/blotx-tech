@@ -159,22 +159,23 @@ export const InteractiveDeviceShowcase: FC = () => {
         </div>
 
         {/* Real Screenshots vs Live Interactive Switcher */}
-        <div className="flex items-center justify-center mb-6">
-          <div className="bg-neutral-900/90 p-1.5 rounded-full border border-black/10 shadow-xl backdrop-blur-md flex items-center gap-1.5">
+        <div className="w-full max-w-sm sm:max-w-md mx-auto mb-6 px-3">
+          <div className="bg-neutral-900/90 p-1 sm:p-1.5 rounded-2xl sm:rounded-full border border-black/10 shadow-xl backdrop-blur-md grid grid-cols-2 gap-1">
             <button
               type="button"
               onClick={() => {
                 playAppleClick();
                 setScreenMode('screenshot');
               }}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+              className={`py-2 px-2 sm:px-4 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center ${
                 screenMode === 'screenshot'
                   ? 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-md'
                   : 'text-neutral-400 hover:text-white'
               }`}
             >
-              <Camera className="w-4 h-4" />
-              <span>{t.modeScreenshots}</span>
+              <Camera className="w-3.5 h-3.5 shrink-0" />
+              <span className="sm:hidden">{language === 'ar' ? 'لقطات حقيقية' : 'Screenshots'}</span>
+              <span className="hidden sm:inline">{t.modeScreenshots}</span>
             </button>
             <button
               type="button"
@@ -182,27 +183,28 @@ export const InteractiveDeviceShowcase: FC = () => {
                 playAppleClick();
                 setScreenMode('interactive');
               }}
-              className={`px-5 py-2 rounded-full text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+              className={`py-2 px-2 sm:px-4 rounded-xl sm:rounded-full text-[11px] sm:text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer text-center ${
                 screenMode === 'interactive'
                   ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white shadow-md'
                   : 'text-neutral-400 hover:text-white'
               }`}
             >
-              <Sparkles className="w-4 h-4" />
-              <span>{t.modeInteractive}</span>
+              <Sparkles className="w-3.5 h-3.5 shrink-0" />
+              <span className="sm:hidden">{language === 'ar' ? 'محاكاة تفاعلية' : 'Interactive'}</span>
+              <span className="hidden sm:inline">{t.modeInteractive}</span>
             </button>
           </div>
         </div>
 
         {/* View Switcher Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-10">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2 max-w-full">
           <button
             type="button"
             onClick={() => {
               playAppleClick();
               setViewMode('perspective');
             }}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'perspective'
                 ? 'bg-[#1d1d1f] text-white shadow-md'
                 : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
@@ -216,7 +218,7 @@ export const InteractiveDeviceShowcase: FC = () => {
               playAppleClick();
               setViewMode('flat');
             }}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'flat'
                 ? 'bg-[#1d1d1f] text-white shadow-md'
                 : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
@@ -230,7 +232,7 @@ export const InteractiveDeviceShowcase: FC = () => {
               playAppleClick();
               setViewMode('taht-focus');
             }}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'taht-focus'
                 ? 'bg-[#059669] text-white shadow-md'
                 : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
@@ -244,7 +246,7 @@ export const InteractiveDeviceShowcase: FC = () => {
               playAppleClick();
               setViewMode('efteker-focus');
             }}
-            className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+            className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'efteker-focus'
                 ? 'bg-[#0071e3] text-white shadow-md'
                 : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
@@ -283,7 +285,7 @@ export const InteractiveDeviceShowcase: FC = () => {
           ref={stageRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative min-h-[740px] rounded-[36px] bg-gradient-to-b from-white/95 via-[#fbfbfd] to-[#f4f4f7] border border-black/[0.06] shadow-2xl p-6 sm:p-12 flex flex-col items-center justify-center overflow-hidden"
+          className="relative min-h-[580px] sm:min-h-[740px] rounded-[28px] sm:rounded-[36px] bg-gradient-to-b from-white/95 via-[#fbfbfd] to-[#f4f4f7] border border-black/[0.06] shadow-2xl p-2 sm:p-12 flex flex-col items-center justify-center overflow-hidden w-full max-w-full"
           style={{ perspective: 1400 }}
         >
           {/* Subtle Ambient Radial Halos */}
@@ -339,7 +341,7 @@ export const InteractiveDeviceShowcase: FC = () => {
 
           {/* Dual Phone Showcase Grid */}
           <div
-            className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center justify-items-center transition-transform duration-300 ease-out"
+            className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center justify-items-center transition-transform duration-300 ease-out px-1 sm:px-0"
             style={{
               transform:
                 viewMode === 'perspective'
@@ -351,7 +353,7 @@ export const InteractiveDeviceShowcase: FC = () => {
             {/* PHONE 1: «تحت البلاطة» (FINANCIAL FORTRESS) */}
             {/* ==================================================== */}
             <div
-              className={`relative transition-all duration-500 w-full max-w-[360px] ${
+              className={`relative transition-all duration-500 w-full max-w-[315px] sm:max-w-[360px] ${
                 viewMode === 'efteker-focus'
                   ? 'opacity-35 scale-95 pointer-events-none'
                   : 'opacity-100 scale-100'
@@ -364,16 +366,16 @@ export const InteractiveDeviceShowcase: FC = () => {
               }}
             >
               {/* Phone Outer Titanium Chassis */}
-              <div className="relative rounded-[50px] p-3.5 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-400 shadow-[0_25px_60px_-15px_rgba(5,150,105,0.25)] border-2 border-white/60">
+              <div className="relative rounded-[42px] sm:rounded-[50px] p-2.5 sm:p-3.5 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-400 shadow-[0_25px_60px_-15px_rgba(5,150,105,0.25)] border-2 border-white/60">
                 {/* Antenna Bands & Side Buttons */}
                 <div className="absolute -left-[5px] top-24 w-[3px] h-10 bg-neutral-400 rounded-l-md" />
                 <div className="absolute -left-[5px] top-38 w-[3px] h-10 bg-neutral-400 rounded-l-md" />
                 <div className="absolute -right-[5px] top-28 w-[3px] h-14 bg-neutral-400 rounded-r-md" />
 
                 {/* Inner Screen Bezel */}
-                <div className="relative rounded-[42px] bg-black p-2 overflow-hidden shadow-inner">
+                <div className="relative rounded-[36px] sm:rounded-[42px] bg-black p-1.5 sm:p-2 overflow-hidden shadow-inner">
                   {/* The Screen Display */}
-                  <div className="relative rounded-[36px] bg-[#070b14] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
+                  <div className="relative rounded-[30px] sm:rounded-[36px] bg-[#070b14] text-[#0f172a] h-[520px] sm:h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
                     {/* Gloss Glass Reflection */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-30" />
 
@@ -450,7 +452,7 @@ export const InteractiveDeviceShowcase: FC = () => {
             {/* PHONE 2: «افتكر» (COGNITIVE SECOND BRAIN) */}
             {/* ==================================================== */}
             <div
-              className={`relative transition-all duration-500 w-full max-w-[360px] ${
+              className={`relative transition-all duration-500 w-full max-w-[315px] sm:max-w-[360px] ${
                 viewMode === 'taht-focus'
                   ? 'opacity-35 scale-95 pointer-events-none'
                   : 'opacity-100 scale-100'
@@ -463,16 +465,16 @@ export const InteractiveDeviceShowcase: FC = () => {
               }}
             >
               {/* Phone Outer Titanium Chassis */}
-              <div className="relative rounded-[50px] p-3.5 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-400 shadow-[0_25px_60px_-15px_rgba(0,113,227,0.25)] border-2 border-white/60">
+              <div className="relative rounded-[42px] sm:rounded-[50px] p-2.5 sm:p-3.5 bg-gradient-to-b from-neutral-200 via-neutral-300 to-neutral-400 shadow-[0_25px_60px_-15px_rgba(0,113,227,0.25)] border-2 border-white/60">
                 {/* Antenna Bands & Side Buttons */}
                 <div className="absolute -left-[5px] top-24 w-[3px] h-10 bg-neutral-400 rounded-l-md" />
                 <div className="absolute -left-[5px] top-38 w-[3px] h-10 bg-neutral-400 rounded-l-md" />
                 <div className="absolute -right-[5px] top-28 w-[3px] h-14 bg-neutral-400 rounded-r-md" />
 
                 {/* Inner Screen Bezel */}
-                <div className="relative rounded-[42px] bg-black p-2 overflow-hidden shadow-inner">
+                <div className="relative rounded-[36px] sm:rounded-[42px] bg-black p-1.5 sm:p-2 overflow-hidden shadow-inner">
                   {/* The Screen Display */}
-                  <div className="relative rounded-[36px] bg-[#070b14] text-[#0f172a] h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
+                  <div className="relative rounded-[30px] sm:rounded-[36px] bg-[#070b14] text-[#0f172a] h-[520px] sm:h-[640px] flex flex-col justify-between overflow-hidden text-right select-none border border-black/20">
                     {/* Gloss Glass Reflection */}
                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent pointer-events-none z-30" />
 

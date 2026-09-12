@@ -6,8 +6,8 @@
     "cardBg": "#ffffff"
   },
   "typography": {
-    "fontSize": "22px",
-    "fontFamily": "IBM Plex Sans Arabic"
+    "fontSize": "18px",
+    "fontFamily": "Cairo"
   },
   "images": {
     "logo": "/assets/logos/blotx-tech-logo.png",
