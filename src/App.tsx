@@ -37,6 +37,7 @@ export function App() {
         document.documentElement.style.setProperty('--primary-color', data.colors.primary || '#1d1d1f');
         document.documentElement.style.setProperty('--secondary-color', data.colors.secondary || '#fbfbfd');
         document.documentElement.style.setProperty('--accent-color', data.colors.accent || '#0071e3');
+        document.documentElement.style.setProperty('--card-bg', data.colors.cardBg || '#ffffff');
       }
       if (data.typography) {
         document.documentElement.style.setProperty('--base-font-size', data.typography.fontSize || '16px');
