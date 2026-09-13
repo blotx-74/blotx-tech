@@ -45,4 +45,22 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://blotxtech.site/?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://blotxtech.site/" />
   </url>
+  <url>
+    <loc>https://blotxtech.site/privacy-taht-el-balata.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blotxtech.site/privacy-eftekir.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://blotxtech.site/delete-account.html</loc>
+    <lastmod>2026-09-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

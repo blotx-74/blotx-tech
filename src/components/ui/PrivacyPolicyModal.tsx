@@ -109,6 +109,54 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
                 </p>
               </div>
 
+              {/* Official Google Play App Policies Banner */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-neutral-50 to-neutral-100 border border-neutral-200 space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#6e6e73]">
+                  الوثائق الرسمية المعتمدة لمتجر Google Play
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <a
+                    href="/privacy-taht-el-balata.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-emerald-200 hover:border-emerald-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-emerald-800 group-hover:text-emerald-900">
+                      سياسة «تحت البلاطة»
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      عرض الوثيقة المستقلة الكاملة ↗
+                    </span>
+                  </a>
+                  <a
+                    href="/privacy-eftekir.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-blue-200 hover:border-blue-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-blue-800 group-hover:text-blue-900">
+                      سياسة تطبيق «افتكر»
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      عرض الوثيقة المستقلة الكاملة ↗
+                    </span>
+                  </a>
+                  <a
+                    href="/delete-account.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-red-200 hover:border-red-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-red-700 group-hover:text-red-800">
+                      بوابة حذف الحساب والبيانات
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      بوابة الحذف الرسمية (Play Store) ↗
+                    </span>
+                  </a>
+                </div>
+              </div>
+
               {/* Clause 1: Zero-Knowledge Architecture */}
               <section className="space-y-3 border-b border-black/[0.05] pb-6">
                 <div className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-[#1d1d1f]">
@@ -148,21 +196,22 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
                 </p>
               </section>
 
-              {/* Clause 4: Zero Tracking & Third Parties */}
+              {/* Clause 4: Ads, Subscriptions, and Data Integrity */}
               <section className="space-y-3 border-b border-black/[0.05] pb-6">
                 <div className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-[#1d1d1f]">
                   <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
                     <Smartphone className="w-4 h-4" />
                   </div>
-                  <h3>4. انعدام الإعلانات، التتبع السلوكي، وبيع البيانات لجهات خارجية</h3>
+                  <h3>4. سياسة الإعلانات، اشتراكات Pro، وسلامة البيانات</h3>
                 </div>
                 <p className="text-xs sm:text-sm text-[#515154] leading-relaxed">
-                  تتعهد Blotx Tech تعهداً لا رجعة فيه بما يلي:
+                  تلتزم Blotx Tech بأعلى درجات الشفافية والنزاهة المهنية فيما يخص نموذج العمل وحماية البيانات:
                 </p>
                 <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-[#515154] pr-2">
-                  <li><strong>عدم بيع أو تأجير</strong> أو تداول أي بيانات شخصية أو مالية مع أي شبكات إعلانية أو سماسرة بيانات (Data Brokers).</li>
-                  <li><strong>خلو التطبيقات بنسبة 100%</strong> من أي إعلانات تجارية متطفلة أو ملفات تعريف ارتباط للتتبع (Tracking Cookies / Pixels).</li>
-                  <li>عدم زرع أي برمجيات خبيثة لتحليل سلوك النقر أو جمع سجلات الاستخدام دون إذنك الصريح.</li>
+                  <li><strong>عدم بيع أو تسريب البيانات:</strong> نلتزم التزاماً مطلقاً بعدم بيع أو تأجير أو مشاركة أي بيانات شخصية أو سجلات مالية مع أي وسطاء بيانات (Data Brokers) أو جهات خارجية.</li>
+                  <li><strong>الإعلانات في الباقة المجانية:</strong> لضمان استمرارية التطوير المجاني، قد يعرض التطبيق إعلانات خفيفة غير متطفلة عبر شبكة Google AdMob المعتمدة، مع حظر كامل للإعلانات المزعجة أو المتتبعة خارج السياق العام.</li>
+                  <li><strong>باقة Pro VIP والاشتراكات:</strong> يتيح التطبيق اشتراكات اختيارية (شهرية وسنوية ومدى الحياة) عبر نظام دفع Google Play الرسمي المشفر؛ تمنح المشترك إزالة تامة لكافة الإعلانات مع فتح الميزات المتقدمة دون أي انقطاع.</li>
+                  <li><strong>إدارة الاشتراك:</strong> تتم إدارة وإلغاء الاشتراكات في أي وقت بمنتهى السهولة وبضغطة زر واحدة عبر حسابك في متجر Google Play.</li>
                 </ul>
               </section>
 
@@ -217,6 +266,54 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
                 </p>
               </div>
 
+              {/* Official Google Play App Policies Banner */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-neutral-50 to-neutral-100 border border-neutral-200 space-y-3">
+                <div className="text-xs font-bold uppercase tracking-wider text-[#6e6e73]">
+                  Official Google Play Compliance Documents
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  <a
+                    href="/privacy-taht-el-balata.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-emerald-200 hover:border-emerald-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-emerald-800 group-hover:text-emerald-900">
+                      Taht El Balata Policy
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      View full standalone document ↗
+                    </span>
+                  </a>
+                  <a
+                    href="/privacy-eftekir.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-blue-200 hover:border-blue-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-blue-800 group-hover:text-blue-900">
+                      Eftekir App Policy
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      View full standalone document ↗
+                    </span>
+                  </a>
+                  <a
+                    href="/delete-account.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-white border border-red-200 hover:border-red-400 hover:shadow-sm transition-all group flex flex-col justify-between"
+                  >
+                    <span className="text-xs font-bold text-red-700 group-hover:text-red-800">
+                      Account &amp; Data Deletion
+                    </span>
+                    <span className="text-[11px] text-[#6e6e73] mt-1">
+                      Official Play Store Portal ↗
+                    </span>
+                  </a>
+                </div>
+              </div>
+
               {/* Clause 1: Zero-Knowledge Architecture */}
               <section className="space-y-3 border-b border-black/[0.05] pb-6">
                 <div className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-[#1d1d1f]">
@@ -256,18 +353,22 @@ export const PrivacyPolicyModal: FC<PrivacyPolicyModalProps> = ({ isOpen, onClos
                 </p>
               </section>
 
-              {/* Clause 4: Zero Tracking & Third Parties */}
+              {/* Clause 4: Ads, Pro Subscriptions & Data Integrity */}
               <section className="space-y-3 border-b border-black/[0.05] pb-6">
                 <div className="flex items-center gap-2.5 text-base sm:text-lg font-bold text-[#1d1d1f]">
                   <div className="w-8 h-8 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
                     <Smartphone className="w-4 h-4" />
                   </div>
-                  <h3>4. Absolute Prohibition of Ads, Tracking, and Data Brokerage</h3>
+                  <h3>4. Advertising Policy, Pro Subscriptions &amp; Zero Data Brokerage</h3>
                 </div>
+                <p className="text-xs sm:text-sm text-[#515154] leading-relaxed">
+                  Blotx Tech adheres to rigorous data integrity and monetization transparency:
+                </p>
                 <ul className="list-disc list-inside space-y-1.5 text-xs sm:text-sm text-[#515154] pl-2">
-                  <li><strong>Zero Data Selling:</strong> We never sell, lease, or monetize your personal or financial records with ad networks or data brokers.</li>
-                  <li><strong>Zero In-App Ads:</strong> Our applications are 100% free of advertising SDKs, tracking pixels, or invasive ad beacons.</li>
-                  <li><strong>Zero Telemetry Harvesting:</strong> We do not log behavioral telemetry or keystroke data.</li>
+                  <li><strong>Zero Data Brokerage:</strong> We never sell, lease, or monetize your personal or financial records with data brokers or marketing aggregators.</li>
+                  <li><strong>Non-Intrusive Free Tier Ads:</strong> To support independent maintenance, free tiers may present non-intrusive Google AdMob banners without cross-app behavioral surveillance.</li>
+                  <li><strong>Pro VIP Tiers (100% Ad-Free):</strong> Optional monthly, annual, and lifetime VIP subscriptions via Google Play In-App Billing eliminate all advertisements entirely while unlocking unlimited capabilities.</li>
+                  <li><strong>Subscription Autonomy:</strong> Subscriptions can be reviewed, managed, or cancelled at any time directly through your Google Play Store account settings.</li>
                 </ul>
               </section>
 

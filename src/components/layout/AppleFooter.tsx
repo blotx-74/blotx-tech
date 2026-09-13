@@ -74,8 +74,32 @@ export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport
                   }}
                   className="hover:text-[#1d1d1f] transition-colors cursor-pointer text-left rtl:text-right"
                 >
-                  {language === 'ar' ? 'الخصوصية أولاً (بدون تتبع)' : 'Privacy-First (No Telemetry)'}
+                  {language === 'ar' ? 'ميثاق الخصوصية العام' : 'General Privacy Charter'}
                 </button>
+              </li>
+              <li>
+                <a
+                  href="/privacy-taht-el-balata.html"
+                  className="hover:text-[#0071e3] transition-colors cursor-pointer text-left rtl:text-right block"
+                >
+                  {language === 'ar' ? 'خصوصية: تحت البلاطة (Google Play)' : 'Privacy: Taht El Balata (Google Play)'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy-eftekir.html"
+                  className="hover:text-[#0071e3] transition-colors cursor-pointer text-left rtl:text-right block"
+                >
+                  {language === 'ar' ? 'خصوصية: تطبيق افتكر (Google Play)' : 'Privacy: Eftekir App (Google Play)'}
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/delete-account.html"
+                  className="hover:text-red-700 transition-colors cursor-pointer text-left rtl:text-right block text-red-600 font-semibold"
+                >
+                  {language === 'ar' ? 'طلب حذف الحساب والبيانات' : 'Account & Data Deletion Portal'}
+                </a>
               </li>
               <li>
                 <button
@@ -130,7 +154,7 @@ export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport
           <div>
             {t.footerCopyright}
           </div>
-          <div className="flex items-center gap-4 sm:gap-6">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5">
             <button
               type="button"
               onClick={() => {
@@ -142,16 +166,26 @@ export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport
               {t.footerPrivacy}
             </button>
             <span>•</span>
-            <button
-              type="button"
-              onClick={() => {
-                playAppleClick();
-                onOpenPrivacy?.();
-              }}
-              className="hover:text-[#1d1d1f] transition-colors cursor-pointer font-medium"
+            <a
+              href="/privacy-taht-el-balata.html"
+              className="hover:text-[#0071e3] transition-colors cursor-pointer font-medium"
             >
-              {t.footerTerms}
-            </button>
+              {language === 'ar' ? 'خصوصية تحت البلاطة' : 'Taht El Balata Privacy'}
+            </a>
+            <span>•</span>
+            <a
+              href="/privacy-eftekir.html"
+              className="hover:text-[#0071e3] transition-colors cursor-pointer font-medium"
+            >
+              {language === 'ar' ? 'خصوصية افتكر' : 'Eftekir Privacy'}
+            </a>
+            <span>•</span>
+            <a
+              href="/delete-account.html"
+              className="hover:text-red-600 transition-colors cursor-pointer font-medium"
+            >
+              {language === 'ar' ? 'حذف الحساب' : 'Delete Account'}
+            </a>
             <span>•</span>
             <button
               type="button"

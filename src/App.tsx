@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { subscribeToConfig } from './firebase';
+import { AnnouncementBar } from './components/layout/AnnouncementBar';
+import { MaintenanceScreen } from './components/layout/MaintenanceScreen';
 import { AppleNavbar } from './components/layout/AppleNavbar';
 import { HeroCinematic } from './components/sections/HeroCinematic';
 import { InteractiveDeviceShowcase } from './components/sections/InteractiveDeviceShowcase';
@@ -15,6 +17,8 @@ import { AppleFooter } from './components/layout/AppleFooter';
 import { FloatingEcosystemDock } from './components/ui/FloatingEcosystemDock';
 import { PrivacyPolicyModal } from './components/ui/PrivacyPolicyModal';
 import { SupportDocsModal } from './components/ui/SupportDocsModal';
+import { PromoCodeModal } from './components/ui/PromoCodeModal';
+import { Gift } from 'lucide-react';
 
 import { ConfigContext } from './ConfigContext';
 import { LanguageProvider } from './LanguageContext';
@@ -23,6 +27,7 @@ export function App() {
   const [config, setConfig] = useState<any>(null);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isSupportOpen, setIsSupportOpen] = useState(false);
+  const [isPromoOpen, setIsPromoOpen] = useState(false);
   const [supportTab, setSupportTab] = useState<'team' | 'developer' | 'docs'>('team');
 
   const handleOpenSupport = (tab: 'team' | 'developer' | 'docs' = 'team') => {
@@ -47,11 +52,30 @@ export function App() {
     return () => unsubscribe();
   }, []);
 
+  // 1. Check Maintenance Mode
+  if (config?.maintenanceMode?.is_enabled) {
+    return (
+      <MaintenanceScreen
+        title={config.maintenanceMode.title}
+        message={config.maintenanceMode.message}
+        estimatedReturn={config.maintenanceMode.estimatedReturn}
+        supportEmail={config.socialLinks?.supportEmail}
+        whatsapp={config.socialLinks?.whatsapp}
+      />
+    );
+  }
+
+  const sec = config?.sections || {};
+
   return (
     <LanguageProvider>
       <ConfigContext.Provider value={config}>
       <div className="min-h-screen relative pb-20 overflow-x-clip w-full max-w-full" style={{ backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', fontSize: 'var(--base-font-size)', fontFamily: 'var(--base-font-family)' }}>
+        {/* Dynamic Announcement & Countdown Bar */}
+        <AnnouncementBar data={config?.announcementBar} />
+
         <AppleNavbar onOpenSupport={handleOpenSupport} />
+
         <main>
           {config?.images?.banner && (
             <div
@@ -63,24 +87,36 @@ export function App() {
               }}
             />
           )}
-          <HeroCinematic />
-          <InteractiveDeviceShowcase />
-          <InteractiveBalataExperience />
-          <InteractiveEftekerExperience />
-          <TheSynergyMatrix />
-          <PhilosophyManifesto />
-          <SavingsCalculator />
-          <RealStoriesSection />
-          <TheLabSecrets />
-          <FaqSection />
+
+          {sec.hero !== false && <HeroCinematic />}
+          {sec.showcase !== false && <InteractiveDeviceShowcase />}
+          {sec.balata !== false && <InteractiveBalataExperience />}
+          {sec.efteker !== false && <InteractiveEftekerExperience />}
+          {sec.synergy !== false && <TheSynergyMatrix />}
+          {sec.manifesto !== false && <PhilosophyManifesto />}
+          {sec.calculator !== false && <SavingsCalculator />}
+          {sec.stories !== false && <RealStoriesSection />}
+          {sec.lab !== false && <TheLabSecrets />}
+          {sec.faq !== false && <FaqSection />}
         </main>
+
         <AppleFooter
           onOpenPrivacy={() => setIsPrivacyOpen(true)}
           onOpenSupport={handleOpenSupport}
         />
         <FloatingEcosystemDock />
 
-        {/* Global Legal & Support Modals */}
+        {/* Floating Promo Code Badge / Button */}
+        <button
+          onClick={() => setIsPromoOpen(true)}
+          className="fixed bottom-6 left-6 z-40 px-3.5 py-2.5 rounded-full bg-[#1d1d1f] text-white hover:bg-black shadow-xl border border-white/10 flex items-center gap-2 text-xs font-bold transition-all hover:scale-105 cursor-pointer backdrop-blur-lg"
+          title="أدخل كود الخصم أو الدعوة"
+        >
+          <Gift className="w-4 h-4 text-amber-400" />
+          <span className="hidden sm:inline">كود العرض</span>
+        </button>
+
+        {/* Global Legal, Support, and Promo Modals */}
         <PrivacyPolicyModal
           isOpen={isPrivacyOpen}
           onClose={() => setIsPrivacyOpen(false)}
@@ -89,6 +125,11 @@ export function App() {
           isOpen={isSupportOpen}
           onClose={() => setIsSupportOpen(false)}
           initialTab={supportTab}
+        />
+        <PromoCodeModal
+          isOpen={isPromoOpen}
+          onClose={() => setIsPromoOpen(false)}
+          promoCodes={config?.promoCodes}
         />
       </div>
       </ConfigContext.Provider>

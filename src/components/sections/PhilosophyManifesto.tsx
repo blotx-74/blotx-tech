@@ -107,7 +107,7 @@ export const PhilosophyManifesto: FC = () => {
     {
       problem: 'الخوف من تسريب البيانات المالية والشخصية لشركات الإعلانات',
       impact: 'فقدان الثقة والخصوصية والإزعاج المستمر.',
-      solution: 'معمارية تشفير محلي صارمة 100% داخل هاتفك؛ لا خوادم تتجسس عليك ولا إعلانات.',
+      solution: 'معمارية تشفير محلي صارمة 100% داخل هاتفك؛ بياناتك ملكك وحدك مع خيار الترقية لإزالة الإعلانات كلياً.',
       app: 'أمان Blotx',
       appColor: 'text-purple-700 bg-purple-50 border-purple-200',
     },
@@ -138,7 +138,7 @@ export const PhilosophyManifesto: FC = () => {
     {
       problem: 'Surveillance anxiety and personal data extraction',
       impact: 'Loss of privacy and intrusive targeted advertising.',
-      solution: 'Rigorous 100% on-device cryptography: zero ads, zero telemetry, zero surveillance.',
+      solution: 'Rigorous 100% on-device cryptography: zero surveillance, complete privacy, and an ad-free Pro upgrade option.',
       app: 'Blotx Security',
       appColor: 'text-purple-700 bg-purple-50 border-purple-200',
     },

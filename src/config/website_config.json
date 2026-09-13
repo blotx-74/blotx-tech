@@ -26,5 +26,61 @@
     "tahtDownloadUrl": "https://taht-el-balata.web.app",
     "heroBadge": "منظومة Blotx المتكاملة 2026",
     "eftekerDownloadUrl": "https://eftekir-app-f9116.web.app"
-  }
+  },
+  "announcementBar": {
+    "is_enabled": true,
+    "text": "🚀 إطلاق التحديث الكبير لمنظومة Blotx 2026 - تجربة موحدة تجمع بين الذكاء المالي والصفاء الذهني",
+    "badge": "جديد",
+    "type": "countdown",
+    "targetDate": "2026-10-01T00:00:00.000Z",
+    "actionUrl": "https://taht-el-balata.web.app",
+    "actionText": "اكتشف المزيد",
+    "closable": true
+  },
+  "sections": {
+    "hero": true,
+    "showcase": true,
+    "balata": true,
+    "efteker": true,
+    "synergy": true,
+    "manifesto": true,
+    "calculator": true,
+    "stories": true,
+    "lab": true,
+    "faq": true
+  },
+  "maintenanceMode": {
+    "is_enabled": false,
+    "title": "نعمل على ترقية استثنائية لمنظومة Blotx",
+    "message": "الموقع في وضع الصيانة الدورية المجدولة لتطبيق تحسينات فائقة السرعة والأمان. سنعود للعمل قريباً جداً.",
+    "estimatedReturn": "خلال دقائق معدودة"
+  },
+  "socialLinks": {
+    "whatsapp": "+201000000000",
+    "linkedin": "https://linkedin.com/company/blotx",
+    "twitter": "https://x.com/blotxtech",
+    "instagram": "https://instagram.com/blotxtech",
+    "supportEmail": "support@blotx.tech"
+  },
+  "promoCodes": [
+    {
+      "code": "BLOTX2026",
+      "discount": "وصول مبكر VIP مجاني لكافة الميزات",
+      "active": true
+    },
+    {
+      "code": "GOLDEN",
+      "discount": "تفعيل حاسبة الذهب الذكية المتقدمة",
+      "active": true
+    }
+  ],
+  "changelog": [
+    {
+      "version": "v2.5.0",
+      "date": "سبتمبر 2026",
+      "title": "إطلاق لوحة التحكم المركزية الشاملة",
+      "badge": "تحديث رئيسي",
+      "description": "تحكم لحظي كامل من سطح المكتب في الموقع وتطبيقي تحت البلاطة وافتكر مع استوديو الإشعارات الذكي."
+    }
+  ]
 }
