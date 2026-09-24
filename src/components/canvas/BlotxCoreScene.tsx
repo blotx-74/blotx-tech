@@ -44,13 +44,14 @@ export const BlotxCoreScene: FC<BlotxCoreSceneProps> = ({ cadMode = false }) => 
     camera.position.set(0, 0, 8.5);
 
     // 3. Renderer with antialiasing and high precision
+    const isMobile = window.innerWidth < 768;
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isMobile,
       alpha: true,
       powerPreference: 'high-performance',
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.2;
     container.innerHTML = '';
@@ -217,12 +218,18 @@ export const BlotxCoreScene: FC<BlotxCoreSceneProps> = ({ cadMode = false }) => 
 
     window.addEventListener('resize', handleResize);
 
-    // Animation Loop
+    // Animation Loop with battery saving when offscreen
     let lastTime = performance.now();
     let frameCount = 0;
     let lastFpsUpdate = lastTime;
+    let isVisible = true;
 
     const animate = (time: number) => {
+      if (!isVisible) {
+        if (stateRef.current) stateRef.current.reqId = 0;
+        return;
+      }
+
       lastTime = time;
 
       frameCount++;
@@ -265,11 +272,29 @@ export const BlotxCoreScene: FC<BlotxCoreSceneProps> = ({ cadMode = false }) => 
 
     stateRef.current.reqId = requestAnimationFrame(animate);
 
+    // Battery & Performance: Pause WebGL when container is out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible) {
+          if (stateRef.current && !stateRef.current.reqId) {
+            stateRef.current.reqId = requestAnimationFrame(animate);
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+
     return () => {
+      observer.disconnect();
       container.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       if (stateRef.current) {
-        cancelAnimationFrame(stateRef.current.reqId);
+        if (stateRef.current.reqId) {
+          cancelAnimationFrame(stateRef.current.reqId);
+        }
         renderer.dispose();
       }
     };

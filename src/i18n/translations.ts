@@ -37,6 +37,30 @@ export interface Translations {
   trustOffline: string;
   trustAndroid: string;
 
+  // Hero Instant Value Proposition (2-second pitch)
+  heroInstantTahtBadge: string;
+  heroInstantTahtTitle: string;
+  heroInstantTahtDesc: string;
+  heroInstantEftekerBadge: string;
+  heroInstantEftekerTitle: string;
+  heroInstantEftekerDesc: string;
+
+  // Social Proof & Trust Metrics Bar
+  metricRatingVal: string;
+  metricRatingLabel: string;
+  metricOfflineVal: string;
+  metricOfflineLabel: string;
+  metricAdsVal: string;
+  metricAdsLabel: string;
+  metricOpsVal: string;
+  metricOpsLabel: string;
+
+  // Zero-Cookies Privacy Banner
+  cookiesBannerBadge: string;
+  cookiesBannerText: string;
+  cookiesBannerPrivacyLink: string;
+  cookiesBannerDismiss: string;
+
   // 3D Devices Showcase
   showcaseBadge: string;
   showcaseTitle1: string;
@@ -258,6 +282,30 @@ export const translations: Record<Language, Translations> = {
     trustZeroAds: 'خصوصية مشفرة وترقية Pro',
     trustOffline: 'يعمل بالكامل بدون إنترنت',
     trustAndroid: 'يدعم Android حالياً',
+
+    // Hero Instant Value Proposition (2-second pitch)
+    heroInstantTahtBadge: 'في ثانيتين',
+    heroInstantTahtTitle: '«تحت البلاطة» لإدارتك المالية',
+    heroInstantTahtDesc: 'إدارة سيولتك، الذهب، وميزانيتك مشفرة محلياً 100% بدون بنك ولا تتبع.',
+    heroInstantEftekerBadge: 'في ثانيتين',
+    heroInstantEftekerTitle: '«افتكر» لعقلك الثاني',
+    heroInstantEftekerDesc: 'استخراج الفواتير والضمانات محلياً بالذكاء الاصطناعي On-Device OCR بدون خوادم.',
+
+    // Social Proof & Trust Metrics Bar
+    metricRatingVal: '4.9 ★',
+    metricRatingLabel: 'تقييم رضا المستخدمين',
+    metricOfflineVal: '100%',
+    metricOfflineLabel: 'أوفلاين أولاً وبدون سحابة',
+    metricAdsVal: '0%',
+    metricAdsLabel: 'إعلانات أو ملفات تتبع',
+    metricOpsVal: '+15,000',
+    metricOpsLabel: 'عملية ومسح ضوئي موثق محلياً',
+
+    // Zero-Cookies Privacy Banner
+    cookiesBannerBadge: 'سيادة رقمية هادئة',
+    cookiesBannerText: 'موقع خالٍ تماماً من كوكيز التتبع بنسبة 100% • خصوصيتك مقدسة بدون أي تتبع أو إعلانات.',
+    cookiesBannerPrivacyLink: 'سياسة الخصوصية',
+    cookiesBannerDismiss: 'حسناً، فهمت',
 
     // 3D Devices Showcase
     showcaseBadge: 'معرض الأجهزة والتجربة المحمولة • Handheld Flagships',
@@ -488,6 +536,30 @@ export const translations: Record<Language, Translations> = {
     trustZeroAds: 'Encrypted Privacy & Pro Tier',
     trustOffline: 'Works Fully Offline',
     trustAndroid: 'Supports Android Now',
+
+    // Hero Instant Value Proposition (2-second pitch)
+    heroInstantTahtBadge: 'In 2 Seconds',
+    heroInstantTahtTitle: '«Taht El Balata» Financial Fortress',
+    heroInstantTahtDesc: 'Fortified cash, gold, and budgets—100% offline and encrypted without banks or tracking.',
+    heroInstantEftekerBadge: 'In 2 Seconds',
+    heroInstantEftekerTitle: '«Eftekir» Cognitive Second Brain',
+    heroInstantEftekerDesc: 'Instant on-device OCR for receipts and warranties—zero cloud leakage and pure clarity.',
+
+    // Social Proof & Trust Metrics Bar
+    metricRatingVal: '4.9 ★',
+    metricRatingLabel: 'User Satisfaction Rating',
+    metricOfflineVal: '100%',
+    metricOfflineLabel: 'Offline-First & Zero Cloud',
+    metricAdsVal: '0%',
+    metricAdsLabel: 'Ads or Tracking Cookies',
+    metricOpsVal: '+15,000',
+    metricOpsLabel: 'Secure Local Operations',
+
+    // Zero-Cookies Privacy Banner
+    cookiesBannerBadge: 'Quiet Digital Sovereignty',
+    cookiesBannerText: '100% Tracking-Cookie Free • Absolute privacy with zero analytics or ads.',
+    cookiesBannerPrivacyLink: 'Privacy Policy',
+    cookiesBannerDismiss: 'Got it',
 
     // 3D Devices Showcase
     showcaseBadge: 'Handheld Devices & Live Experience • Flagships',

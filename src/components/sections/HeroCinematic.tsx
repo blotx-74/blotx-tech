@@ -162,6 +162,67 @@ export const HeroCinematic: FC = () => {
         </p>
       </div>
 
+      {/* 2-Second Instant Practical Value Capsules */}
+      <div className="mt-8 max-w-3xl w-full grid grid-cols-1 sm:grid-cols-2 gap-3 px-2">
+        {/* Capsule 1: Taht El Balata */}
+        <div
+          onClick={(e) => {
+            handlePillarSelect('taht');
+            handleSmoothScrollClick(e as any, '#devices', 85, 850);
+          }}
+          className="group relative cursor-pointer text-start p-4 rounded-2xl bg-white/80 hover:bg-white border border-emerald-500/25 hover:border-emerald-500/50 shadow-xs hover:shadow-md transition-all duration-300 backdrop-blur-md overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-100 group-hover:scale-105 transition-transform">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div className="space-y-1 min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-bold text-[#1d1d1f] group-hover:text-emerald-700 transition-colors">
+                  {t.heroInstantTahtTitle}
+                </span>
+                <span className="px-1.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-mono font-bold shrink-0">
+                  {t.heroInstantTahtBadge}
+                </span>
+              </div>
+              <p className="text-xs text-[#6e6e73] leading-relaxed">
+                {t.heroInstantTahtDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Capsule 2: Eftekir */}
+        <div
+          onClick={(e) => {
+            handlePillarSelect('efteker');
+            handleSmoothScrollClick(e as any, '#devices', 85, 850);
+          }}
+          className="group relative cursor-pointer text-start p-4 rounded-2xl bg-white/80 hover:bg-white border border-blue-500/25 hover:border-blue-500/50 shadow-xs hover:shadow-md transition-all duration-300 backdrop-blur-md overflow-hidden"
+        >
+          <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+          <div className="flex items-start gap-3">
+            <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 border border-blue-100 group-hover:scale-105 transition-transform">
+              <Brain className="w-5 h-5" />
+            </div>
+            <div className="space-y-1 min-w-0 flex-1">
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-xs font-bold text-[#1d1d1f] group-hover:text-blue-700 transition-colors">
+                  {t.heroInstantEftekerTitle}
+                </span>
+                <span className="px-1.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[10px] font-mono font-bold shrink-0">
+                  {t.heroInstantEftekerBadge}
+                </span>
+              </div>
+              <p className="text-xs text-[#6e6e73] leading-relaxed">
+                {t.heroInstantEftekerDesc}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Interactive Value Focus Switcher */}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
         <button
@@ -297,26 +358,73 @@ export const HeroCinematic: FC = () => {
         </a>
       </div>
 
-      {/* Formal Assurance Trust Strip */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-16 pt-8 border-t border-black/[0.06]">
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#1d1d1f]">
-          <Lock className="w-4 h-4 text-emerald-600 shrink-0" />
-          <span>{t.trustLocal}</span>
+      {/* ======================================================== */}
+      {/* SOCIAL PROOF & EXECUTIVE TRUST METRICS BAR */}
+      {/* ======================================================== */}
+      <div className="max-w-4xl w-full mx-auto mt-14 pt-8 border-t border-black/[0.06]">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          {/* Metric 1: User Rating */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-black/[0.06] shadow-xs flex flex-col items-center justify-center text-center group hover:border-amber-400/40 transition-colors">
+            <div className="text-xl sm:text-2xl font-black text-amber-500 tracking-tight font-mono">
+              {t.metricRatingVal}
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] mt-0.5">
+              {t.metricRatingLabel}
+            </div>
+          </div>
+
+          {/* Metric 2: 100% Offline */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-black/[0.06] shadow-xs flex flex-col items-center justify-center text-center group hover:border-emerald-500/40 transition-colors">
+            <div className="text-xl sm:text-2xl font-black text-emerald-600 tracking-tight font-mono">
+              {t.metricOfflineVal}
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] mt-0.5">
+              {t.metricOfflineLabel}
+            </div>
+          </div>
+
+          {/* Metric 3: Zero Ads */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-black/[0.06] shadow-xs flex flex-col items-center justify-center text-center group hover:border-blue-500/40 transition-colors">
+            <div className="text-xl sm:text-2xl font-black text-blue-600 tracking-tight font-mono">
+              {t.metricAdsVal}
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] mt-0.5">
+              {t.metricAdsLabel}
+            </div>
+          </div>
+
+          {/* Metric 4: Verified Operations */}
+          <div className="p-3.5 sm:p-4 rounded-2xl bg-white/90 border border-black/[0.06] shadow-xs flex flex-col items-center justify-center text-center group hover:border-purple-500/40 transition-colors">
+            <div className="text-xl sm:text-2xl font-black text-purple-600 tracking-tight font-mono">
+              {t.metricOpsVal}
+            </div>
+            <div className="text-[11px] sm:text-xs font-semibold text-[#6e6e73] mt-0.5">
+              {t.metricOpsLabel}
+            </div>
+          </div>
         </div>
 
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#1d1d1f]">
-          <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
-          <span>{t.trustZeroAds}</span>
-        </div>
+        {/* Supporting Micro Trust Badges */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-[#6e6e73]">
+            <Lock className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <span>{t.trustLocal}</span>
+          </div>
 
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#1d1d1f]">
-          <WifiOff className="w-4 h-4 text-amber-600 shrink-0" />
-          <span>{t.trustOffline}</span>
-        </div>
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-[#6e6e73]">
+            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <span>{t.trustZeroAds}</span>
+          </div>
 
-        <div className="flex items-center gap-2 text-xs font-semibold text-[#1d1d1f]">
-          <Smartphone className="w-4 h-4 text-purple-600 shrink-0" />
-          <span>{t.trustAndroid}</span>
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-[#6e6e73]">
+            <WifiOff className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+            <span>{t.trustOffline}</span>
+          </div>
+
+          <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-[#6e6e73]">
+            <Smartphone className="w-3.5 h-3.5 text-purple-600 shrink-0" />
+            <span>{t.trustAndroid}</span>
+          </div>
         </div>
       </div>
 

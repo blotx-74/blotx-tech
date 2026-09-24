@@ -251,13 +251,14 @@ export const AppleHero3D: FC<AppleHero3DProps> = ({ onSelectApp }) => {
     camera.position.set(0, 0, 7.8);
 
     // 3. Renderer with luxury Apple-style lighting & shadow
+    const isMobile = window.innerWidth < 768;
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isMobile,
       alpha: true,
       powerPreference: 'high-performance',
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.15;
     renderer.shadowMap.enabled = true;
@@ -410,9 +411,16 @@ export const AppleHero3D: FC<AppleHero3DProps> = ({ onSelectApp }) => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Smooth render loop with gentle floating
+    // Smooth render loop with gentle floating and IntersectionObserver battery savings
     let clock = 0;
+    let isVisible = true;
+
     const animate = () => {
+      if (!isVisible) {
+        if (stateRef.current) stateRef.current.reqId = 0;
+        return;
+      }
+
       clock += 0.02;
 
       if (stateRef.current) {
@@ -438,7 +446,23 @@ export const AppleHero3D: FC<AppleHero3DProps> = ({ onSelectApp }) => {
 
     stateRef.current.reqId = requestAnimationFrame(animate);
 
+    // Battery & Performance: Pause WebGL when container is out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible) {
+          if (stateRef.current && !stateRef.current.reqId) {
+            stateRef.current.reqId = requestAnimationFrame(animate);
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+
     return () => {
+      observer.disconnect();
       container.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       if (stateRef.current) {

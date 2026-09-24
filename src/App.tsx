@@ -18,6 +18,7 @@ import { FloatingEcosystemDock } from './components/ui/FloatingEcosystemDock';
 import { PrivacyPolicyModal } from './components/ui/PrivacyPolicyModal';
 import { SupportDocsModal } from './components/ui/SupportDocsModal';
 import { PromoCodeModal } from './components/ui/PromoCodeModal';
+import { ZeroCookiesBanner } from './components/ui/ZeroCookiesBanner';
 import { Gift } from 'lucide-react';
 
 import { ConfigContext } from './ConfigContext';
@@ -131,6 +132,7 @@ export function App() {
           onClose={() => setIsPromoOpen(false)}
           promoCodes={config?.promoCodes}
         />
+        <ZeroCookiesBanner onOpenPrivacy={() => setIsPrivacyOpen(true)} />
       </div>
       </ConfigContext.Provider>
     </LanguageProvider>

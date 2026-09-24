@@ -51,8 +51,14 @@ export const InteractiveDeviceShowcase: FC = () => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const rafRef = useRef<number | null>(null);
 
+  useEffect(() => {
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!stageRef.current || viewMode !== 'perspective') return;
+    if (!stageRef.current || viewMode !== 'perspective' || window.innerWidth < 768) return;
     const rect = stageRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width - 0.5) * 12;
     const y = ((e.clientY - rect.top) / rect.height - 0.5) * -12;

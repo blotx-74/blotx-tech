@@ -35,13 +35,14 @@ export const AppViewer3D: FC<AppViewer3DProps> = ({ initialApp = 'taht-elbalata'
     const camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
     camera.position.set(0, 0, 5.8);
 
+    const isMobile = window.innerWidth < 768;
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: !isMobile,
       alpha: true,
       powerPreference: 'high-performance',
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setPixelRatio(isMobile ? Math.min(window.devicePixelRatio, 1.5) : Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.3;
     container.innerHTML = '';
@@ -177,8 +178,15 @@ export const AppViewer3D: FC<AppViewer3DProps> = ({ initialApp = 'taht-elbalata'
     };
     window.addEventListener('resize', handleResize);
 
-    // Loop
+    // Loop with battery saving when offscreen
+    let isVisible = true;
+
     const animate = () => {
+      if (!isVisible) {
+        if (threeState.current) threeState.current.reqId = 0;
+        return;
+      }
+
       if (threeState.current) {
         const { phoneMesh, targetRotX, targetRotY } = threeState.current;
 
@@ -197,11 +205,29 @@ export const AppViewer3D: FC<AppViewer3DProps> = ({ initialApp = 'taht-elbalata'
 
     threeState.current.reqId = requestAnimationFrame(animate);
 
+    // Battery & Performance: Pause WebGL when container is out of view
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible) {
+          if (threeState.current && !threeState.current.reqId) {
+            threeState.current.reqId = requestAnimationFrame(animate);
+          }
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(container);
+
     return () => {
+      observer.disconnect();
       container.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       if (threeState.current) {
-        cancelAnimationFrame(threeState.current.reqId);
+        if (threeState.current.reqId) {
+          cancelAnimationFrame(threeState.current.reqId);
+        }
         renderer.dispose();
       }
     };
