@@ -11,7 +11,6 @@ import { TheSynergyMatrix } from './components/sections/TheSynergyMatrix';
 import { PhilosophyManifesto } from './components/sections/PhilosophyManifesto';
 import { SavingsCalculator } from './components/sections/SavingsCalculator';
 import { RealStoriesSection } from './components/sections/RealStoriesSection';
-import { TheLabSecrets } from './components/sections/TheLabSecrets';
 import { FaqSection } from './components/sections/FaqSection';
 import { AppleFooter } from './components/layout/AppleFooter';
 import { FloatingEcosystemDock } from './components/ui/FloatingEcosystemDock';
@@ -99,7 +98,6 @@ export function App() {
             {sec.manifesto !== false && <PhilosophyManifesto />}
             {sec.calculator !== false && <SavingsCalculator />}
             {sec.stories !== false && <RealStoriesSection />}
-            {sec.lab !== false && <TheLabSecrets />}
             {sec.faq !== false && <FaqSection />}
           </main>
 
