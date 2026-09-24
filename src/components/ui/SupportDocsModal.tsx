@@ -457,6 +457,33 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                   </div>
                 </div>
               </div>
+
+              {/* Developer Portfolio Link Card */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-neutral-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-4 border border-[#8C7A54]/30 shadow-md">
+                <div className="space-y-1 text-start">
+                  <div className="flex items-center gap-2">
+                    <Sparkles className="w-4 h-4 text-[#8C7A54]" />
+                    <span className="text-xs font-bold text-[#8C7A54] uppercase tracking-wider font-mono">
+                      {isAr ? 'الموقع الشخصي ومحفظة الأعمال الرسمية' : 'Official Portfolio & Works'}
+                    </span>
+                  </div>
+                  <h4 className="text-sm sm:text-base font-bold text-white">
+                    {isAr ? 'زياد محمد — مهندس ومطور المنظومة' : 'Ziad Mohamed — Lead Architect'}
+                  </h4>
+                  <p className="text-xs text-neutral-400">
+                    https://ziadmohamed.web.app
+                  </p>
+                </div>
+
+                <a
+                  href="https://ziadmohamed.web.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2.5 rounded-full bg-[#8C7A54] hover:bg-[#a69268] text-black font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm shrink-0"
+                >
+                  <span>{isAr ? 'زيارة الموقع ↗' : 'Visit Portfolio ↗'}</span>
+                </a>
+              </div>
             </div>
           )}
 

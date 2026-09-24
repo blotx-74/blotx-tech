@@ -1,8 +1,8 @@
 {
   "colors": {
-    "primary": "#1d1d1f",
-    "secondary": "#fbfbfd",
-    "accent": "#0071e3",
+    "primary": "#1A1A1A",
+    "secondary": "#FAF9F6",
+    "accent": "#8C7A54",
     "cardBg": "#ffffff"
   },
   "typography": {
@@ -28,8 +28,8 @@
     "eftekerDownloadUrl": "https://eftekir-app-f9116.web.app"
   },
   "announcementBar": {
-    "is_enabled": true,
-    "text": "🚀 إطلاق التحديث الكبير لمنظومة Blotx 2026 - تجربة موحدة تجمع بين الذكاء المالي والصفاء الذهني",
+    "is_enabled": false,
+    "text": "🚀 إطلاق التحديث الكبير لمنظومة Blotx 2026",
     "badge": "جديد",
     "type": "countdown",
     "targetDate": "2026-10-01T00:00:00.000Z",
@@ -52,7 +52,7 @@
   "maintenanceMode": {
     "is_enabled": false,
     "title": "نعمل على ترقية استثنائية لمنظومة Blotx",
-    "message": "الموقع في وضع الصيانة الدورية المجدولة لتطبيق تحسينات فائقة السرعة والأمان. سنعود للعمل قريباً جداً.",
+    "message": "الموقع في وضع الصيانة المجدولة لتطبيق تحسينات فائقة السرعة والأمان. سنعود للعمل قريباً جداً.",
     "estimatedReturn": "خلال دقائق معدودة"
   },
   "socialLinks": {
@@ -67,20 +67,15 @@
       "code": "BLOTX2026",
       "discount": "وصول مبكر VIP مجاني لكافة الميزات",
       "active": true
-    },
-    {
-      "code": "GOLDEN",
-      "discount": "تفعيل حاسبة الذهب الذكية المتقدمة",
-      "active": true
     }
   ],
   "changelog": [
     {
       "version": "v2.5.0",
       "date": "سبتمبر 2026",
-      "title": "إطلاق لوحة التحكم المركزية الشاملة",
-      "badge": "تحديث رئيسي",
-      "description": "تحكم لحظي كامل من سطح المكتب في الموقع وتطبيقي تحت البلاطة وافتكر مع استوديو الإشعارات الذكي."
+      "title": "إطلاق لوحة التحكم المركزية",
+      "badge": "رئيسي",
+      "description": "مزامنة كاملة بين الموقع والتطبيقات."
     }
   ]
 }

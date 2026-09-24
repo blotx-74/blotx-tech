@@ -218,6 +218,60 @@ export interface Translations {
   supportSendEmail: string;
   supportFastResponse: string;
   supportDevDirectBadge: string;
+
+  // Editorial & DESIGN.md Architecture
+  navHome: string;
+  navServices: string;
+  navWorks: string;
+  navAbout: string;
+  navRoadmap: string;
+  navContact: string;
+  devPortfolioBtn: string;
+  devPortfolioShort: string;
+  cairoTime: string;
+
+  heroEditorialTag: string;
+  heroEditorialTitle: string;
+  heroEditorialDesc: string;
+  founderBadge: string;
+  statsYears: string;
+  statsYearsLabel: string;
+  statsProducts: string;
+  statsProductsLabel: string;
+  statsHours: string;
+  statsHoursLabel: string;
+
+  passionCoffee: string;
+  passionBarca: string;
+  passionCode: string;
+
+  servicesTag: string;
+  servicesTitle: string;
+  servicesSubtitle: string;
+
+  worksTag: string;
+  worksTitle: string;
+  worksSubtitle: string;
+
+  aboutTag: string;
+  aboutTitle: string;
+  aboutLeadDev: string;
+  aboutLeadDevRole: string;
+  aboutLeadDevBio: string;
+  visitPortfolioBtn: string;
+
+  roadmapsTag: string;
+  roadmapsTitle: string;
+  showMoreArticles: string;
+  showLessArticles: string;
+
+  contactTag: string;
+  contactTitle: string;
+  contactSubtitle: string;
+  contactEmailTitle: string;
+  contactWhatsAppTitle: string;
+  contactPortfolioTitle: string;
+  contactPortfolioDesc: string;
 }
 
 export const translations: Record<Language, Translations> = {
@@ -449,6 +503,60 @@ export const translations: Record<Language, Translations> = {
     supportSendEmail: 'إرسال بريد إلكتروني',
     supportFastResponse: 'متوسط وقت الرد: خلال ساعات معدودة',
     supportDevDirectBadge: 'خط اتصال مباشر بالهندسة والقيادة التقنية',
+
+    // Editorial & DESIGN.md Architecture
+    navHome: 'الرئيسية',
+    navServices: 'التخصصات',
+    navWorks: 'المنتجات الرائدة',
+    navAbout: 'عن المطور والتقنيات',
+    navRoadmap: 'المدونة والمسارات',
+    navContact: 'تواصل معنا',
+    devPortfolioBtn: 'موقع المطور: زياد محمد ↗',
+    devPortfolioShort: 'موقع المطور ↗',
+    cairoTime: 'توقيت القاهرة المباشر',
+
+    heroEditorialTag: 'Luxury Technology × Editorial Design × Cinematic UI',
+    heroEditorialTitle: 'نبتكر أدوات رقمية مستقلة تعيد صياغة خصوصيتك وهدوءك الذهني',
+    heroEditorialDesc: 'مختبر برمجيات مستقل يدمج بين معمارية الأنظمة المتقدمة، التشفير العتادي، والتصميم التحريري الفاخر. تطبيقات أصلية تعمل محلياً 100% بدون خوادم خارجية وبدون أي مساومة على السرعة.',
+    founderBadge: 'المؤسس والمطور الرئيسي: زياد محمد',
+    statsYears: '+4 سنوات',
+    statsYearsLabel: 'تطوير معماري وابتكار برمجي مستقل',
+    statsProducts: '02 منتجات',
+    statsProductsLabel: 'منتجات رئيسية رائدة (افتكر & تحت البلاطة)',
+    statsHours: '+10,000 ساعة',
+    statsHoursLabel: 'برمجة وبناء وتطوير أنظمة متقدمة',
+
+    passionCoffee: 'القهوة المختصة ☕',
+    passionBarca: 'FC Barcelona ⚽',
+    passionCode: 'كتابة الكود النظيف 💻',
+
+    servicesTag: 'ماذا أقدم؟ • تخصصات المنظومة',
+    servicesTitle: 'هندسة معمارية متكاملة من الفكرة حتى إطلاق الإنتاج',
+    servicesSubtitle: 'حلول تقنية رائدة تجمع بين الأداء العالي، الأمان الصارم، وتجربة المستخدم السينمائية الفاخرة.',
+
+    worksTag: 'معرض الأعمال • المنتجات الرائدة',
+    worksTitle: 'منتجات برمجية متكاملة تعيش في جيبك وتعمل في هدوء',
+    worksSubtitle: 'تطبيقات تم ابتكارها وتطويرها لترسيخ السيادة الرقمية الشخصية والخصوصية التامة.',
+
+    aboutTag: 'قصة التطور وترسانة التقنيات',
+    aboutTitle: 'رحلة هندسية تحكمها الحرفية البرمجية ورفض التنازلات',
+    aboutLeadDev: 'زياد محمد (Ziad Mohamed)',
+    aboutLeadDevRole: 'المؤسس والمطور الرئيسي لـ Blotx Tech',
+    aboutLeadDevBio: 'مهندس برمجيات متخصص في بناء تطبيقات Flutter عالية الكفاءة (60/120fps)، منصات الويب التفاعلية الحديثة، ومعماريات Zero-Knowledge المشفرة محلياً بالكامل. يؤمن بأن التطبيقات الحقيقية هي التي تمنح مستخدمها الحرية والأمان التام.',
+    visitPortfolioBtn: 'زيارة موقع المطور ومحفظة أعماله الشخصية ↗',
+
+    roadmapsTag: 'المدونة ومسارات التعلم التحريرية',
+    roadmapsTitle: 'فكر هندسي، مقالات معمقة، وخريطة طريق برمجية واقعية',
+    showMoreArticles: 'إظهار المزيد من المقالات والمسارات (المقال الرابع) ↓',
+    showLessArticles: 'إظهار أقل ↑',
+
+    contactTag: 'منصة التواصل المباشر',
+    contactTitle: 'دعنا نبني فكرتك القادمة وفق أعلى المعايير العالمية',
+    contactSubtitle: 'سواء كنت مهتماً بشراكة استثمارية، استشارة برمجية معمارية، أو استفسار حول تطبيقاتنا — تواصل معنا مباشرة.',
+    contactEmailTitle: 'البريد الإلكتروني المباشر',
+    contactWhatsAppTitle: 'محادثة واتساب فورية',
+    contactPortfolioTitle: 'موقع المطور: ziadmohamed.web.app',
+    contactPortfolioDesc: 'تصفح محفظة أعمال زياد محمد الكاملة، مسيرته المهنية، والمشاريع الهندسية الأخرى.',
   },
 
   en: {
@@ -679,5 +787,59 @@ export const translations: Record<Language, Translations> = {
     supportSendEmail: 'Send Direct Email',
     supportFastResponse: 'Average response turnaround: Within a few hours',
     supportDevDirectBadge: 'Direct Line to Lead Software Architect',
+
+    // Editorial & DESIGN.md Architecture
+    navHome: 'Home',
+    navServices: 'Services',
+    navWorks: 'Selected Works',
+    navAbout: 'About & Tech',
+    navRoadmap: 'Editorial & Roadmaps',
+    navContact: 'Contact',
+    devPortfolioBtn: 'Developer Portfolio: Ziad Mohamed ↗',
+    devPortfolioShort: 'Developer Portfolio ↗',
+    cairoTime: 'Live Cairo Time',
+
+    heroEditorialTag: 'Luxury Technology × Editorial Design × Cinematic UI',
+    heroEditorialTitle: 'Engineering digital instruments that redefine privacy and mental clarity',
+    heroEditorialDesc: 'An independent software laboratory combining advanced systems architecture with luxury editorial design. Native apps operating offline with hardware-grade encryption and uncompromised fluid velocity.',
+    founderBadge: 'Lead Developer & Founder: Ziad Mohamed',
+    statsYears: '+4 Years',
+    statsYearsLabel: 'Architectural Engineering & Independent R&D',
+    statsProducts: '02 Products',
+    statsProductsLabel: 'Flagship Products (Eftekir & Taht El Balata)',
+    statsHours: '+10,000 Hours',
+    statsHoursLabel: 'Deep Systems Engineering & Code Craftsmanship',
+
+    passionCoffee: 'Specialty Coffee ☕',
+    passionBarca: 'FC Barcelona ⚽',
+    passionCode: 'Clean Code Craft 💻',
+
+    servicesTag: 'Capabilities • Services & Expertise',
+    servicesTitle: 'Holistic Architecture from Conception to Production',
+    servicesSubtitle: 'Specialized engineering blending high-speed Flutter platforms, modern React web platforms, and zero-knowledge data backends.',
+
+    worksTag: 'Selected Works • Flagship Products',
+    worksTitle: 'Autonomous Digital Products Living in Your Pocket',
+    worksSubtitle: 'Hand-crafted applications engineered for uncompromising digital sovereignty and financial peace of mind.',
+
+    aboutTag: 'Evolution & Tech Bento Grid',
+    aboutTitle: 'An Engineering Journey Driven by Rigor and Craft',
+    aboutLeadDev: 'Ziad Mohamed',
+    aboutLeadDevRole: 'Lead Developer & Founder of Blotx Tech',
+    aboutLeadDevBio: 'Software architect dedicated to high-performance Flutter mobile apps (60/120fps native), cutting-edge React web platforms, and zero-knowledge local encryption architectures. Believes technology should empower users with true digital sovereignty.',
+    visitPortfolioBtn: 'Visit Developer Portfolio & Full Works ↗',
+
+    roadmapsTag: 'Editorial & Engineering Roadmaps',
+    roadmapsTitle: 'Engineering Thinking, In-depth Essays & Honest Roadmaps',
+    showMoreArticles: 'Show More Articles & Roadmaps (4th Essay) ↓',
+    showLessArticles: 'Show Less ↑',
+
+    contactTag: 'Direct Contact Suite',
+    contactTitle: "Let's Build Something Exceptional Together",
+    contactSubtitle: 'Whether discussing strategic technical partnerships, systems architecture, or questions regarding our apps — reach out directly.',
+    contactEmailTitle: 'Direct Email',
+    contactWhatsAppTitle: 'Direct WhatsApp Line',
+    contactPortfolioTitle: 'Developer Portfolio: ziadmohamed.web.app',
+    contactPortfolioDesc: 'Explore Ziad Mohamed’s full professional profile, career trajectory, and architectural projects.',
   },
 };
