@@ -1,6 +1,7 @@
 import { useState, type FC } from 'react';
 import { ShieldCheck, ArrowUpRight, TrendingUp, Sparkles, CheckCircle2, Lock } from 'lucide-react';
 import { useLanguage } from '../../LanguageContext';
+import { playAppleClick } from '../../utils/soundEffects';
 
 export const InteractiveBalataExperience: FC = () => {
   const [isLifted, setIsLifted] = useState<boolean>(true);
@@ -97,68 +98,104 @@ export const InteractiveBalataExperience: FC = () => {
             {/* Left Col (Interactive Balata Mechanism) */}
             <div className="lg:col-span-6 flex flex-col items-center justify-center text-center">
               {/* Interactive Tile Stage */}
-              <div className="relative w-full max-w-[280px] sm:max-w-[380px] h-[280px] sm:h-[380px] flex items-center justify-center">
+              <div className="relative w-full max-w-[300px] sm:max-w-[380px] h-[300px] sm:h-[360px] flex items-center justify-center rounded-3xl bg-emerald-50/40 border border-emerald-100/60 p-4 overflow-hidden shadow-inner">
+                {/* Ambient Soft Glow */}
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-100/20 to-emerald-200/30 pointer-events-none" />
+
                 {/* 1. The Real 3D Logo Character emerging from underneath */}
                 <div
-                  className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${
+                  className={`relative z-10 flex items-center justify-center transition-all duration-700 ease-out cursor-pointer ${
                     isLifted
-                      ? 'scale-100 opacity-100 translate-y-0'
-                      : 'scale-90 opacity-40 translate-y-8'
+                      ? 'scale-100 opacity-100 translate-y-0 drop-shadow-2xl'
+                      : 'scale-90 opacity-20 translate-y-6 blur-[1px]'
                   }`}
+                  onClick={() => {
+                    playAppleClick();
+                    setIsLifted(!isLifted);
+                  }}
                 >
                   <img
                     src="/assets/logos/taht-elbalata-logo.png"
                     alt="كائن تحت البلاطة العبقري"
-                    className="w-56 h-56 sm:w-80 sm:h-80 object-contain drop-shadow-2xl hover:scale-105 transition-transform"
+                    className="w-56 h-56 sm:w-72 sm:h-72 object-contain hover:scale-105 transition-transform"
                   />
                 </div>
 
                 {/* Floating Money Banknotes Animation Particles */}
                 {isLifted && (
                   <>
-                    <div className="absolute -top-2 right-4 px-3 py-1 rounded-full bg-emerald-500 text-white font-mono text-xs font-bold shadow-lg animate-bounce">
+                    <div className="absolute top-4 right-4 z-20 px-3 py-1 rounded-full bg-emerald-500 text-white font-mono text-xs font-bold shadow-lg animate-bounce">
                       + 148,500 EGP
                     </div>
-                    <div className="absolute bottom-4 left-6 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold shadow-md">
+                    <div className="absolute bottom-4 left-4 z-20 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold shadow-md">
                       خزنة مشفرة 100%
                     </div>
                   </>
                 )}
 
-                {/* The Lifting Stone Balata Plate Overlay */}
+                {/* The Physical Stone Balata Slab (Covers mascot inside stage when closed, slides down when lifted) */}
                 <div
-                  onClick={() => setIsLifted(!isLifted)}
-                  className={`absolute inset-x-4 bottom-0 cursor-pointer rounded-2xl p-4 bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200 border-2 border-neutral-300 shadow-2xl transition-all duration-700 ease-out flex items-center justify-between group ${
+                  onClick={() => {
+                    playAppleClick();
+                    setIsLifted(!isLifted);
+                  }}
+                  className={`absolute inset-3 sm:inset-4 rounded-2xl bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300 border-2 border-neutral-300/80 shadow-2xl z-20 flex flex-col items-center justify-center cursor-pointer transition-all duration-700 ease-out select-none ${
                     isLifted
-                      ? 'translate-y-24 opacity-80 rotate-2'
-                      : 'translate-y-4 opacity-100 rotate-0'
+                      ? 'translate-y-[115%] opacity-0 pointer-events-none'
+                      : 'translate-y-0 opacity-100 hover:scale-[1.02]'
                   }`}
                 >
-                  <div className="flex items-center gap-3 text-right">
-                    <div className="w-10 h-10 rounded-xl bg-neutral-800 text-white flex items-center justify-center font-bold text-xs shadow-md">
-                      بلاطة
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-neutral-800">
-                        {isLifted ? 'البلاطة مرفوعة • الخزنة مكشوفة' : 'البلاطة مقفولة • اضغط لرفعها'}
-                      </div>
-                      <div className="text-[11px] text-neutral-500">
-                        اضغط لتبديل حالة الخزنة ورؤية الكائن الذكي
-                      </div>
-                    </div>
+                  <div className="w-12 h-12 rounded-2xl bg-neutral-900 text-white flex items-center justify-center shadow-lg mb-2">
+                    <Lock className="w-6 h-6 text-emerald-400" />
                   </div>
-
-                  <div className="px-3 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold shadow-sm group-hover:scale-105 transition-transform">
-                    {isLifted
-                      ? (language === 'ar' ? 'إغلاق البلاطة' : 'Lower Tile')
-                      : (language === 'ar' ? 'ارفع البلاطة ✦' : 'Lift Tile ✦')}
-                  </div>
+                  <span className="text-sm font-black text-neutral-800 tracking-tight">
+                    {language === 'ar' ? '«البلاطة» محكمة الإغلاق' : '«The Balata» Fortified Lid'}
+                  </span>
+                  <span className="text-[11px] text-neutral-500 mt-1 font-semibold">
+                    {language === 'ar' ? 'اضغط لرفع البلاطة وكشف الخزنة ✦' : 'Tap to lift the tile & reveal ✦'}
+                  </span>
                 </div>
               </div>
 
-              {/* Status Note under the tile */}
-              <div className="mt-8 flex items-center gap-2 text-xs text-[#6e6e73]">
-                <Sparkles className="w-4 h-4 text-emerald-600" />
+              {/* Interactive Balata Controller - In normal flow so it NEVER overlaps sibling content */}
+              <div className="mt-5 w-full max-w-[340px]">
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    setIsLifted(!isLifted);
+                  }}
+                  className="w-full p-3 rounded-2xl bg-white border border-black/10 hover:border-emerald-500/50 shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-between gap-3 cursor-pointer group"
+                >
+                  <div className="flex items-center gap-2.5 text-start min-w-0">
+                    <div className="w-9 h-9 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+                      بلاطة
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-xs font-bold text-[#1d1d1f] truncate">
+                        {isLifted
+                          ? (language === 'ar' ? 'البلاطة مرفوعة • الخزنة مكشوفة' : 'Tile Lifted • Vault Revealed')
+                          : (language === 'ar' ? 'البلاطة مقفولة • الخزنة مستورة' : 'Tile Lowered • Vault Concealed')}
+                      </div>
+                      <div className="text-[10px] text-[#86868b] truncate">
+                        {language === 'ar'
+                          ? 'اضغط لتبديل حالة الخزنة والكائن'
+                          : 'Tap to toggle vault status'}
+                      </div>
+                    </div>
+                  </div>
+
+                  <span className="px-3 py-1.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-xs shrink-0 group-hover:scale-105 transition-transform">
+                    {isLifted
+                      ? (language === 'ar' ? 'إغلاق البلاطة' : 'Lower Tile')
+                      : (language === 'ar' ? 'ارفع البلاطة ✦' : 'Lift Tile ✦')}
+                  </span>
+                </button>
+              </div>
+
+              {/* Status Note under the controller */}
+              <div className="mt-3 flex items-center justify-center gap-1.5 text-xs text-[#6e6e73]">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 <span>
                   {language === 'ar'
                     ? 'جرّب رفع البلاطة لرؤية الكائن الذكي وحصانتك المالية'
