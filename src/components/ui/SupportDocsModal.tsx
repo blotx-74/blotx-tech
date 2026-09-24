@@ -75,20 +75,20 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl max-h-[86dvh] sm:max-h-[90vh] bg-white rounded-3xl shadow-2xl border border-black/[0.1] flex flex-col overflow-hidden animate-scaleUp"
+        className="relative w-full max-w-4xl max-h-[86dvh] sm:max-h-[90vh] bg-white dark:bg-[#0c0e14] rounded-3xl shadow-2xl border border-black/[0.1] dark:border-white/10 flex flex-col overflow-hidden animate-scaleUp text-[#1d1d1f] dark:text-[#f5f5f7]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="p-4 sm:p-6 border-b border-black/[0.06] bg-gradient-to-b from-neutral-50/90 to-white flex items-center justify-between gap-3 shrink-0">
+        <div className="p-4 sm:p-6 border-b border-black/[0.06] dark:border-white/10 bg-gradient-to-b from-neutral-50/90 to-white dark:from-[#11131a] dark:to-[#0c0e14] flex items-center justify-between gap-3 shrink-0">
           <div className="text-start space-y-1">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200 text-[11px] sm:text-xs font-bold">
-              <HelpCircle className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800/40 text-[11px] sm:text-xs font-bold">
+              <HelpCircle className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0" />
               <span>{isAr ? 'مركز المساعدة والاتصال الرسمي' : 'Official Assistance & Inquiries'}</span>
             </div>
-            <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-[#1d1d1f] tracking-tight">
+            <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-[#1d1d1f] dark:text-white tracking-tight">
               {t.supportModalTitle}
             </h2>
-            <p className="text-[11px] sm:text-xs text-[#6e6e73] max-w-2xl leading-relaxed">
+            <p className="text-[11px] sm:text-xs text-[#6e6e73] dark:text-[#86868b] max-w-2xl leading-relaxed">
               {t.supportModalSubtitle}
             </p>
           </div>
@@ -99,7 +99,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               playAppleClick();
               onClose();
             }}
-            className="p-2 sm:p-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-[#1d1d1f] transition-all cursor-pointer shrink-0"
+            className="p-2 sm:p-2.5 rounded-full bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/15 text-[#1d1d1f] dark:text-white transition-all cursor-pointer shrink-0"
             title={t.closeBtn}
           >
             <X className="w-5 h-5" />
@@ -107,9 +107,9 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
         </div>
 
         {/* Tab Navigation Pill Bar: Segmented on Mobile, Full Pills on Desktop */}
-        <div className="px-3 sm:px-8 pt-3 pb-2 border-b border-black/[0.05] bg-white shrink-0">
+        <div className="px-3 sm:px-8 pt-3 pb-2 border-b border-black/[0.05] dark:border-white/10 bg-white dark:bg-[#0c0e14] shrink-0">
           {/* Mobile Segmented Bar (100% visible, no cutting off) */}
-          <div className="sm:hidden grid grid-cols-3 gap-1 p-1 bg-neutral-100/90 rounded-2xl border border-black/[0.04]">
+          <div className="sm:hidden grid grid-cols-3 gap-1 p-1 bg-neutral-100/90 dark:bg-white/5 rounded-2xl border border-black/[0.04] dark:border-white/10">
             <button
               type="button"
               onClick={() => {
@@ -118,8 +118,8 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               }}
               className={`py-2 px-1 rounded-xl text-[11px] font-bold text-center flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 activeTab === 'team'
-                  ? 'bg-[#1d1d1f] text-white shadow-sm'
-                  : 'text-neutral-600 hover:text-neutral-900'
+                  ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black shadow-sm'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -135,7 +135,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               className={`py-2 px-1 rounded-xl text-[11px] font-bold text-center flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 activeTab === 'developer'
                   ? 'bg-[#0071e3] text-white shadow-sm'
-                  : 'text-neutral-600 hover:text-neutral-900'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <Code2 className="w-3.5 h-3.5" />
@@ -151,7 +151,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               className={`py-2 px-1 rounded-xl text-[11px] font-bold text-center flex items-center justify-center gap-1 transition-all cursor-pointer ${
                 activeTab === 'docs'
                   ? 'bg-purple-700 text-white shadow-sm'
-                  : 'text-neutral-600 hover:text-neutral-900'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-white'
               }`}
             >
               <BookOpen className="w-3.5 h-3.5" />
@@ -169,8 +169,8 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               }}
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'team'
-                  ? 'bg-[#1d1d1f] text-white shadow-md'
-                  : 'bg-neutral-100 text-[#6e6e73] hover:text-[#1d1d1f]'
+                  ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black shadow-md'
+                  : 'bg-neutral-100 dark:bg-white/10 text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white'
               }`}
             >
               <Users className="w-4 h-4 text-emerald-400" />
@@ -186,7 +186,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'developer'
                   ? 'bg-[#0071e3] text-white shadow-md'
-                  : 'bg-neutral-100 text-[#6e6e73] hover:text-[#1d1d1f]'
+                  : 'bg-neutral-100 dark:bg-white/10 text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white'
               }`}
             >
               <Code2 className="w-4 h-4 text-white" />
@@ -202,7 +202,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               className={`px-4 py-2 rounded-full text-xs sm:text-sm font-bold transition-all flex items-center gap-2 cursor-pointer ${
                 activeTab === 'docs'
                   ? 'bg-purple-700 text-white shadow-md'
-                  : 'bg-neutral-100 text-[#6e6e73] hover:text-[#1d1d1f]'
+                  : 'bg-neutral-100 dark:bg-white/10 text-[#6e6e73] dark:text-[#86868b] hover:text-[#1d1d1f] dark:hover:text-white'
               }`}
             >
               <BookOpen className="w-4 h-4 text-purple-300" />
@@ -216,54 +216,54 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
           {/* ================= TAB 1: WEBSITE SUPPORT TEAM ================= */}
           {activeTab === 'team' && (
             <div className="space-y-6 animate-fadeIn">
-              <div className="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200/80 space-y-2">
-                <div className="flex items-center gap-2 text-emerald-900 font-bold text-sm sm:text-base">
-                  <ShieldCheck className="w-5 h-5 text-emerald-600" />
+              <div className="p-5 rounded-2xl bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800/40 space-y-2">
+                <div className="flex items-center gap-2 text-emerald-900 dark:text-emerald-300 font-bold text-sm sm:text-base">
+                  <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   <span>{t.supportTeamHeading}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-emerald-800/90 leading-relaxed">
+                <p className="text-xs sm:text-sm text-emerald-800/90 dark:text-emerald-200/90 leading-relaxed">
                   {t.supportTeamSubheading}
                 </p>
-                <div className="text-[11px] text-emerald-700 font-medium">
+                <div className="text-[11px] text-emerald-700 dark:text-emerald-400 font-medium">
                   {t.supportFastResponse}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Team Gmail Box */}
-                <div className="apple-card p-6 border border-black/[0.08] hover:border-black/[0.15] transition-all space-y-4">
+                <div className="apple-card p-6 border border-black/[0.08] dark:border-white/10 hover:border-black/[0.15] dark:hover:border-white/20 transition-all space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-2xl bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 flex items-center justify-center">
                       <Mail className="w-6 h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-neutral-100 text-neutral-600">
+                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-neutral-100 dark:bg-white/10 text-neutral-600 dark:text-neutral-300">
                       GMAIL // OFFICIAL
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-xs text-[#86868b] font-medium block">
+                    <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] font-medium block">
                       {t.supportEmailLabel}
                     </span>
-                    <span className="text-base sm:text-lg font-bold text-[#1d1d1f] font-mono select-all block mt-0.5">
+                    <span className="text-base sm:text-lg font-bold text-[#1d1d1f] dark:text-white font-mono select-all block mt-0.5">
                       blotx.tech@gmail.com
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05]">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05] dark:border-white/10">
                     <button
                       type="button"
                       onClick={() => handleCopy('blotx.tech@gmail.com', 'team-email')}
-                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-xs font-bold text-[#1d1d1f] flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/15 text-xs font-bold text-[#1d1d1f] dark:text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
                     >
                       {copiedKey === 'team-email' ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                           <span>{t.supportCopiedBtn}</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] shrink-0" />
+                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] dark:text-[#86868b] shrink-0" />
                           <span>{t.supportCopyBtn}</span>
                         </>
                       )}
@@ -271,7 +271,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
 
                     <a
                       href="mailto:blotx.tech@gmail.com"
-                      className="w-full apple-pill-btn py-2 px-2 sm:px-4 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm text-center"
+                      className="w-full apple-pill-btn py-2 px-2 sm:px-4 bg-[#1d1d1f] dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-neutral-200 text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm text-center"
                     >
                       <span className="truncate">{t.supportSendEmail}</span>
                       <ExternalLink className="w-3.5 h-3.5 shrink-0" />
@@ -280,42 +280,42 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                 </div>
 
                 {/* Team WhatsApp Box */}
-                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] hover:border-black/[0.15] transition-all space-y-4">
+                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] dark:border-white/10 hover:border-black/[0.15] dark:hover:border-white/20 transition-all space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                       <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-emerald-50 text-emerald-700">
+                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">
                       WHATSAPP // 24/7
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-xs text-[#86868b] font-medium block">
+                    <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] font-medium block">
                       {t.supportWhatsAppLabel}
                     </span>
-                    <span className="text-base sm:text-lg font-bold text-emerald-700 font-mono select-all block mt-0.5">
+                    <span className="text-base sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 font-mono select-all block mt-0.5">
                       01131751988
                     </span>
-                    <span className="text-[11px] text-neutral-400 font-mono">
+                    <span className="text-[11px] text-neutral-400 dark:text-neutral-500 font-mono">
                       +20 113 175 1988 (Egypt)
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05]">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05] dark:border-white/10">
                     <button
                       type="button"
                       onClick={() => handleCopy('01131751988', 'team-phone')}
-                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-xs font-bold text-[#1d1d1f] flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/15 text-xs font-bold text-[#1d1d1f] dark:text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
                     >
                       {copiedKey === 'team-phone' ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                           <span>{t.supportCopiedBtn}</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] shrink-0" />
+                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] dark:text-[#86868b] shrink-0" />
                           <span>{t.supportCopyBtn}</span>
                         </>
                       )}
@@ -339,55 +339,55 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
           {/* ================= TAB 2: DIRECT DEVELOPER LINE ================= */}
           {activeTab === 'developer' && (
             <div className="space-y-6 animate-fadeIn">
-              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/80 border border-blue-200 space-y-2">
-                <div className="flex items-center gap-2 text-blue-900 font-bold text-sm sm:text-base">
-                  <Code2 className="w-5 h-5 text-blue-600" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-blue-50/80 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800/40 space-y-2">
+                <div className="flex items-center gap-2 text-blue-900 dark:text-blue-300 font-bold text-sm sm:text-base">
+                  <Code2 className="w-5 h-5 text-blue-600 dark:text-blue-400" />
                   <span>{t.supportDevHeading}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-blue-900/90 leading-relaxed">
+                <p className="text-xs sm:text-sm text-blue-900/90 dark:text-blue-200/90 leading-relaxed">
                   {t.supportDevSubheading}
                 </p>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-900 text-[10px] font-mono font-bold">
-                  <Sparkles className="w-3 h-3 text-blue-600" />
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-900 dark:text-blue-300 text-[10px] font-mono font-bold">
+                  <Sparkles className="w-3 h-3 text-blue-600 dark:text-blue-400" />
                   <span>{t.supportDevDirectBadge}</span>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Developer Gmail */}
-                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] hover:border-black/[0.15] transition-all space-y-4">
+                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] dark:border-white/10 hover:border-black/[0.15] dark:hover:border-white/20 transition-all space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 flex items-center justify-center">
                       <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-blue-50 text-blue-700">
+                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-400">
                       LEAD ARCHITECT // GMAIL
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-xs text-[#86868b] font-medium block">
+                    <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] font-medium block">
                       {isAr ? 'حساب الجيميل المباشر للمطور:' : 'Developer Direct Gmail:'}
                     </span>
-                    <span className="text-base sm:text-lg font-bold text-[#1d1d1f] font-mono select-all block mt-0.5">
+                    <span className="text-base sm:text-lg font-bold text-[#1d1d1f] dark:text-white font-mono select-all block mt-0.5">
                       ziadmahamed36@gmail.com
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05]">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05] dark:border-white/10">
                     <button
                       type="button"
                       onClick={() => handleCopy('ziadmahamed36@gmail.com', 'dev-email')}
-                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-xs font-bold text-[#1d1d1f] flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/15 text-xs font-bold text-[#1d1d1f] dark:text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
                     >
                       {copiedKey === 'dev-email' ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                           <span>{t.supportCopiedBtn}</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] shrink-0" />
+                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] dark:text-[#86868b] shrink-0" />
                           <span>{t.supportCopyBtn}</span>
                         </>
                       )}
@@ -404,42 +404,42 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                 </div>
 
                 {/* Developer WhatsApp */}
-                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] hover:border-black/[0.15] transition-all space-y-4">
+                <div className="apple-card p-4 sm:p-6 border border-black/[0.08] dark:border-white/10 hover:border-black/[0.15] dark:hover:border-white/20 transition-all space-y-4">
                   <div className="flex items-center justify-between">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center">
                       <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-emerald-50 text-emerald-700">
+                    <span className="text-[10px] font-mono font-bold px-2 py-1 rounded bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400">
                       LEAD DEV // DIRECT WHATSAPP
                     </span>
                   </div>
 
                   <div>
-                    <span className="text-xs text-[#86868b] font-medium block">
+                    <span className="text-xs text-[#86868b] dark:text-[#a1a1a6] font-medium block">
                       {isAr ? 'رقم الواتساب المباشر للمطور:' : 'Developer Direct WhatsApp:'}
                     </span>
-                    <span className="text-base sm:text-lg font-bold text-emerald-700 font-mono select-all block mt-0.5">
+                    <span className="text-base sm:text-lg font-bold text-emerald-700 dark:text-emerald-400 font-mono select-all block mt-0.5">
                       01558090257
                     </span>
-                    <span className="text-[11px] text-neutral-400 font-mono">
+                    <span className="text-[11px] text-neutral-400 dark:text-neutral-500 font-mono">
                       +20 155 809 0257 (Egypt)
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05]">
+                  <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/[0.05] dark:border-white/10">
                     <button
                       type="button"
                       onClick={() => handleCopy('01558090257', 'dev-phone')}
-                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-xs font-bold text-[#1d1d1f] flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
+                      className="w-full py-2 px-2 sm:px-3.5 rounded-xl bg-neutral-100 dark:bg-white/10 hover:bg-neutral-200 dark:hover:bg-white/15 text-xs font-bold text-[#1d1d1f] dark:text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer text-center"
                     >
                       {copiedKey === 'dev-phone' ? (
                         <>
-                          <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                          <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                           <span>{t.supportCopiedBtn}</span>
                         </>
                       ) : (
                         <>
-                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] shrink-0" />
+                          <Copy className="w-3.5 h-3.5 text-[#6e6e73] dark:text-[#86868b] shrink-0" />
                           <span>{t.supportCopyBtn}</span>
                         </>
                       )}
@@ -459,15 +459,15 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               </div>
 
               {/* Developer Official Portfolio Website Card */}
-              <div className="p-4 rounded-2xl bg-neutral-50 border border-black/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-start">
+              <div className="p-4 rounded-2xl bg-neutral-50 dark:bg-[#11131a] border border-black/[0.08] dark:border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-start">
                 <div className="space-y-0.5">
-                  <span className="text-[10px] font-bold text-[#86868b] uppercase tracking-wider block">
+                  <span className="text-[10px] font-bold text-[#86868b] dark:text-[#a1a1a6] uppercase tracking-wider block">
                     {isAr ? 'الموقع الشخصي للمطور ومحفظة الأعمال' : 'Developer Portfolio & Official Website'}
                   </span>
-                  <span className="text-xs sm:text-sm font-bold text-[#1d1d1f] block">
+                  <span className="text-xs sm:text-sm font-bold text-[#1d1d1f] dark:text-white block">
                     زياد محمد (Ziad Mohamed) — Lead Developer
                   </span>
-                  <span className="text-[11px] text-[#0071e3] font-mono block">
+                  <span className="text-[11px] text-[#0071e3] dark:text-[#2997ff] font-mono block">
                     https://ziadmohamed.web.app
                   </span>
                 </div>
@@ -476,7 +476,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                   href="https://ziadmohamed.web.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="apple-pill-btn px-4 py-2 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 shadow-sm cursor-pointer"
+                  className="apple-pill-btn px-4 py-2 bg-[#1d1d1f] dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-neutral-200 text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 shadow-sm cursor-pointer"
                 >
                   <span>{isAr ? 'زيارة الموقع ↗' : 'Visit Portfolio ↗'}</span>
                 </a>
@@ -487,24 +487,24 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
           {/* ================= TAB 3: TECHNICAL DOCUMENTATION ================= */}
           {activeTab === 'docs' && (
             <div className="space-y-6 animate-fadeIn">
-              <div className="p-4 sm:p-5 rounded-2xl bg-purple-50/70 border border-purple-200/80 space-y-2">
-                <div className="flex items-center gap-2 text-purple-900 font-bold text-sm sm:text-base">
-                  <Terminal className="w-5 h-5 text-purple-600" />
+              <div className="p-4 sm:p-5 rounded-2xl bg-purple-50/70 dark:bg-purple-950/30 border border-purple-200/80 dark:border-purple-800/40 space-y-2">
+                <div className="flex items-center gap-2 text-purple-900 dark:text-purple-300 font-bold text-sm sm:text-base">
+                  <Terminal className="w-5 h-5 text-purple-600 dark:text-purple-400" />
                   <span>{t.supportDocsHeading}</span>
                 </div>
-                <p className="text-xs sm:text-sm text-purple-900/90 leading-relaxed">
+                <p className="text-xs sm:text-sm text-purple-900/90 dark:text-purple-200/90 leading-relaxed">
                   {t.supportDocsSubheading}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {/* Guide 1: Taht El Balata Security */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/[0.06] space-y-2.5">
-                  <div className="flex items-center gap-2 text-[#1d1d1f] font-bold text-sm">
-                    <Lock className="w-4 h-4 text-emerald-600" />
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-[#11131a] border border-black/[0.06] dark:border-white/10 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#1d1d1f] dark:text-white font-bold text-sm">
+                    <Lock className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                     <span>{isAr ? '1. أمان خزنات «تحت البلاطة» وتوليد المفاتيح' : '1. Vault Security & Keystore Anchoring'}</span>
                   </div>
-                  <p className="text-xs text-[#515154] leading-relaxed">
+                  <p className="text-xs text-[#515154] dark:text-[#a1a1a6] leading-relaxed">
                     {isAr
                       ? 'يتم تجزئة مدخراتك داخل قواعد بيانات SQLite محلية مشفرة بمفتاح فريد بطول 256 بت مستمد من Android Keystore مع حماية ضد فك التجميع والروت.'
                       : 'Vault balances are isolated inside localized SQLite storage encrypted with an ephemeral 256-bit key rooted inside hardware security modules.'}
@@ -512,12 +512,12 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                 </div>
 
                 {/* Guide 2: Eftekir OCR */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/[0.06] space-y-2.5">
-                  <div className="flex items-center gap-2 text-[#1d1d1f] font-bold text-sm">
-                    <FileCheck2 className="w-4 h-4 text-blue-600" />
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-[#11131a] border border-black/[0.06] dark:border-white/10 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#1d1d1f] dark:text-white font-bold text-sm">
+                    <FileCheck2 className="w-4 h-4 text-blue-600 dark:text-blue-400" />
                     <span>{isAr ? '2. فحص الفواتير والضمانات محلياً (On-Device OCR)' : '2. On-Device Receipt OCR & Warranty Passports'}</span>
                   </div>
-                  <p className="text-xs text-[#515154] leading-relaxed">
+                  <p className="text-xs text-[#515154] dark:text-[#a1a1a6] leading-relaxed">
                     {isAr
                       ? 'محرك التعرف البصري على الحروف (OCR) يعمل 100% داخل معالج الهاتف دون رفع أي صور أو مستندات لسيرفرات طرف ثالث.'
                       : 'Text and date extraction from receipts runs 100% on the device NPU without uploading sensitive receipts or invoices to external clouds.'}
@@ -525,12 +525,12 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                 </div>
 
                 {/* Guide 3: AirDrop Protocol */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/[0.06] space-y-2.5">
-                  <div className="flex items-center gap-2 text-[#1d1d1f] font-bold text-sm">
-                    <Wifi className="w-4 h-4 text-purple-600" />
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-[#11131a] border border-black/[0.06] dark:border-white/10 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#1d1d1f] dark:text-white font-bold text-sm">
+                    <Wifi className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                     <span>{isAr ? '3. بروتوكول AirDrop اللاسلكي بين التطبيقين' : '3. Local AirDrop Zero-Cloud Symbiosis'}</span>
                   </div>
-                  <p className="text-xs text-[#515154] leading-relaxed">
+                  <p className="text-xs text-[#515154] dark:text-[#a1a1a6] leading-relaxed">
                     {isAr
                       ? 'مصافحة مشفرة (Encrypted Handshake) تستخدم إشارات الرادار المحلي لنقل الالتزام من افتكر إلى خزنة تحت البلاطة بدون أي وسيط.'
                       : 'Encrypted P2P packets transfer pending commitments from Eftekir directly into Taht El Balata vaults via local wireless radar.'}
@@ -538,12 +538,12 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                 </div>
 
                 {/* Guide 4: Encrypted Backups */}
-                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-black/[0.06] space-y-2.5">
-                  <div className="flex items-center gap-2 text-[#1d1d1f] font-bold text-sm">
-                    <Smartphone className="w-4 h-4 text-amber-600" />
+                <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 dark:bg-[#11131a] border border-black/[0.06] dark:border-white/10 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#1d1d1f] dark:text-white font-bold text-sm">
+                    <Smartphone className="w-4 h-4 text-amber-600 dark:text-amber-400" />
                     <span>{isAr ? '4. النسخ الاحتياطي المشفر والنقل بين الأجهزة' : '4. Portable Encrypted Vault Backups'}</span>
                   </div>
-                  <p className="text-xs text-[#515154] leading-relaxed">
+                  <p className="text-xs text-[#515154] dark:text-[#a1a1a6] leading-relaxed">
                     {isAr
                       ? 'يمكنك استخراج أرشيف مشفر ومحمي بكلمة سر شخصية لنقل خزناتك وملاحظاتك إلى أي جهاز جديد بأمان فائق واستقلالية تامة.'
                       : 'Export standalone password-authenticated vault backups to migrate between phones with total self-sovereign control.'}
@@ -555,8 +555,8 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
         </div>
 
         {/* Footer info strip */}
-        <div className="p-3 sm:p-4 border-t border-black/[0.06] bg-neutral-50 flex items-center justify-between gap-3 shrink-0">
-          <div className="flex items-center gap-1.5 text-[11px] text-[#86868b] min-w-0">
+        <div className="p-3 sm:p-4 border-t border-black/[0.06] dark:border-white/10 bg-neutral-50 dark:bg-[#11131a] flex items-center justify-between gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 text-[11px] text-[#86868b] dark:text-[#a1a1a6] min-w-0">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0" />
             <span className="truncate">
               {isAr
@@ -571,7 +571,7 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
               playAppleClick();
               onClose();
             }}
-            className="apple-pill-btn px-5 sm:px-6 py-2 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold shadow-md cursor-pointer shrink-0"
+            className="apple-pill-btn px-5 sm:px-6 py-2 bg-[#1d1d1f] dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-neutral-200 text-xs font-bold shadow-md cursor-pointer shrink-0"
           >
             {t.closeBtn}
           </button>

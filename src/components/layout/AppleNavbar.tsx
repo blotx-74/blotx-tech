@@ -1,9 +1,10 @@
 import { useState, useEffect, type FC } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Volume2, VolumeX, Globe, HelpCircle, ShieldCheck } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Volume2, VolumeX, Globe, HelpCircle, ShieldCheck, Sun, Moon } from 'lucide-react';
 import { playAppleClick, setMuted, getIsMuted } from '../../utils/soundEffects';
 import { handleSmoothScrollClick } from '../../utils/smoothScroll';
 import { useLanguage } from '../../LanguageContext';
+import { useTheme } from '../../ThemeContext';
 
 interface AppleNavbarProps {
   onOpenSupport?: (tab?: 'team' | 'developer' | 'docs') => void;
@@ -14,6 +15,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
   const [isAudioMuted, setIsAudioMuted] = useState(getIsMuted());
   const [activeSection, setActiveSection] = useState<string>('');
   const { language, t, toggleLanguage } = useLanguage();
+  const { isDark, toggleTheme } = useTheme();
 
   const toggleSound = () => {
     const nextMuted = !isAudioMuted;
@@ -97,7 +99,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
 
   return (
     <div className="sticky top-3 z-50 px-3 sm:px-6 w-full max-w-7xl mx-auto font-cairo">
-      <header className="rounded-full bg-white/90 backdrop-blur-2xl border border-black/[0.08] shadow-[0_10px_35px_-10px_rgba(0,0,0,0.08)] px-3 sm:px-5 py-2 flex items-center justify-between transition-all gap-2">
+      <header className="rounded-full bg-white/90 dark:bg-[#121217]/90 backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.1] shadow-[0_10px_35px_-10px_rgba(0,0,0,0.08)] px-3 sm:px-5 py-2 flex items-center justify-between transition-all gap-2">
         {/* Brand Identity */}
         <a
           href="#"
@@ -119,10 +121,10 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="font-black text-[#1d1d1f] tracking-tight text-sm sm:text-base group-hover:text-[#0071e3] transition-colors">
+            <span className="font-black text-[#1d1d1f] dark:text-[#f5f5f7] tracking-tight text-sm sm:text-base group-hover:text-[#0071e3] transition-colors">
               Blotx Tech
             </span>
-            <span className="hidden sm:inline-block text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/[0.05] text-[#86868b]">
+            <span className="hidden sm:inline-block text-[9px] font-mono font-bold px-1.5 py-0.5 rounded bg-black/[0.05] dark:bg-white/[0.1] text-[#86868b] dark:text-neutral-400">
               STUDIOS
             </span>
           </div>
@@ -145,8 +147,8 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                 }}
                 className={`px-3 py-1.5 rounded-full text-xs transition-all duration-300 cursor-pointer whitespace-nowrap select-none ${
                   isActive
-                    ? 'bg-[#1d1d1f]/[0.08] text-[#1d1d1f] font-black border border-[#1d1d1f]/15 shadow-xs scale-105'
-                    : 'font-bold text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-black/[0.04] border border-transparent'
+                    ? 'bg-[#1d1d1f]/[0.08] dark:bg-white/[0.12] text-[#1d1d1f] dark:text-white font-black border border-[#1d1d1f]/15 dark:border-white/20 shadow-xs scale-105'
+                    : 'font-bold text-[#6e6e73] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white hover:bg-black/[0.04] dark:hover:bg-white/[0.06] border border-transparent'
                 }`}
               >
                 {link.label}
@@ -165,10 +167,30 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
               onOpenSupport?.('team');
             }}
             title={t.footerSupport}
-            className="hidden md:flex px-2.5 py-1.5 rounded-full text-xs font-bold text-[#0071e3] bg-blue-50/70 hover:bg-blue-100/80 border border-blue-200/80 active:scale-95 transition-all items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
+            className="hidden md:flex px-2.5 py-1.5 rounded-full text-xs font-bold text-[#0071e3] bg-blue-50/70 hover:bg-blue-100/80 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 border border-blue-200/80 dark:border-blue-800/80 active:scale-95 transition-all items-center gap-1.5 cursor-pointer shrink-0 shadow-2xs"
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span className="hidden xl:inline">{t.footerSupport}</span>
+          </button>
+
+          {/* Theme Toggle (Dark / Light) */}
+          <button
+            type="button"
+            onClick={() => {
+              playAppleClick();
+              toggleTheme();
+            }}
+            title={isDark ? (language === 'ar' ? 'التحويل للوضع النهاري' : 'Switch to Light Mode') : (language === 'ar' ? 'التحويل للوضع الليلي' : 'Switch to Dark Mode')}
+            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/[0.14] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] dark:border-white/[0.08] cursor-pointer shadow-2xs shrink-0"
+          >
+            {isDark ? (
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 text-indigo-500" />
+            )}
+            <span className="hidden sm:inline text-[11px] font-mono">
+              {isDark ? (language === 'ar' ? 'نهاري' : 'Light') : (language === 'ar' ? 'ليلي' : 'Dark')}
+            </span>
           </button>
 
           {/* Language Switcher Toggle (Always Visible) */}
@@ -179,7 +201,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
               toggleLanguage();
             }}
             title={language === 'ar' ? 'Switch to English' : 'التحويل للغة العربية'}
-            className="px-2.5 py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] cursor-pointer shadow-2xs shrink-0"
+            className="px-2.5 py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/[0.14] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] dark:border-white/[0.08] cursor-pointer shadow-2xs shrink-0"
           >
             <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
             <span className="tracking-wide text-[11px] sm:text-xs font-mono">{language === 'ar' ? 'EN' : 'عربي'}</span>
@@ -190,7 +212,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             type="button"
             onClick={toggleSound}
             title={isAudioMuted ? 'تفعيل المؤثرات اللمسية' : 'كتم المؤثرات اللمسية'}
-            className="hidden sm:flex p-2 rounded-full text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-black/[0.05] transition-all cursor-pointer shrink-0"
+            className="hidden sm:flex p-2 rounded-full text-[#6e6e73] dark:text-neutral-400 hover:text-[#1d1d1f] dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.06] transition-all cursor-pointer shrink-0"
           >
             {isAudioMuted ? (
               <VolumeX className="w-4 h-4 opacity-50" />
@@ -208,7 +230,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                 setActiveSection('#devices');
               });
             }}
-            className="hidden md:flex apple-pill-btn px-3.5 sm:px-4 py-2 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold items-center gap-1.5 shadow-sm cursor-pointer shrink-0 whitespace-nowrap"
+            className="hidden md:flex apple-pill-btn px-3.5 sm:px-4 py-2 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black text-xs font-bold items-center gap-1.5 shadow-sm cursor-pointer shrink-0 whitespace-nowrap"
           >
             <span>{t.liveDemo}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -217,7 +239,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
           {/* Mobile Menu Trigger with Animated Icon Flip */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-full hover:bg-neutral-100 text-[#1d1d1f] shrink-0 active:scale-90 transition-transform cursor-pointer"
+            className="lg:hidden p-2 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 text-[#1d1d1f] dark:text-white shrink-0 active:scale-90 transition-transform cursor-pointer"
             title="Menu"
           >
             <AnimatePresence mode="wait" initial={false}>
@@ -270,7 +292,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                 duration: 0.25,
                 ease: [0.16, 1, 0.3, 1], // Apple cubic-bezier
               }}
-              className="absolute top-[calc(100%+8px)] inset-x-3 sm:inset-x-6 z-50 rounded-3xl bg-white/95 backdrop-blur-2xl border border-black/[0.08] p-4 sm:p-5 shadow-2xl space-y-3 lg:hidden max-h-[82vh] overflow-y-auto"
+              className="absolute top-[calc(100%+8px)] inset-x-3 sm:inset-x-6 z-50 rounded-3xl bg-white/95 dark:bg-[#121217]/95 backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.1] p-4 sm:p-5 shadow-2xl space-y-3 lg:hidden max-h-[82vh] overflow-y-auto"
             >
               {/* Quick Primary Demo Button */}
               <a
@@ -282,43 +304,67 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                     setMobileMenuOpen(false);
                   });
                 }}
-                className="w-full apple-pill-btn py-2.5 px-4 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                className="w-full apple-pill-btn py-2.5 px-4 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
               >
                 <span>{t.liveDemo}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
 
-              {/* Mobile Language & Sound Quick Bar */}
-              <div className="grid grid-cols-2 gap-2 pb-2 border-b border-black/[0.06]">
+              {/* Mobile Controls Quick Bar: Language, Sound, Theme */}
+              <div className="grid grid-cols-3 gap-2 pb-2 border-b border-black/[0.06] dark:border-white/[0.08]">
+                {/* Theme Toggle Button */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    playAppleClick();
+                    toggleTheme();
+                  }}
+                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
+                >
+                  {isDark ? (
+                    <>
+                      <Sun className="w-3.5 h-3.5 text-amber-400" />
+                      <span className="text-[11px]">{language === 'ar' ? 'نهاري' : 'Light'}</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-3.5 h-3.5 text-indigo-500" />
+                      <span className="text-[11px]">{language === 'ar' ? 'ليلي' : 'Dark'}</span>
+                    </>
+                  )}
+                </button>
+
+                {/* Language Button */}
                 <button
                   type="button"
                   onClick={() => {
                     playAppleClick();
                     toggleLanguage();
                   }}
-                  className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
+                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
                 >
                   <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
-                  <span>{language === 'ar' ? 'English (EN)' : 'العربية (AR)'}</span>
+                  <span className="text-[11px]">{language === 'ar' ? 'EN' : 'عربي'}</span>
                 </button>
 
+                {/* Sound Button */}
                 <button
                   type="button"
                   onClick={() => {
                     playAppleClick();
                     toggleSound();
                   }}
-                  className="px-3 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1.5 border border-black/[0.06]"
+                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
                 >
                   {isAudioMuted ? (
                     <>
                       <VolumeX className="w-3.5 h-3.5 text-neutral-400" />
-                      <span>{language === 'ar' ? 'صوت مكتوم' : 'Muted'}</span>
+                      <span className="text-[11px]">{language === 'ar' ? 'مكتوم' : 'Muted'}</span>
                     </>
                   ) : (
                     <>
                       <Volume2 className="w-3.5 h-3.5 text-[#0071e3]" />
-                      <span>{language === 'ar' ? 'صوت مفعل' : 'Sound ON'}</span>
+                      <span className="text-[11px]">{language === 'ar' ? 'مفعل' : 'Sound'}</span>
                     </>
                   )}
                 </button>
@@ -342,8 +388,8 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                       }}
                       className={`block p-2.5 rounded-xl text-xs transition-all cursor-pointer ${
                         isActive
-                          ? 'bg-neutral-100 text-[#0071e3] font-black border border-blue-200'
-                          : 'font-bold text-[#1d1d1f] hover:bg-neutral-50'
+                          ? 'bg-blue-50 dark:bg-blue-950/50 text-[#0071e3] dark:text-blue-400 font-black border border-blue-200 dark:border-blue-900'
+                          : 'font-bold text-[#1d1d1f] dark:text-[#f5f5f7] hover:bg-neutral-50 dark:hover:bg-white/5'
                       }`}
                     >
                       {link.label}
@@ -360,15 +406,15 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                   setMobileMenuOpen(false);
                   onOpenSupport?.('team');
                 }}
-                className="w-full text-start flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-[#0071e3] bg-blue-50/60 hover:bg-blue-100/60 border border-blue-200/60 transition-colors cursor-pointer"
+                className="w-full text-start flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-[#0071e3] bg-blue-50/60 hover:bg-blue-100/60 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 border border-blue-200/60 dark:border-blue-800/40 transition-colors cursor-pointer"
               >
                 <HelpCircle className="w-4 h-4 text-[#0071e3]" />
                 <span>{t.footerSupport}</span>
               </button>
 
               {/* Micro Footer */}
-              <div className="pt-2 border-t border-black/[0.06] flex items-center justify-between text-[11px] text-neutral-500 font-bold">
-                <span className="flex items-center gap-1 text-emerald-600">
+              <div className="pt-2 border-t border-black/[0.06] dark:border-white/[0.08] flex items-center justify-between text-[11px] text-neutral-500 dark:text-neutral-400 font-bold">
+                <span className="flex items-center gap-1 text-emerald-600 dark:text-emerald-400">
                   <ShieldCheck className="w-3.5 h-3.5" /> {t.trustLocal}
                 </span>
                 <span>Blotx Tech Ecosystem</span>

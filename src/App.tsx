@@ -23,6 +23,7 @@ import { Gift } from 'lucide-react';
 
 import { ConfigContext } from './ConfigContext';
 import { LanguageProvider } from './LanguageContext';
+import { ThemeProvider } from './ThemeContext';
 
 export function App() {
   const [config, setConfig] = useState<any>(null);
@@ -69,73 +70,75 @@ export function App() {
   const sec = config?.sections || {};
 
   return (
-    <LanguageProvider>
-      <ConfigContext.Provider value={config}>
-      <div className="min-h-screen relative pb-20 overflow-x-clip w-full max-w-full" style={{ backgroundColor: 'var(--secondary-color)', color: 'var(--primary-color)', fontSize: 'var(--base-font-size)', fontFamily: 'var(--base-font-family)' }}>
-        {/* Dynamic Announcement & Countdown Bar */}
-        <AnnouncementBar data={config?.announcementBar} />
+    <ThemeProvider>
+      <LanguageProvider>
+        <ConfigContext.Provider value={config}>
+        <div className="min-h-screen relative pb-20 overflow-x-clip w-full max-w-full bg-[#fbfbfd] dark:bg-[#07080a] text-[#1d1d1f] dark:text-[#f5f5f7] transition-colors duration-300">
+          {/* Dynamic Announcement & Countdown Bar */}
+          <AnnouncementBar data={config?.announcementBar} />
 
-        <AppleNavbar onOpenSupport={handleOpenSupport} />
+          <AppleNavbar onOpenSupport={handleOpenSupport} />
 
-        <main>
-          {config?.images?.banner && (
-            <div
-              style={{
-                backgroundImage: `url(${config.images.banner})`,
-                height: '400px',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-          )}
+          <main>
+            {config?.images?.banner && (
+              <div
+                style={{
+                  backgroundImage: `url(${config.images.banner})`,
+                  height: '400px',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              />
+            )}
 
-          {sec.hero !== false && <HeroCinematic />}
-          {sec.showcase !== false && <InteractiveDeviceShowcase />}
-          {sec.balata !== false && <InteractiveBalataExperience />}
-          {sec.efteker !== false && <InteractiveEftekerExperience />}
-          {sec.synergy !== false && <TheSynergyMatrix />}
-          {sec.manifesto !== false && <PhilosophyManifesto />}
-          {sec.calculator !== false && <SavingsCalculator />}
-          {sec.stories !== false && <RealStoriesSection />}
-          {sec.lab !== false && <TheLabSecrets />}
-          {sec.faq !== false && <FaqSection />}
-        </main>
+            {sec.hero !== false && <HeroCinematic />}
+            {sec.showcase !== false && <InteractiveDeviceShowcase />}
+            {sec.balata !== false && <InteractiveBalataExperience />}
+            {sec.efteker !== false && <InteractiveEftekerExperience />}
+            {sec.synergy !== false && <TheSynergyMatrix />}
+            {sec.manifesto !== false && <PhilosophyManifesto />}
+            {sec.calculator !== false && <SavingsCalculator />}
+            {sec.stories !== false && <RealStoriesSection />}
+            {sec.lab !== false && <TheLabSecrets />}
+            {sec.faq !== false && <FaqSection />}
+          </main>
 
-        <AppleFooter
-          onOpenPrivacy={() => setIsPrivacyOpen(true)}
-          onOpenSupport={handleOpenSupport}
-        />
-        <FloatingEcosystemDock />
+          <AppleFooter
+            onOpenPrivacy={() => setIsPrivacyOpen(true)}
+            onOpenSupport={handleOpenSupport}
+          />
+          <FloatingEcosystemDock />
 
-        {/* Floating Promo Code Badge / Button */}
-        <button
-          onClick={() => setIsPromoOpen(true)}
-          className="fixed bottom-6 left-6 z-40 px-3.5 py-2.5 rounded-full bg-[#1d1d1f] text-white hover:bg-black shadow-xl border border-white/10 flex items-center gap-2 text-xs font-bold transition-all hover:scale-105 cursor-pointer backdrop-blur-lg"
-          title="أدخل كود الخصم أو الدعوة"
-        >
-          <Gift className="w-4 h-4 text-amber-400" />
-          <span className="hidden sm:inline">كود العرض</span>
-        </button>
+          {/* Floating Promo Code Badge / Button */}
+          <button
+            onClick={() => setIsPromoOpen(true)}
+            className="fixed bottom-6 left-6 z-40 px-3.5 py-2.5 rounded-full bg-[#1d1d1f] text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-neutral-200 shadow-xl border border-white/10 dark:border-black/10 flex items-center gap-2 text-xs font-bold transition-all hover:scale-105 cursor-pointer backdrop-blur-lg"
+            title="أدخل كود الخصم أو الدعوة"
+          >
+            <Gift className="w-4 h-4 text-amber-400 dark:text-amber-600" />
+            <span className="hidden sm:inline">كود العرض</span>
+          </button>
 
-        {/* Global Legal, Support, and Promo Modals */}
-        <PrivacyPolicyModal
-          isOpen={isPrivacyOpen}
-          onClose={() => setIsPrivacyOpen(false)}
-        />
-        <SupportDocsModal
-          isOpen={isSupportOpen}
-          onClose={() => setIsSupportOpen(false)}
-          initialTab={supportTab}
-        />
-        <PromoCodeModal
-          isOpen={isPromoOpen}
-          onClose={() => setIsPromoOpen(false)}
-          promoCodes={config?.promoCodes}
-        />
-        <ZeroCookiesBanner onOpenPrivacy={() => setIsPrivacyOpen(true)} />
-      </div>
-      </ConfigContext.Provider>
-    </LanguageProvider>
+          {/* Global Legal, Support, and Promo Modals */}
+          <PrivacyPolicyModal
+            isOpen={isPrivacyOpen}
+            onClose={() => setIsPrivacyOpen(false)}
+          />
+          <SupportDocsModal
+            isOpen={isSupportOpen}
+            onClose={() => setIsSupportOpen(false)}
+            initialTab={supportTab}
+          />
+          <PromoCodeModal
+            isOpen={isPromoOpen}
+            onClose={() => setIsPromoOpen(false)}
+            promoCodes={config?.promoCodes}
+          />
+          <ZeroCookiesBanner onOpenPrivacy={() => setIsPrivacyOpen(true)} />
+        </div>
+        </ConfigContext.Provider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
 

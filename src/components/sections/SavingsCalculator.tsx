@@ -15,36 +15,36 @@ export const SavingsCalculator: FC = () => {
     language === 'en' ? num.toLocaleString('en-US') : num.toLocaleString('ar-EG');
 
   return (
-    <section id="calculator" className="py-24 bg-gradient-to-b from-[#fbfbfd] via-[#f0fdf4]/50 to-[#fbfbfd] border-t border-black/[0.04] font-cairo">
+    <section id="calculator" className="py-24 bg-gradient-to-b from-[#fbfbfd] via-[#f0fdf4]/50 to-[#fbfbfd] dark:from-[#07080a] dark:via-[#091510] dark:to-[#07080a] border-t border-black/[0.04] dark:border-white/10 font-cairo transition-colors duration-300">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200 dark:border-emerald-700/50 text-emerald-800 dark:text-emerald-300 text-xs font-bold">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             <span>{t.calcBadge}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-[#1d1d1f] tracking-tight">
-            {t.calcTitle1} <span className="text-[#059669]">{t.calcTitle2}</span>
+          <h2 className="text-3xl sm:text-5xl font-black text-[#1d1d1f] dark:text-white tracking-tight">
+            {t.calcTitle1} <span className="text-[#059669] dark:text-emerald-400">{t.calcTitle2}</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#6e6e73]">
+          <p className="text-base sm:text-lg text-[#6e6e73] dark:text-[#98989f]">
             {t.calcDesc}
           </p>
         </div>
 
         {/* The Interactive Calculator Card */}
-        <div className="apple-card p-6 sm:p-12 bg-white/95 border border-emerald-100 shadow-xl">
+        <div className="apple-card p-6 sm:p-12 bg-white/95 dark:bg-[#11141c]/90 border border-emerald-100 dark:border-emerald-500/20 shadow-xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Controls Col */}
             <div className="lg:col-span-7 space-y-8 text-start">
               {/* Income Slider */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-black text-emerald-700 font-cairo">
+                  <span className="text-xl font-black text-emerald-700 dark:text-emerald-400 font-cairo">
                     {formatNum(income)} {t.currency}
                   </span>
-                  <label className="text-sm font-bold text-[#1d1d1f]">
+                  <label className="text-sm font-bold text-[#1d1d1f] dark:text-white">
                     {t.incomeLabel}
                   </label>
                 </div>
@@ -55,9 +55,9 @@ export const SavingsCalculator: FC = () => {
                   step="1000"
                   value={income}
                   onChange={(e) => setIncome(Number(e.target.value))}
-                  className="w-full h-2.5 bg-neutral-200 rounded-lg appearance-none cursor-pointer accent-[#059669]"
+                  className="w-full h-2.5 bg-neutral-200 dark:bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-[#059669]"
                 />
-                <div className="flex justify-between text-[11px] text-[#86868b] font-medium">
+                <div className="flex justify-between text-[11px] text-[#86868b] dark:text-[#98989f] font-medium">
                   <span>{formatNum(150000)} {t.currency}</span>
                   <span>{formatNum(75000)} {t.currency}</span>
                   <span>{formatNum(5000)} {t.currency}</span>
@@ -67,10 +67,10 @@ export const SavingsCalculator: FC = () => {
               {/* Savings Rate Buttons */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold text-[#059669]">
+                  <span className="text-sm font-bold text-[#059669] dark:text-emerald-400">
                     {savingsRate}% {language === 'ar' ? 'من الدخل' : 'of income'}
                   </span>
-                  <label className="text-sm font-bold text-[#1d1d1f]">
+                  <label className="text-sm font-bold text-[#1d1d1f] dark:text-white">
                     {t.savingsRateLabel}
                   </label>
                 </div>
@@ -83,7 +83,7 @@ export const SavingsCalculator: FC = () => {
                       className={`py-2.5 rounded-xl text-xs font-bold transition-all border cursor-pointer ${
                         savingsRate === rate
                           ? 'bg-[#059669] text-white border-[#059669] shadow-md scale-105'
-                          : 'bg-neutral-50 text-[#1d1d1f] border-black/[0.06] hover:bg-neutral-100'
+                          : 'bg-neutral-50 dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border-black/[0.06] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
                       }`}
                     >
                       {rate}%
@@ -93,23 +93,23 @@ export const SavingsCalculator: FC = () => {
               </div>
 
               {/* Automatic Connection with Efteker */}
-              <div className="p-4 rounded-2xl bg-blue-50/70 border border-blue-100 flex items-start gap-3">
-                <Calendar className="w-5 h-5 text-blue-600 shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-blue-50/70 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-800/40 flex items-start gap-3">
+                <Calendar className="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
                 <div className="text-start">
-                  <div className="text-xs font-bold text-blue-900">
+                  <div className="text-xs font-bold text-blue-900 dark:text-blue-200">
                     {language === 'ar' ? 'الربط الذكي مع تطبيق «افتكر»:' : 'Smart Integration with Eftekir:'}
                   </div>
-                  <div className="text-[12px] text-blue-800 mt-0.5 leading-relaxed">
+                  <div className="text-[12px] text-blue-800 dark:text-blue-300 mt-0.5 leading-relaxed">
                     {language === 'ar' ? (
                       <>
                         تلقائياً، افتكر هيفكرك يوم 1 في الشهر بحجز مبلغ{' '}
-                        <strong className="font-bold">{formatNum(monthlySaved)} {t.currency}</strong> أول ما
+                        <strong className="font-bold text-emerald-600 dark:text-emerald-400">{formatNum(monthlySaved)} {t.currency}</strong> أول ما
                         المرتب ينزل، قبل ما تصرفه في حاجات فرعية وتندم عليها.
                       </>
                     ) : (
                       <>
                         Automatically, Eftekir will remind you on the 1st of each month to set aside{' '}
-                        <strong className="font-bold">{formatNum(monthlySaved)} {t.currency}</strong> as soon as income arrives, guarding your capital against impulsive leaks.
+                        <strong className="font-bold text-emerald-600 dark:text-emerald-400">{formatNum(monthlySaved)} {t.currency}</strong> as soon as income arrives, guarding your capital against impulsive leaks.
                       </>
                     )}
                   </div>

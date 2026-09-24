@@ -141,32 +141,32 @@ export const InteractiveDeviceShowcase: FC = () => {
   return (
     <section
       id="devices"
-      className="py-24 bg-gradient-to-b from-[#ffffff] via-[#fbfbfd] to-[#f4f4f7] border-t border-black/[0.04] overflow-hidden font-cairo"
+      className="py-24 bg-gradient-to-b from-[#ffffff] via-[#fbfbfd] to-[#f4f4f7] dark:from-[#050608] dark:via-[#090b10] dark:to-[#0c0d12] border-t border-black/[0.04] dark:border-white/10 overflow-hidden font-cairo transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 text-white text-xs font-bold shadow-md">
-            <Smartphone className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-black text-xs font-bold shadow-md">
+            <Smartphone className="w-3.5 h-3.5 text-blue-400 dark:text-blue-600" />
             <span>{t.showcaseBadge}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1d1d1f] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1d1d1f] dark:text-white tracking-tight leading-tight">
             {t.showcaseTitle1}
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#0071e3] to-[#059669]">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#059669] via-[#0071e3] to-[#059669] dark:from-emerald-400 dark:via-blue-400 dark:to-emerald-400">
               {t.showcaseTitle2}
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#6e6e73] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6e6e73] dark:text-[#98989f] leading-relaxed">
             {t.showcaseDesc}
           </p>
         </div>
 
         {/* Real Screenshots vs Live Interactive Switcher */}
         <div className="w-full max-w-sm sm:max-w-md mx-auto mb-6 px-3">
-          <div className="bg-neutral-900/90 p-1 sm:p-1.5 rounded-2xl sm:rounded-full border border-black/10 shadow-xl backdrop-blur-md grid grid-cols-2 gap-1">
+          <div className="bg-neutral-900/90 dark:bg-[#12141c]/95 p-1 sm:p-1.5 rounded-2xl sm:rounded-full border border-black/10 dark:border-white/10 shadow-xl backdrop-blur-md grid grid-cols-2 gap-1">
             <button
               type="button"
               onClick={() => {
@@ -212,8 +212,8 @@ export const InteractiveDeviceShowcase: FC = () => {
             }}
             className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'perspective'
-                ? 'bg-[#1d1d1f] text-white shadow-md'
-                : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
+                ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black shadow-md'
+                : 'bg-white dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border border-black/[0.08] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
             }`}
           >
             {t.view3d}
@@ -226,8 +226,8 @@ export const InteractiveDeviceShowcase: FC = () => {
             }}
             className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'flat'
-                ? 'bg-[#1d1d1f] text-white shadow-md'
-                : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
+                ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black shadow-md'
+                : 'bg-white dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border border-black/[0.08] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
             }`}
           >
             {t.viewFlat}
@@ -241,7 +241,7 @@ export const InteractiveDeviceShowcase: FC = () => {
             className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'taht-focus'
                 ? 'bg-[#059669] text-white shadow-md'
-                : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
+                : 'bg-white dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border border-black/[0.08] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
             }`}
           >
             {t.focusTaht}
@@ -255,7 +255,7 @@ export const InteractiveDeviceShowcase: FC = () => {
             className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-bold transition-all cursor-pointer ${
               viewMode === 'efteker-focus'
                 ? 'bg-[#0071e3] text-white shadow-md'
-                : 'bg-white text-[#1d1d1f] border border-black/[0.08] hover:bg-neutral-100'
+                : 'bg-white dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border border-black/[0.08] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
             }`}
           >
             {t.focusEfteker}
@@ -278,9 +278,9 @@ export const InteractiveDeviceShowcase: FC = () => {
             <button
               type="button"
               onClick={handleResetSimulator}
-              className="px-4 py-2.5 rounded-2xl bg-white hover:bg-neutral-100 text-[#1d1d1f] border border-black/10 text-xs font-bold shadow-xs flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
+              className="px-4 py-2.5 rounded-2xl bg-white dark:bg-[#15171e] hover:bg-neutral-100 dark:hover:bg-[#1d2029] text-[#1d1d1f] dark:text-white border border-black/10 dark:border-white/10 text-xs font-bold shadow-xs flex items-center gap-1.5 transition-all active:scale-95 cursor-pointer"
             >
-              <RotateCcw className="w-3.5 h-3.5 text-neutral-500" />
+              <RotateCcw className="w-3.5 h-3.5 text-neutral-500 dark:text-neutral-400" />
               <span>{t.resetSim}</span>
             </button>
           </div>
@@ -291,12 +291,12 @@ export const InteractiveDeviceShowcase: FC = () => {
           ref={stageRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative min-h-[580px] sm:min-h-[740px] rounded-[28px] sm:rounded-[36px] bg-gradient-to-b from-white/95 via-[#fbfbfd] to-[#f4f4f7] border border-black/[0.06] shadow-2xl p-2 sm:p-12 flex flex-col items-center justify-center overflow-hidden w-full max-w-full"
+          className="relative min-h-[580px] sm:min-h-[740px] rounded-[28px] sm:rounded-[36px] bg-gradient-to-b from-white/95 via-[#fbfbfd] to-[#f4f4f7] dark:from-[#11131a] dark:via-[#0e1017] dark:to-[#0a0c10] border border-black/[0.06] dark:border-white/10 shadow-2xl p-2 sm:p-12 flex flex-col items-center justify-center overflow-hidden w-full max-w-full"
           style={{ perspective: 1400 }}
         >
           {/* Subtle Ambient Radial Halos */}
-          <div className="absolute top-1/4 left-1/4 w-[420px] h-[420px] bg-emerald-100/35 rounded-full blur-3xl pointer-events-none -z-10" />
-          <div className="absolute top-1/4 right-1/4 w-[420px] h-[420px] bg-blue-100/35 rounded-full blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/4 left-1/4 w-[420px] h-[420px] bg-emerald-100/35 dark:bg-emerald-950/20 rounded-full blur-3xl pointer-events-none -z-10" />
+          <div className="absolute top-1/4 right-1/4 w-[420px] h-[420px] bg-blue-100/35 dark:bg-blue-950/20 rounded-full blur-3xl pointer-events-none -z-10" />
 
           {/* ==================================================== */}
           {/* AIRDROP RADAR RIPPLES & AURORA WAVE EFFECT */}
@@ -448,7 +448,7 @@ export const InteractiveDeviceShowcase: FC = () => {
 
               {/* Floating Badge under Taht El Balata Phone */}
               <div className="mt-4 text-center">
-                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-200 shadow-xs">
+                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/70 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/40 shadow-xs">
                   {t.tahtBadgeShowcase}
                 </span>
               </div>
@@ -548,7 +548,7 @@ export const InteractiveDeviceShowcase: FC = () => {
 
               {/* Floating Badge under Efteker Phone */}
               <div className="mt-4 text-center">
-                <span className="text-xs font-bold text-blue-700 bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200 shadow-xs">
+                <span className="text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/70 px-3.5 py-1 rounded-full border border-blue-200 dark:border-blue-800/40 shadow-xs">
                   {t.eftekerBadgeShowcase}
                 </span>
               </div>
@@ -576,7 +576,7 @@ export const InteractiveDeviceShowcase: FC = () => {
               </span>
             </button>
 
-            <p className="text-xs text-[#86868b]">
+            <p className="text-xs text-[#86868b] dark:text-[#98989f]">
               {t.airDropDesc}
             </p>
           </div>

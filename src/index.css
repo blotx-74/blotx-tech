@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
     --primary-color: #1d1d1f;
@@ -17,6 +19,22 @@
     --accent-blue: var(--accent-color, #0071e3);
     --accent-emerald: #059669;
     --accent-amber: #d97706;
+  }
+
+  .dark {
+    --primary-color: #f5f5f7;
+    --secondary-color: #000000;
+    --accent-color: #2997ff;
+    --card-bg: #121217;
+
+    --bg-base: #07080a;
+    --bg-surface: #121217;
+    --text-primary: #f5f5f7;
+    --text-secondary: #a1a1a6;
+    --text-tertiary: #6e6e73;
+    --accent-blue: #2997ff;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
   }
 
   /* Enforce dynamic font across the ENTIRE website */
@@ -105,8 +123,15 @@
   border-radius: 9999px;
   border: 2px solid #fbfbfd;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a6;
+.dark ::-webkit-scrollbar-track {
+  background: #07080a;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #2a2a32;
+  border: 2px solid #07080a;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #3e3e48;
 }
 
 /* Apple Style Cards & Shadows */
@@ -120,7 +145,16 @@
     0 4px 6px -1px rgba(0, 0, 0, 0.02),
     0 20px 40px -15px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(0, 0, 0, 0.03);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.dark .apple-card {
+  background: rgba(18, 18, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 20px 40px -15px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .apple-card:hover {
@@ -128,6 +162,12 @@
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(0, 0, 0, 0.07);
+}
+
+.dark .apple-card:hover {
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .apple-pill-btn {
@@ -149,6 +189,11 @@
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.dark .apple-glass-nav {
+  background: rgba(10, 10, 14, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* iOS AirDrop Radial Wave Keyframes */

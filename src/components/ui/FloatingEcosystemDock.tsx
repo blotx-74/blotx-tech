@@ -40,7 +40,7 @@ export const FloatingEcosystemDock: FC = () => {
     <>
       {/* Floating Dynamic Island Dock at Bottom Center */}
       <div className="fixed bottom-3 sm:bottom-5 inset-x-3 sm:inset-x-4 max-w-2xl mx-auto z-50 pointer-events-none font-cairo">
-        <div className="apple-card px-2.5 sm:px-4 py-1.5 sm:py-2 bg-white/95 backdrop-blur-2xl border border-black/[0.12] shadow-[0_15px_45px_rgba(0,0,0,0.15)] flex items-center justify-between pointer-events-auto rounded-full w-full max-w-full">
+        <div className="apple-card px-2.5 sm:px-4 py-1.5 sm:py-2 bg-white/95 dark:bg-[#121217]/95 backdrop-blur-2xl border border-black/[0.12] dark:border-white/[0.15] shadow-[0_15px_45px_rgba(0,0,0,0.15)] flex items-center justify-between pointer-events-auto rounded-full w-full max-w-full">
           {/* Left Quick Navigation Icons */}
           <div className="flex items-center gap-0.5 sm:gap-2">
             <a
@@ -51,13 +51,13 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dock3d}
-              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] transition-all cursor-pointer"
             >
               <SmartphoneNfc className="w-4 h-4 text-[#0071e3]" />
               <span className="hidden md:inline">{t.dock3d}</span>
             </a>
 
-            <span className="text-neutral-300">|</span>
+            <span className="text-neutral-300 dark:text-neutral-700">|</span>
 
             <a
               href="#taht-experience"
@@ -67,7 +67,7 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dockTaht}
-              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] transition-all cursor-pointer"
             >
               <img
                 src="/assets/logos/taht-elbalata-logo.png"
@@ -77,7 +77,7 @@ export const FloatingEcosystemDock: FC = () => {
               <span className="hidden sm:inline">{t.dockTaht}</span>
             </a>
 
-            <span className="text-neutral-300">|</span>
+            <span className="text-neutral-300 dark:text-neutral-700">|</span>
 
             <a
               href="#efteker-experience"
@@ -87,7 +87,7 @@ export const FloatingEcosystemDock: FC = () => {
                 });
               }}
               title={t.dockEfteker}
-              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] transition-all cursor-pointer"
+              className="p-1 sm:p-1.5 rounded-full hover:bg-neutral-100 dark:hover:bg-white/10 flex items-center gap-1 text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] transition-all cursor-pointer"
             >
               <img
                 src="/assets/logos/efteker-logo.png"
@@ -97,7 +97,7 @@ export const FloatingEcosystemDock: FC = () => {
               <span className="hidden sm:inline">{t.dockEfteker}</span>
             </a>
 
-            <span className="text-neutral-300 hidden sm:inline">|</span>
+            <span className="text-neutral-300 dark:text-neutral-700 hidden sm:inline">|</span>
 
             <a
               href="#philosophy"
@@ -106,7 +106,7 @@ export const FloatingEcosystemDock: FC = () => {
                   playAppleClick();
                 });
               }}
-              className="hidden lg:inline text-xs font-bold text-[#6e6e73] hover:text-[#1d1d1f] px-1.5 py-1 cursor-pointer"
+              className="hidden lg:inline text-xs font-bold text-[#6e6e73] dark:text-[#a1a1a6] hover:text-[#1d1d1f] dark:hover:text-white px-1.5 py-1 cursor-pointer"
             >
               {t.dockPhilosophy}
             </a>
@@ -130,7 +130,7 @@ export const FloatingEcosystemDock: FC = () => {
       {/* Download / Google Play Modal */}
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/55 backdrop-blur-md animate-fadeIn font-cairo">
-          <div className="relative w-full max-w-lg bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/[0.08] space-y-6">
+          <div className="relative w-full max-w-lg bg-white dark:bg-[#121217] rounded-3xl p-6 sm:p-8 shadow-2xl border border-black/[0.08] dark:border-white/[0.1] text-[#1d1d1f] dark:text-[#f5f5f7] space-y-6">
             {/* Close Button */}
             <button
               onClick={() => {
@@ -138,7 +138,7 @@ export const FloatingEcosystemDock: FC = () => {
                 setModalOpen(false);
                 setDownloadNotification(null);
               }}
-              className="absolute top-5 left-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-[#1d1d1f] transition-colors cursor-pointer"
+              className="absolute top-5 left-5 p-2 rounded-full bg-neutral-100 hover:bg-neutral-200 dark:bg-white/10 dark:hover:bg-white/20 text-[#1d1d1f] dark:text-white transition-colors cursor-pointer"
               title={t.closeBtn}
             >
               <X className="w-4 h-4" />
@@ -169,7 +169,7 @@ export const FloatingEcosystemDock: FC = () => {
             {/* Authentic Google Play Store Download Badges */}
             <div className="space-y-3">
               {/* Taht El Balata - Google Play Card */}
-              <div className="p-4 rounded-2xl bg-neutral-50/80 hover:bg-neutral-100/90 border border-black/[0.08] transition-all flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="p-4 rounded-2xl bg-neutral-50/80 hover:bg-neutral-100/90 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.08] transition-all flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="flex items-center gap-3.5 w-full sm:w-auto">
                   <img
                     src="/assets/logos/taht-elbalata-logo.png"
@@ -177,10 +177,10 @@ export const FloatingEcosystemDock: FC = () => {
                     className="w-12 h-12 object-contain rounded-2xl bg-white p-1.5 shadow-sm border border-black/[0.05]"
                   />
                   <div className="text-start">
-                    <div className="font-extrabold text-sm text-[#1d1d1f]">
+                    <div className="font-extrabold text-sm text-[#1d1d1f] dark:text-white">
                       {language === 'ar' ? 'تحت البلاطة' : 'Taht El Balata'}
                     </div>
-                    <div className="text-[11px] text-emerald-700 font-bold">
+                    <div className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">
                       {t.tahtTag}
                     </div>
                   </div>
@@ -195,23 +195,23 @@ export const FloatingEcosystemDock: FC = () => {
                       config?.tahtPlayUrl
                     )
                   }
-                  className="w-full sm:w-auto px-4 py-2.5 bg-[#1d1d1f] hover:bg-black text-white rounded-xl shadow-sm hover:shadow flex items-center justify-center gap-3 transition-all cursor-pointer group shrink-0"
+                  className="w-full sm:w-auto px-4 py-2.5 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black rounded-xl shadow-sm hover:shadow flex items-center justify-center gap-3 transition-all cursor-pointer group shrink-0"
                 >
                   <GooglePlayIcon />
                   <div className="text-start leading-tight">
-                    <div className="text-[9px] uppercase tracking-wider text-neutral-300 font-medium">
+                    <div className="text-[9px] uppercase tracking-wider text-neutral-300 dark:text-neutral-600 font-medium">
                       {t.getOnPlay}
                     </div>
-                    <div className="text-xs font-bold text-white tracking-wide flex items-center gap-1">
+                    <div className="text-xs font-bold text-white dark:text-black tracking-wide flex items-center gap-1">
                       <span>{t.googlePlay}</span>
-                      <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover:text-white transition-colors" />
+                      <ArrowUpRight className="w-3 h-3 text-neutral-400 dark:text-neutral-600 group-hover:text-white dark:group-hover:text-black transition-colors" />
                     </div>
                   </div>
                 </button>
               </div>
 
               {/* Eftekir - Google Play Card */}
-              <div className="p-4 rounded-2xl bg-neutral-50/80 hover:bg-neutral-100/90 border border-black/[0.08] transition-all flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div className="p-4 rounded-2xl bg-neutral-50/80 hover:bg-neutral-100/90 dark:bg-white/[0.04] dark:hover:bg-white/[0.08] border border-black/[0.08] dark:border-white/[0.08] transition-all flex flex-col sm:flex-row items-center justify-between gap-3">
                 <div className="flex items-center gap-3.5 w-full sm:w-auto">
                   <img
                     src="/assets/logos/efteker-logo.png"
@@ -219,10 +219,10 @@ export const FloatingEcosystemDock: FC = () => {
                     className="w-12 h-12 object-contain rounded-2xl bg-white p-1.5 shadow-sm border border-black/[0.05]"
                   />
                   <div className="text-start">
-                    <div className="font-extrabold text-sm text-[#1d1d1f]">
+                    <div className="font-extrabold text-sm text-[#1d1d1f] dark:text-white">
                       {language === 'ar' ? 'افتكر' : 'Eftekir'}
                     </div>
-                    <div className="text-[11px] text-blue-700 font-bold">
+                    <div className="text-[11px] text-blue-700 dark:text-blue-400 font-bold">
                       {t.eftekerTag}
                     </div>
                   </div>
@@ -237,16 +237,16 @@ export const FloatingEcosystemDock: FC = () => {
                       config?.eftekerPlayUrl
                     )
                   }
-                  className="w-full sm:w-auto px-4 py-2.5 bg-[#1d1d1f] hover:bg-black text-white rounded-xl shadow-sm hover:shadow flex items-center justify-center gap-3 transition-all cursor-pointer group shrink-0"
+                  className="w-full sm:w-auto px-4 py-2.5 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black rounded-xl shadow-sm hover:shadow flex items-center justify-center gap-3 transition-all cursor-pointer group shrink-0"
                 >
                   <GooglePlayIcon />
                   <div className="text-start leading-tight">
-                    <div className="text-[9px] uppercase tracking-wider text-neutral-300 font-medium">
+                    <div className="text-[9px] uppercase tracking-wider text-neutral-300 dark:text-neutral-600 font-medium">
                       {t.getOnPlay}
                     </div>
-                    <div className="text-xs font-bold text-white tracking-wide flex items-center gap-1">
+                    <div className="text-xs font-bold text-white dark:text-black tracking-wide flex items-center gap-1">
                       <span>{t.googlePlay}</span>
-                      <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover:text-white transition-colors" />
+                      <ArrowUpRight className="w-3 h-3 text-neutral-400 dark:text-neutral-600 group-hover:text-white dark:group-hover:text-black transition-colors" />
                     </div>
                   </div>
                 </button>

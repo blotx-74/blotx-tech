@@ -148,20 +148,20 @@ export const PhilosophyManifesto: FC = () => {
   const challenges = language === 'en' ? challengesEn : challengesAr;
 
   return (
-    <section id="philosophy" className="py-24 bg-white border-t border-black/[0.04] font-cairo">
+    <section id="philosophy" className="py-24 bg-white dark:bg-[#07080a] border-t border-black/[0.04] dark:border-white/10 font-cairo transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 text-[#1d1d1f] text-xs font-bold shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#0071e3]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 dark:bg-white/10 text-[#1d1d1f] dark:text-white text-xs font-bold shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-[#0071e3] dark:text-blue-400" />
             <span>{t.philosophyBadge}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1d1d1f] tracking-tight leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#1d1d1f] dark:text-white tracking-tight leading-tight">
             {t.philosophyTitle}
           </h2>
 
-          <p className="text-base sm:text-lg text-[#6e6e73] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6e6e73] dark:text-[#98989f] leading-relaxed">
             {t.philosophyDesc}
           </p>
         </div>
@@ -182,22 +182,22 @@ export const PhilosophyManifesto: FC = () => {
                 }}
                 className={`p-6 rounded-3xl text-right transition-all border flex flex-col justify-between ${
                   isSelected
-                    ? 'bg-[#1d1d1f] text-white border-black shadow-xl scale-[1.02]'
-                    : 'bg-neutral-50 text-[#1d1d1f] border-black/[0.06] hover:bg-neutral-100'
+                    ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black border-black dark:border-white shadow-xl scale-[1.02]'
+                    : 'bg-neutral-50 dark:bg-[#12141c] text-[#1d1d1f] dark:text-white border-black/[0.06] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#181a24]'
                 }`}
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span
                       className={`text-[11px] font-bold px-3 py-1 rounded-full ${
-                        isSelected ? 'bg-white/20 text-white' : 'bg-black/[0.06] text-[#6e6e73]'
+                        isSelected ? 'bg-white/20 dark:bg-black/20 text-white dark:text-black' : 'bg-black/[0.06] dark:bg-white/10 text-[#6e6e73] dark:text-[#a1a1a6]'
                       }`}
                     >
                       {pillar.badge}
                     </span>
                     <div
                       className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold ${
-                        isSelected ? 'bg-white/10 text-white' : 'bg-white text-[#1d1d1f] shadow-xs'
+                        isSelected ? 'bg-white/10 dark:bg-black/10 text-white dark:text-black' : 'bg-white dark:bg-[#1b1e2a] text-[#1d1d1f] dark:text-white shadow-xs'
                       }`}
                     >
                       <Icon className="w-5 h-5" />
@@ -207,7 +207,7 @@ export const PhilosophyManifesto: FC = () => {
                   <h3 className="font-black text-lg leading-snug mb-1">{pillar.title}</h3>
                   <div
                     className={`text-xs font-medium font-mono ${
-                      isSelected ? 'text-amber-300' : 'text-[#86868b]'
+                      isSelected ? 'text-amber-300 dark:text-amber-600' : 'text-[#86868b] dark:text-[#a1a1a6]'
                     }`}
                   >
                     {pillar.subtitle}
@@ -216,7 +216,7 @@ export const PhilosophyManifesto: FC = () => {
 
                 <div
                   className={`mt-6 text-xs font-bold flex items-center gap-1.5 ${
-                    isSelected ? 'text-white' : 'text-[#0071e3]'
+                    isSelected ? 'text-white dark:text-black' : 'text-[#0071e3] dark:text-blue-400'
                   }`}
                 >
                   <span>{language === 'ar' ? 'استكشف المبدأ' : 'Explore Principle'}</span>
@@ -228,37 +228,37 @@ export const PhilosophyManifesto: FC = () => {
         </div>
 
         {/* Detailed Selected Pillar Card */}
-        <div className="apple-card p-8 sm:p-12 bg-gradient-to-br from-neutral-50 via-white to-neutral-50 border border-black/[0.08] shadow-2xl mb-16 text-start space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/[0.06] pb-6">
-            <span className="text-xs font-mono font-bold text-[#86868b]">
+        <div className="apple-card p-8 sm:p-12 bg-gradient-to-br from-neutral-50 via-white to-neutral-50 dark:from-[#11131a] dark:via-[#131620] dark:to-[#0e1017] border border-black/[0.08] dark:border-white/10 shadow-2xl mb-16 text-start space-y-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-black/[0.06] dark:border-white/10 pb-6">
+            <span className="text-xs font-mono font-bold text-[#86868b] dark:text-[#a1a1a6]">
               MANIFESTO PILLAR #{pillars[activeTab].id}
             </span>
-            <h4 className="text-2xl sm:text-3xl font-black text-[#1d1d1f]">
+            <h4 className="text-2xl sm:text-3xl font-black text-[#1d1d1f] dark:text-white">
               {pillars[activeTab].title}
             </h4>
           </div>
 
-          <blockquote className="p-6 rounded-2xl bg-white border border-black/[0.06] text-base sm:text-lg text-[#1d1d1f] font-semibold leading-relaxed shadow-xs">
+          <blockquote className="p-6 rounded-2xl bg-white dark:bg-[#161822] border border-black/[0.06] dark:border-white/10 text-base sm:text-lg text-[#1d1d1f] dark:text-white font-semibold leading-relaxed shadow-xs">
             {pillars[activeTab].quote}
           </blockquote>
 
-          <p className="text-sm sm:text-base text-[#52525b] leading-relaxed">
+          <p className="text-sm sm:text-base text-[#52525b] dark:text-[#a1a1a6] leading-relaxed">
             {pillars[activeTab].body}
           </p>
         </div>
 
         {/* Interactive "Human Need vs Blotx Solution" Matrix */}
-        <div className="apple-card p-8 sm:p-12 bg-white border border-black/[0.08] shadow-xl text-start space-y-8">
+        <div className="apple-card p-8 sm:p-12 bg-white dark:bg-[#11131a] border border-black/[0.08] dark:border-white/10 shadow-xl text-start space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
-            <span className="text-xs font-bold text-[#0071e3] uppercase tracking-widest">
+            <span className="text-xs font-bold text-[#0071e3] dark:text-blue-400 uppercase tracking-widest">
               {language === 'ar' ? 'المعادلة الواقعية • The Real-World Bridge' : 'The Real-World Bridge'}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-black text-[#1d1d1f]">
+            <h3 className="text-2xl sm:text-3xl font-black text-[#1d1d1f] dark:text-white">
               {language === 'ar'
                 ? 'ماذا ينقصك في الحياة؟ وكيف نصنعه لك؟'
                 : 'What is missing in daily life? And how do we build it?'}
             </h3>
-            <p className="text-xs sm:text-sm text-[#6e6e73]">
+            <p className="text-xs sm:text-sm text-[#6e6e73] dark:text-[#98989f]">
               {language === 'ar'
                 ? 'اختر أحد التحديات اليومية الشائعة لتكتشف فلسفة علاج Blotx Tech لها:'
                 : 'Select a common daily challenge to explore how Blotx Tech addresses it:'}
@@ -277,14 +277,14 @@ export const PhilosophyManifesto: FC = () => {
                 }}
                 className={`p-4 rounded-2xl text-start transition-all border flex flex-col justify-between cursor-pointer ${
                   selectedChallenge === i
-                    ? 'bg-[#1d1d1f] text-white border-black shadow-lg scale-105'
-                    : 'bg-neutral-50 text-[#1d1d1f] border-black/[0.06] hover:bg-neutral-100'
+                    ? 'bg-[#1d1d1f] dark:bg-white text-white dark:text-black border-black dark:border-white shadow-lg scale-105'
+                    : 'bg-neutral-50 dark:bg-[#15171e] text-[#1d1d1f] dark:text-white border-black/[0.06] dark:border-white/10 hover:bg-neutral-100 dark:hover:bg-[#1d2029]'
                 }`}
               >
                 <div className="text-xs font-bold leading-snug mb-3">{c.problem}</div>
                 <div
                   className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-block w-fit ${
-                    selectedChallenge === i ? 'bg-white/20 text-white' : 'bg-black/[0.05] text-[#6e6e73]'
+                    selectedChallenge === i ? 'bg-white/20 dark:bg-black/20 text-white dark:text-black' : 'bg-black/[0.05] dark:bg-white/10 text-[#6e6e73] dark:text-[#a1a1a6]'
                   }`}
                 >
                   {language === 'ar' ? `الحل عبر: ${c.app}` : `Solved by: ${c.app}`}
@@ -294,7 +294,7 @@ export const PhilosophyManifesto: FC = () => {
           </div>
 
           {/* Solution Highlight Box */}
-          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-neutral-50 via-white to-blue-50/20 border border-black/[0.06] grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-neutral-50 via-white to-blue-50/20 dark:from-[#151722] dark:via-[#13151f] dark:to-blue-950/20 border border-black/[0.06] dark:border-white/10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-8 space-y-3">
               <div className="flex items-center gap-2">
                 <span
@@ -302,26 +302,26 @@ export const PhilosophyManifesto: FC = () => {
                 >
                   {language === 'ar' ? `محرك المعالجة: ${challenges[selectedChallenge].app}` : `Engine: ${challenges[selectedChallenge].app}`}
                 </span>
-                <span className="text-xs text-[#86868b]">
+                <span className="text-xs text-[#86868b] dark:text-[#a1a1a6]">
                   {language === 'ar' ? 'استجابة Blotx الهندسية' : 'Blotx Architectural Response'}
                 </span>
               </div>
-              <h4 className="text-xl font-bold text-[#1d1d1f]">
+              <h4 className="text-xl font-bold text-[#1d1d1f] dark:text-white">
                 {challenges[selectedChallenge].problem}
               </h4>
-              <p className="text-sm text-[#52525b] leading-relaxed">
+              <p className="text-sm text-[#52525b] dark:text-[#a1a1a6] leading-relaxed">
                 {challenges[selectedChallenge].solution}
               </p>
             </div>
 
-            <div className="md:col-span-4 p-5 rounded-2xl bg-white border border-black/[0.06] shadow-xs space-y-2 text-start">
-              <div className="text-xs font-bold text-red-600">
+            <div className="md:col-span-4 p-5 rounded-2xl bg-white dark:bg-[#181b26] border border-black/[0.06] dark:border-white/10 shadow-xs space-y-2 text-start">
+              <div className="text-xs font-bold text-red-600 dark:text-red-400">
                 {language === 'ar' ? 'الأثر السلبي المعتاد:' : 'Common Pain Point:'}
               </div>
-              <p className="text-xs text-[#6e6e73] leading-relaxed">
+              <p className="text-xs text-[#6e6e73] dark:text-[#98989f] leading-relaxed">
                 {challenges[selectedChallenge].impact}
               </p>
-              <div className="pt-2 border-t border-black/[0.06] text-xs font-bold text-emerald-600 flex items-center gap-1">
+              <div className="pt-2 border-t border-black/[0.06] dark:border-white/10 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>{language === 'ar' ? 'تم حلها بالكامل في الإيكوسيستم' : 'Fully resolved in ecosystem'}</span>
               </div>

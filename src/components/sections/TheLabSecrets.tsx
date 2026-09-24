@@ -13,8 +13,8 @@ export const TheLabSecrets: FC = () => {
       desc: t.labProject1Desc,
       icon: Users,
       badge: t.labProject1Badge,
-      color: 'text-purple-600',
-      bg: 'bg-purple-50',
+      color: 'text-purple-600 dark:text-purple-400',
+      bg: 'bg-purple-50 dark:bg-purple-950/50',
     },
     {
       code: t.labProject2Code,
@@ -23,8 +23,8 @@ export const TheLabSecrets: FC = () => {
       desc: t.labProject2Desc,
       icon: Ruler,
       badge: t.labProject2Badge,
-      color: 'text-amber-600',
-      bg: 'bg-amber-50',
+      color: 'text-amber-600 dark:text-amber-400',
+      bg: 'bg-amber-50 dark:bg-amber-950/50',
     },
     {
       code: t.labProject3Code,
@@ -33,28 +33,28 @@ export const TheLabSecrets: FC = () => {
       desc: t.labProject3Desc,
       icon: Shield,
       badge: t.labProject3Badge,
-      color: 'text-emerald-600',
-      bg: 'bg-emerald-50',
+      color: 'text-emerald-600 dark:text-emerald-400',
+      bg: 'bg-emerald-50 dark:bg-emerald-950/50',
     },
   ];
 
   return (
-    <section id="lab" className="py-24 bg-white border-t border-black/[0.04] font-cairo">
+    <section id="lab" className="py-24 bg-white dark:bg-[#07080a] border-t border-black/[0.04] dark:border-white/10 font-cairo transition-colors duration-300">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 text-[#1d1d1f] text-xs font-bold shadow-xs">
-            <Sparkles className="w-3.5 h-3.5 text-[#0071e3]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-neutral-100 dark:bg-white/10 text-[#1d1d1f] dark:text-white text-xs font-bold shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-[#0071e3] dark:text-blue-400" />
             <span>{t.labBadge}</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-[#1d1d1f] tracking-tight">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#1d1d1f] dark:text-white tracking-tight">
             {t.labTitle1}
             <br />
-            <span className="text-[#6e6e73]">{t.labTitle2}</span>
+            <span className="text-[#6e6e73] dark:text-[#98989f]">{t.labTitle2}</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-[#6e6e73] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#6e6e73] dark:text-[#98989f] leading-relaxed">
             {t.labDesc}
           </p>
         </div>
@@ -66,11 +66,11 @@ export const TheLabSecrets: FC = () => {
             return (
               <div
                 key={idx}
-                className="apple-card p-8 flex flex-col justify-between text-start border border-black/[0.06] hover:border-black/[0.12] transition-all"
+                className="apple-card p-8 flex flex-col justify-between text-start border border-black/[0.06] dark:border-white/10 hover:border-black/[0.12] dark:hover:border-white/20 transition-all"
               >
                 <div>
                   <div className="flex items-center justify-between mb-6">
-                    <span className="text-[10px] font-mono font-bold text-[#86868b]">
+                    <span className="text-[10px] font-mono font-bold text-[#86868b] dark:text-[#a1a1a6]">
                       {p.code}
                     </span>
                     <div className={`w-12 h-12 rounded-2xl ${p.bg} ${p.color} flex items-center justify-center font-bold text-sm shadow-xs`}>
@@ -78,16 +78,16 @@ export const TheLabSecrets: FC = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-[#1d1d1f] mb-1">{p.name}</h3>
-                  <div className="text-xs font-semibold text-[#0071e3] mb-4">{p.subtitle}</div>
+                  <h3 className="text-2xl font-bold text-[#1d1d1f] dark:text-white mb-1">{p.name}</h3>
+                  <div className="text-xs font-semibold text-[#0071e3] dark:text-blue-400 mb-4">{p.subtitle}</div>
 
-                  <p className="text-sm text-[#6e6e73] leading-relaxed mb-6">
+                  <p className="text-sm text-[#6e6e73] dark:text-[#98989f] leading-relaxed mb-6">
                     {p.desc}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-black/[0.05] flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#1d1d1f]">{p.badge}</span>
+                <div className="pt-6 border-t border-black/[0.05] dark:border-white/10 flex items-center justify-between">
+                  <span className="text-xs font-bold text-[#1d1d1f] dark:text-white">{p.badge}</span>
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 </div>
               </div>
@@ -96,17 +96,17 @@ export const TheLabSecrets: FC = () => {
         </div>
 
         {/* Co-creation invitation banner */}
-        <div className="mt-16 apple-card p-8 sm:p-10 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="mt-16 apple-card p-8 sm:p-10 bg-gradient-to-r from-neutral-900 to-neutral-800 dark:from-[#11131a] dark:to-[#171a24] border border-black/10 dark:border-white/10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
           <div className="text-start space-y-2">
             <h4 className="text-xl sm:text-2xl font-bold">{t.labBannerTitle}</h4>
-            <p className="text-xs sm:text-sm text-neutral-300 max-w-xl">
+            <p className="text-xs sm:text-sm text-neutral-300 dark:text-neutral-400 max-w-xl">
               {t.labBannerDesc}
             </p>
           </div>
 
           <a
             href="mailto:blotx.tech@gmail.com"
-            className="apple-pill-btn px-7 py-3 bg-white text-black hover:bg-neutral-100 font-bold text-xs flex items-center gap-2 shrink-0 shadow-lg"
+            className="apple-pill-btn px-7 py-3 bg-white text-black hover:bg-neutral-100 font-bold text-xs flex items-center gap-2 shrink-0 shadow-lg cursor-pointer"
           >
             <span>{t.labBannerBtn}</span>
             {isRTL ? <ArrowLeft className="w-4 h-4" /> : <ArrowRight className="w-4 h-4" />}
