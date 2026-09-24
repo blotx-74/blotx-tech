@@ -457,6 +457,30 @@ export const SupportDocsModal: FC<SupportDocsModalProps> = ({
                   </div>
                 </div>
               </div>
+
+              {/* Developer Official Portfolio Website Card */}
+              <div className="p-4 rounded-2xl bg-neutral-50 border border-black/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-start">
+                <div className="space-y-0.5">
+                  <span className="text-[10px] font-bold text-[#86868b] uppercase tracking-wider block">
+                    {isAr ? 'الموقع الشخصي للمطور ومحفظة الأعمال' : 'Developer Portfolio & Official Website'}
+                  </span>
+                  <span className="text-xs sm:text-sm font-bold text-[#1d1d1f] block">
+                    زياد محمد (Ziad Mohamed) — Lead Developer
+                  </span>
+                  <span className="text-[11px] text-[#0071e3] font-mono block">
+                    https://ziadmohamed.web.app
+                  </span>
+                </div>
+
+                <a
+                  href="https://ziadmohamed.web.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="apple-pill-btn px-4 py-2 bg-[#1d1d1f] hover:bg-black text-white text-xs font-bold flex items-center justify-center gap-1.5 shrink-0 shadow-sm cursor-pointer"
+                >
+                  <span>{isAr ? 'زيارة الموقع ↗' : 'Visit Portfolio ↗'}</span>
+                </a>
+              </div>
             </div>
           )}
 

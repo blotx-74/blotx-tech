@@ -144,6 +144,16 @@ export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport
                   {language === 'ar' ? 'فريق الدعم للويبسايت' : 'Website Support Team'}
                 </button>
               </li>
+              <li>
+                <a
+                  href="https://ziadmohamed.web.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#0071e3] transition-colors cursor-pointer text-left rtl:text-right flex items-center gap-1.5 font-bold text-[#1d1d1f]"
+                >
+                  <span>{language === 'ar' ? 'موقع المطور: زياد محمد ↗' : 'Developer: Ziad Mohamed ↗'}</span>
+                </a>
+              </li>
               <li><span className="text-[#86868b]">{t.madeInEgypt}</span></li>
             </ul>
           </div>
@@ -151,8 +161,17 @@ export const AppleFooter: FC<AppleFooterProps> = ({ onOpenPrivacy, onOpenSupport
 
         {/* Copyright */}
         <div className="border-t border-black/[0.06] pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-start">
-          <div>
-            {t.footerCopyright}
+          <div className="flex flex-wrap items-center gap-2">
+            <span>{t.footerCopyright}</span>
+            <span>•</span>
+            <a
+              href="https://ziadmohamed.web.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#6e6e73] hover:text-[#0071e3] font-bold transition-colors inline-flex items-center gap-1"
+            >
+              <span>{language === 'ar' ? 'تطوير: زياد محمد ↗' : 'Dev: Ziad Mohamed ↗'}</span>
+            </a>
           </div>
           <div className="flex flex-wrap items-center gap-3 sm:gap-5">
             <button

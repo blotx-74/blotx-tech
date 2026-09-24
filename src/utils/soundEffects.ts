@@ -2,7 +2,7 @@
 // Zero external audio files, zero network latency, operates completely offline.
 
 let audioCtx: AudioContext | null = null;
-let isMuted = false;
+let isMuted = true;
 
 const getAudioContext = (): AudioContext | null => {
   if (typeof window === 'undefined') return null;

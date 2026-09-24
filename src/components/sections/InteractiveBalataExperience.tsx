@@ -97,7 +97,7 @@ export const InteractiveBalataExperience: FC = () => {
             {/* Left Col (Interactive Balata Mechanism) */}
             <div className="lg:col-span-6 flex flex-col items-center justify-center text-center">
               {/* Interactive Tile Stage */}
-              <div className="relative w-full max-w-[380px] h-[380px] flex items-center justify-center">
+              <div className="relative w-full max-w-[280px] sm:max-w-[380px] h-[280px] sm:h-[380px] flex items-center justify-center">
                 {/* 1. The Real 3D Logo Character emerging from underneath */}
                 <div
                   className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-out ${
@@ -109,7 +109,7 @@ export const InteractiveBalataExperience: FC = () => {
                   <img
                     src="/assets/logos/taht-elbalata-logo.png"
                     alt="كائن تحت البلاطة العبقري"
-                    className="w-72 h-72 sm:w-80 sm:h-80 object-contain drop-shadow-2xl hover:scale-105 transition-transform"
+                    className="w-56 h-56 sm:w-80 sm:h-80 object-contain drop-shadow-2xl hover:scale-105 transition-transform"
                   />
                 </div>
 
