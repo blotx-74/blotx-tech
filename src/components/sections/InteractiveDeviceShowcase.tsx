@@ -446,11 +446,20 @@ export const InteractiveDeviceShowcase: FC = () => {
                 </div>
               </div>
 
-              {/* Floating Badge under Taht El Balata Phone */}
-              <div className="mt-4 text-center">
+              {/* Actions under Taht El Balata Phone */}
+              <div className="mt-4 flex flex-col items-center gap-2">
                 <span className="text-xs font-bold text-emerald-700 dark:text-emerald-300 bg-emerald-50 dark:bg-emerald-950/70 px-3.5 py-1 rounded-full border border-emerald-200 dark:border-emerald-800/40 shadow-xs">
                   {t.tahtBadgeShowcase}
                 </span>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={playAppleClick}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#059669] hover:bg-[#047857] text-white text-xs font-bold shadow-md hover:scale-105 transition-all cursor-pointer"
+                >
+                  <span>{language === 'ar' ? 'تحميل من Google Play ↗' : 'Get on Google Play ↗'}</span>
+                </a>
               </div>
             </div>
 

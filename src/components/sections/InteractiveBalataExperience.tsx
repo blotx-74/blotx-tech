@@ -307,6 +307,25 @@ export const InteractiveBalataExperience: FC = () => {
                 </div>
               </div>
 
+              {/* Direct Google Play Download CTA */}
+              <div className="pt-4 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={playAppleClick}
+                  className="apple-pill-btn w-full sm:w-auto px-6 py-3 bg-[#059669] hover:bg-[#047857] text-white font-bold text-xs sm:text-sm shadow-md hover:shadow-lg flex items-center justify-center gap-2.5 transition-all hover:scale-105 cursor-pointer"
+                >
+                  <svg className="w-4 h-4 shrink-0" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M47.5 13.9C40.6 17.6 36 24.8 36 33.7v444.6c0 8.9 4.6 16.1 11.5 19.8l232.7-242.1L47.5 13.9z" fill="#00D3FF"/>
+                    <path d="M371.3 146.9L280.2 256l91.1 109.1 52.8-30.2c15.1-8.6 24.5-24.3 24.5-41.9s-9.4-33.3-24.5-41.9l-52.8-30.2z" fill="#FFD400"/>
+                    <path d="M47.5 13.9l232.7 242.1 91.1-109.1L126.8 63.6 47.5 13.9z" fill="#00E676"/>
+                    <path d="M47.5 498.1l79.3-49.7 244.5-139.3-91.1-109.1L47.5 498.1z" fill="#FF334B"/>
+                  </svg>
+                  <span>{language === 'ar' ? 'حمّل «تحت البلاطة» من Google Play' : 'Get Taht El Balata on Google Play'}</span>
+                </a>
+              </div>
+
               {/* Link to Symbiosis */}
               <div className="pt-2 flex items-center justify-between">
                 <a

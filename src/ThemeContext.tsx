@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'light';
 
 interface ThemeContextType {
   theme: Theme;
@@ -21,48 +21,27 @@ const ThemeContext = createContext<ThemeContextType>(defaultContextValue);
 const THEME_STORAGE_KEY = 'blotx_theme_mode';
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    try {
-      const saved = localStorage.getItem(THEME_STORAGE_KEY);
-      if (saved === 'dark' || saved === 'light') return saved;
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark';
-      }
-    } catch {
-      // ignore
-    }
-    return 'light';
-  });
-
-  const isDark = theme === 'dark';
-
   useEffect(() => {
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, theme);
+      localStorage.removeItem(THEME_STORAGE_KEY);
     } catch {
       // ignore
     }
 
     const root = document.documentElement;
-    if (isDark) {
-      root.classList.add('dark');
-      root.style.colorScheme = 'dark';
-    } else {
-      root.classList.remove('dark');
-      root.style.colorScheme = 'light';
-    }
-  }, [theme, isDark]);
-
-  const toggleTheme = () => {
-    setThemeState((prev) => (prev === 'light' ? 'dark' : 'light'));
-  };
-
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-  };
+    root.classList.remove('dark');
+    root.style.colorScheme = 'light';
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, isDark, toggleTheme, setTheme }}>
+    <ThemeContext.Provider
+      value={{
+        theme: 'light',
+        isDark: false,
+        toggleTheme: () => {},
+        setTheme: () => {},
+      }}
+    >
       {children}
     </ThemeContext.Provider>
   );

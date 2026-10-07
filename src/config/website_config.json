@@ -20,21 +20,21 @@
     "defaultMode": "screenshot"
   },
   "content": {
-    "heroTitle": "مش مجرد تكنولوجيا .. إحنا بنصنع أسلوب حياة يفهمك",
-    "heroSubtitle": "منظومة متكاملة تربط بين أمانك المالي وصفائك الذهني. كل شيء متزامن، مشفر، ومصمم خصيصاً لليق بتفاصيل يومك.",
+    "heroTitle": "فلوسك ومصاريفك.. في أمان على تليفونك وبس",
+    "heroSubtitle": "تطبيقات سريعة وخفيفة بتشتغل أوفلاين 100% بدون إنترنت ولا إعلانات مزعجة. نظّم ميزانيتك، احفظ فواتيرك، وخلّي بالك رايق طول الشهر.",
     "manifesto": "نحن نؤمن بأن التكنولوجيا يجب أن تخدم راحة الإنسان لا أن تشغله.",
-    "tahtDownloadUrl": "https://taht-el-balata.web.app",
-    "heroBadge": "منظومة Blotx المتكاملة 2026",
+    "tahtDownloadUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
+    "tahtPlayUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
+    "heroBadge": "تطبيقات ذكية لمصاريفك ويومك • Blotx",
     "eftekerDownloadUrl": "https://eftekir-app-f9116.web.app"
   },
   "announcementBar": {
     "is_enabled": true,
-    "text": "🚀 إطلاق التحديث الكبير لمنظومة Blotx 2026 - تجربة موحدة تجمع بين الذكاء المالي والصفاء الذهني",
-    "badge": "جديد",
-    "type": "countdown",
-    "targetDate": "2026-10-01T00:00:00.000Z",
-    "actionUrl": "https://taht-el-balata.web.app",
-    "actionText": "اكتشف المزيد",
+    "text": "🎉 تطبيق «تحت البلاطة» متاح الآن للتحميل المباشر والطلب المسبق على متجر Google Play!",
+    "badge": "جديد على Google Play",
+    "type": "announcement",
+    "actionUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
+    "actionText": "تحميل من Google Play",
     "closable": true
   },
   "sections": {

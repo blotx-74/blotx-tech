@@ -192,7 +192,7 @@ export const FloatingEcosystemDock: FC = () => {
                   onClick={() =>
                     handleDownloadApp(
                       language === 'ar' ? 'تحت البلاطة' : 'Taht El Balata',
-                      config?.tahtPlayUrl
+                      config?.tahtPlayUrl || 'https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata'
                     )
                   }
                   className="w-full sm:w-auto px-4 py-2.5 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black rounded-xl shadow-sm hover:shadow flex items-center justify-center gap-3 transition-all cursor-pointer group shrink-0"

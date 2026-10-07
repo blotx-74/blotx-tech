@@ -31,6 +31,8 @@ export interface Translations {
   eftekerPillarCardDesc: string;
   explore3d: string;
   exploreMatrix: string;
+  downloadTahtPlay: string;
+  heroLiveStoreBadge: string;
   scrollDown: string;
   trustLocal: string;
   trustZeroAds: string;
@@ -261,11 +263,11 @@ export const translations: Record<Language, Translations> = {
     langName: 'العربية',
 
     // Hero Section
-    heroBadge: 'مختبر Blotx Tech • المنظومة الإنسانية المتكاملة',
-    heroTitle1: 'أسلوب حياة يفهم تفاصيلك..',
-    heroTitle2: 'والتجربة تحاكي الواقع بالمللي.',
+    heroBadge: 'تطبيقات ذكية لمصاريفك ويومك • Blotx',
+    heroTitle1: 'فلوسك ومصاريفك..',
+    heroTitle2: 'في أمان على تليفونك وبس.',
     heroDesc:
-      'منظومة إيكوسيستم متناغمة تجمع بين «تحت البلاطة» لإدارة أمانك المالي وخزناتك، و«افتكر» كعقل ثانٍ لحفظ فواتيرك وضماناتك وأولوياتك. تعمل أوفلاين تماماً وتتخاطب لاسلكياً عبر AirDrop بدون خوادم تتجسس عليك.',
+      'تطبيقات سريعة وخفيفة بتشتغل أوفلاين 100% بدون إنترنت ولا إعلانات مزعجة. نظّم ميزانيتك، احفظ فواتيرك، وخلّي بالك رايق طول الشهر.',
     allPillar: 'المنظومة كاملة',
     tahtPillar: 'الأمان المالي («تحت البلاطة»)',
     eftekerPillar: 'الصفاء الذهني («افتكر»)',
@@ -275,9 +277,11 @@ export const translations: Record<Language, Translations> = {
     tahtPillarCardDesc: 'خزنات طوارئ وذهب ومصروفات محصنة وأمان حقيقي ضد التضخم والمفاجآت.',
     eftekerPillarCardTitle: 'عقل «افتكر» الإدراكي الثاني',
     eftekerPillarCardDesc: 'تفريغ الأفكار، فحص الفواتير بـ OCR، وتوثيق بطاقات الضمان ثلاثية الأبعاد.',
-    explore3d: 'استكشف الأجهزة الحية 3D',
-    exploreMatrix: 'المعمارية المتكاملة للإيكوسيستم',
-    scrollDown: 'انزل واستمتع بالقصة التفاعلية',
+    explore3d: 'استكشف التليفون 3D',
+    exploreMatrix: 'المعمارية المتكاملة',
+    downloadTahtPlay: 'تحميل «تحت البلاطة» مجاناً',
+    heroLiveStoreBadge: 'متاح الآن رسمياً على Google Play 🚀',
+    scrollDown: 'انزل واستمتع بالتجربة التفاعلية',
     trustLocal: 'تشفير محلي مستقل 100%',
     trustZeroAds: 'خصوصية مشفرة وترقية Pro',
     trustOffline: 'يعمل بالكامل بدون إنترنت',
@@ -515,11 +519,11 @@ export const translations: Record<Language, Translations> = {
     langName: 'English',
 
     // Hero Section
-    heroBadge: 'Blotx Tech Labs • The Human Ecosystem',
-    heroTitle1: 'A lifestyle that understands you..',
-    heroTitle2: 'Engineered with absolute precision.',
+    heroBadge: 'Smart Everyday Apps • Blotx Tech',
+    heroTitle1: 'Your money and daily plans,',
+    heroTitle2: 'private on your phone.',
     heroDesc:
-      'A harmonious dual ecosystem uniting "Taht El Balata" for financial security & vaults, and "Eftekir" as your cognitive second brain for warranties and priorities. 100% offline, privately bridged via AirDrop with zero tracking clouds.',
+      'Fast, lightweight apps that work 100% offline. Zero ads, zero tracking. Smart vaults for your money and an organized second brain for your day.',
     allPillar: 'Complete Ecosystem',
     tahtPillar: 'Financial Fortress (Taht El Balata)',
     eftekerPillar: 'Cognitive Clarity (Eftekir)',
@@ -529,9 +533,11 @@ export const translations: Record<Language, Translations> = {
     tahtPillarCardDesc: 'Fortified emergency, gold, and expense vaults providing resilient shelter against inflation.',
     eftekerPillarCardTitle: 'Eftekir Cognitive Second Brain',
     eftekerPillarCardDesc: 'Declutter your mind, extract receipts with smart OCR, and preserve 3D digital warranty passports.',
-    explore3d: 'Explore 3D Handhelds',
+    explore3d: 'Explore 3D Simulator',
     exploreMatrix: 'Integrated Architecture',
-    scrollDown: 'Scroll down to explore the story',
+    downloadTahtPlay: 'Download Taht El Balata Free',
+    heroLiveStoreBadge: 'Officially Live on Google Play 🚀',
+    scrollDown: 'Scroll down to explore the experience',
     trustLocal: '100% On-Device Encryption',
     trustZeroAds: 'Encrypted Privacy & Pro Tier',
     trustOffline: 'Works Fully Offline',

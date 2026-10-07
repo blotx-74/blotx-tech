@@ -1,10 +1,9 @@
 import { useState, useEffect, type FC } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, ArrowUpRight, Volume2, VolumeX, Globe, HelpCircle, ShieldCheck, Sun, Moon } from 'lucide-react';
+import { Menu, X, ArrowUpRight, Volume2, VolumeX, Globe, HelpCircle, ShieldCheck } from 'lucide-react';
 import { playAppleClick, setMuted, getIsMuted } from '../../utils/soundEffects';
 import { handleSmoothScrollClick } from '../../utils/smoothScroll';
 import { useLanguage } from '../../LanguageContext';
-import { useTheme } from '../../ThemeContext';
 
 interface AppleNavbarProps {
   onOpenSupport?: (tab?: 'team' | 'developer' | 'docs') => void;
@@ -15,7 +14,6 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
   const [isAudioMuted, setIsAudioMuted] = useState(getIsMuted());
   const [activeSection, setActiveSection] = useState<string>('');
   const { language, t, toggleLanguage } = useLanguage();
-  const { isDark, toggleTheme } = useTheme();
 
   const toggleSound = () => {
     const nextMuted = !isAudioMuted;
@@ -173,26 +171,6 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             <span className="hidden xl:inline">{t.footerSupport}</span>
           </button>
 
-          {/* Theme Toggle (Dark / Light) */}
-          <button
-            type="button"
-            onClick={() => {
-              playAppleClick();
-              toggleTheme();
-            }}
-            title={isDark ? (language === 'ar' ? 'التحويل للوضع النهاري' : 'Switch to Light Mode') : (language === 'ar' ? 'التحويل للوضع الليلي' : 'Switch to Dark Mode')}
-            className="p-1.5 sm:px-2.5 sm:py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/[0.14] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] dark:border-white/[0.08] cursor-pointer shadow-2xs shrink-0"
-          >
-            {isDark ? (
-              <Sun className="w-3.5 h-3.5 text-amber-400" />
-            ) : (
-              <Moon className="w-3.5 h-3.5 text-indigo-500" />
-            )}
-            <span className="hidden sm:inline text-[11px] font-mono">
-              {isDark ? (language === 'ar' ? 'نهاري' : 'Light') : (language === 'ar' ? 'ليلي' : 'Dark')}
-            </span>
-          </button>
-
           {/* Language Switcher Toggle (Always Visible) */}
           <button
             type="button"
@@ -201,7 +179,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
               toggleLanguage();
             }}
             title={language === 'ar' ? 'Switch to English' : 'التحويل للغة العربية'}
-            className="px-2.5 py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] hover:bg-black/[0.08] dark:bg-white/[0.08] dark:hover:bg-white/[0.14] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] dark:border-white/[0.08] cursor-pointer shadow-2xs shrink-0"
+            className="px-2.5 py-1.5 rounded-full text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] active:scale-95 transition-all flex items-center gap-1 border border-black/[0.06] cursor-pointer shadow-2xs shrink-0"
           >
             <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
             <span className="tracking-wide text-[11px] sm:text-xs font-mono">{language === 'ar' ? 'EN' : 'عربي'}</span>
@@ -212,7 +190,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             type="button"
             onClick={toggleSound}
             title={isAudioMuted ? 'تفعيل المؤثرات اللمسية' : 'كتم المؤثرات اللمسية'}
-            className="hidden sm:flex p-2 rounded-full text-[#6e6e73] dark:text-neutral-400 hover:text-[#1d1d1f] dark:hover:text-white hover:bg-black/[0.05] dark:hover:bg-white/[0.06] transition-all cursor-pointer shrink-0"
+            className="hidden sm:flex p-2 rounded-full text-[#6e6e73] hover:text-[#1d1d1f] hover:bg-black/[0.05] transition-all cursor-pointer shrink-0"
           >
             {isAudioMuted ? (
               <VolumeX className="w-4 h-4 opacity-50" />
@@ -221,18 +199,15 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             )}
           </button>
 
-          {/* Primary Action Button (Tablet / Desktop) */}
+          {/* Direct Google Play Download Button (Tablet / Desktop) */}
           <a
-            href="#devices"
-            onClick={(e) => {
-              handleSmoothScrollClick(e, '#devices', 85, 850, () => {
-                playAppleClick();
-                setActiveSection('#devices');
-              });
-            }}
-            className="hidden md:flex apple-pill-btn px-3.5 sm:px-4 py-2 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black text-xs font-bold items-center gap-1.5 shadow-sm cursor-pointer shrink-0 whitespace-nowrap"
+            href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={playAppleClick}
+            className="hidden md:flex apple-pill-btn px-4 py-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-bold items-center gap-1.5 shadow-sm cursor-pointer shrink-0 whitespace-nowrap transition-transform hover:scale-105"
           >
-            <span>{t.liveDemo}</span>
+            <span>{language === 'ar' ? 'تحميل «تحت البلاطة»' : 'Download App'}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
@@ -296,44 +271,21 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
             >
               {/* Quick Primary Demo Button */}
               <a
-                href="#devices"
-                onClick={(e) => {
-                  handleSmoothScrollClick(e, '#devices', 85, 850, () => {
-                    playAppleClick();
-                    setActiveSection('#devices');
-                    setMobileMenuOpen(false);
-                  });
+                href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  playAppleClick();
+                  setMobileMenuOpen(false);
                 }}
-                className="w-full apple-pill-btn py-2.5 px-4 bg-[#1d1d1f] hover:bg-black dark:bg-white dark:hover:bg-neutral-200 text-white dark:text-black text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
+                className="w-full apple-pill-btn py-2.5 px-4 bg-[#0071e3] hover:bg-[#0077ed] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md cursor-pointer"
               >
-                <span>{t.liveDemo}</span>
+                <span>{language === 'ar' ? 'تحميل «تحت البلاطة» على Google Play' : 'Get on Google Play'}</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
 
-              {/* Mobile Controls Quick Bar: Language, Sound, Theme */}
-              <div className="grid grid-cols-3 gap-2 pb-2 border-b border-black/[0.06] dark:border-white/[0.08]">
-                {/* Theme Toggle Button */}
-                <button
-                  type="button"
-                  onClick={() => {
-                    playAppleClick();
-                    toggleTheme();
-                  }}
-                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
-                >
-                  {isDark ? (
-                    <>
-                      <Sun className="w-3.5 h-3.5 text-amber-400" />
-                      <span className="text-[11px]">{language === 'ar' ? 'نهاري' : 'Light'}</span>
-                    </>
-                  ) : (
-                    <>
-                      <Moon className="w-3.5 h-3.5 text-indigo-500" />
-                      <span className="text-[11px]">{language === 'ar' ? 'ليلي' : 'Dark'}</span>
-                    </>
-                  )}
-                </button>
-
+              {/* Mobile Controls Quick Bar: Language & Sound only */}
+              <div className="grid grid-cols-2 gap-2 pb-2 border-b border-black/[0.06]">
                 {/* Language Button */}
                 <button
                   type="button"
@@ -341,10 +293,10 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                     playAppleClick();
                     toggleLanguage();
                   }}
-                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
+                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1 border border-black/[0.06]"
                 >
                   <Globe className="w-3.5 h-3.5 text-[#0071e3]" />
-                  <span className="text-[11px]">{language === 'ar' ? 'EN' : 'عربي'}</span>
+                  <span className="text-[11px]">{language === 'ar' ? 'English' : 'عربي'}</span>
                 </button>
 
                 {/* Sound Button */}
@@ -354,7 +306,7 @@ export const AppleNavbar: FC<AppleNavbarProps> = ({ onOpenSupport }) => {
                     playAppleClick();
                     toggleSound();
                   }}
-                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] dark:text-[#f5f5f7] bg-black/[0.04] dark:bg-white/[0.08] hover:bg-black/[0.08] dark:hover:bg-white/[0.14] flex items-center justify-center gap-1 border border-black/[0.06] dark:border-white/[0.08]"
+                  className="px-2 py-2 rounded-xl text-xs font-bold text-[#1d1d1f] bg-black/[0.04] hover:bg-black/[0.08] flex items-center justify-center gap-1 border border-black/[0.06]"
                 >
                   {isAudioMuted ? (
                     <>
