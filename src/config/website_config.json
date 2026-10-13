@@ -1,8 +1,8 @@
 {
   "colors": {
-    "primary": "#1d1d1f",
-    "secondary": "#fbfbfd",
-    "accent": "#0071e3",
+    "primary": "#064e3b",
+    "secondary": "#f0fdf4",
+    "accent": "#059669",
     "cardBg": "#ffffff"
   },
   "typography": {
@@ -20,21 +20,21 @@
     "defaultMode": "screenshot"
   },
   "content": {
-    "heroTitle": "فلوسك ومصاريفك.. في أمان على تليفونك وبس",
-    "heroSubtitle": "تطبيقات سريعة وخفيفة بتشتغل أوفلاين 100% بدون إنترنت ولا إعلانات مزعجة. نظّم ميزانيتك، احفظ فواتيرك، وخلّي بالك رايق طول الشهر.",
+    "heroTitle": "مش مجرد تكنولوجيا .. إحنا بنصنع أسلوب حياة يفهمك",
+    "heroSubtitle": "منظومة متكاملة تربط بين أمانك المالي وصفائك الذهني. كل شيء متزامن، مشفر، ومصمم خصيصاً لليق بتفاصيل يومك.",
     "manifesto": "نحن نؤمن بأن التكنولوجيا يجب أن تخدم راحة الإنسان لا أن تشغله.",
-    "tahtDownloadUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
-    "tahtPlayUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
-    "heroBadge": "تطبيقات ذكية لمصاريفك ويومك • Blotx",
+    "tahtDownloadUrl": "https://taht-el-balata.web.app",
+    "heroBadge": "منظومة Blotx المتكاملة 2026",
     "eftekerDownloadUrl": "https://eftekir-app-f9116.web.app"
   },
   "announcementBar": {
-    "is_enabled": true,
-    "text": "🎉 تطبيق «تحت البلاطة» متاح الآن للتحميل المباشر والطلب المسبق على متجر Google Play!",
-    "badge": "جديد على Google Play",
-    "type": "announcement",
-    "actionUrl": "https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata",
-    "actionText": "تحميل من Google Play",
+    "is_enabled": false,
+    "text": "🚀 إطلاق التحديث الكبير لمنظومة Blotx 2026",
+    "badge": "جديد",
+    "type": "countdown",
+    "targetDate": "2026-10-01T00:00:00.000Z",
+    "actionUrl": "https://taht-el-balata.web.app",
+    "actionText": "اكتشف المزيد",
     "closable": true
   },
   "sections": {
@@ -52,25 +52,20 @@
   "maintenanceMode": {
     "is_enabled": false,
     "title": "نعمل على ترقية استثنائية لمنظومة Blotx",
-    "message": "الموقع في وضع الصيانة الدورية المجدولة لتطبيق تحسينات فائقة السرعة والأمان. سنعود للعمل قريباً جداً.",
+    "message": "الموقع في وضع الصيانة المجدولة لتطبيق تحسينات فائقة السرعة والأمان. سنعود للعمل قريباً جداً.",
     "estimatedReturn": "خلال دقائق معدودة"
   },
   "socialLinks": {
-    "whatsapp": "+201000000000",
+    "whatsapp": "+201131751988",
     "linkedin": "https://linkedin.com/company/blotx",
     "twitter": "https://x.com/blotxtech",
     "instagram": "https://instagram.com/blotxtech",
-    "supportEmail": "support@blotx.tech"
+    "supportEmail": "blotxtech@gmail.com"
   },
   "promoCodes": [
     {
       "code": "BLOTX2026",
       "discount": "وصول مبكر VIP مجاني لكافة الميزات",
-      "active": true
-    },
-    {
-      "code": "GOLDEN",
-      "discount": "تفعيل حاسبة الذهب الذكية المتقدمة",
       "active": true
     }
   ],
@@ -78,9 +73,9 @@
     {
       "version": "v2.5.0",
       "date": "سبتمبر 2026",
-      "title": "إطلاق لوحة التحكم المركزية الشاملة",
-      "badge": "تحديث رئيسي",
-      "description": "تحكم لحظي كامل من سطح المكتب في الموقع وتطبيقي تحت البلاطة وافتكر مع استوديو الإشعارات الذكي."
+      "title": "إطلاق لوحة التحكم المركزية",
+      "badge": "رئيسي",
+      "description": "مزامنة كاملة بين الموقع والتطبيقات."
     }
   ]
 }

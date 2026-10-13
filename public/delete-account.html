@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -111,10 +111,11 @@
         <!-- Submit Button -->
         <button
           type="submit"
-          class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-sm shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
+          id="submitBtn"
+          class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-bold text-sm shadow-md transition-all cursor-pointer flex items-center justify-center gap-2"
         >
-          <span>تأكيد وإرسال طلب الحذف</span>
-          <span>🚀</span>
+          <span id="submitSpinner" class="hidden inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+          <span id="submitText">تأكيد وإرسال طلب الحذف 🚀</span>
         </button>
       </form>
 
@@ -181,27 +182,89 @@
     </div>
   </footer>
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
   <script>
-    function handleDeletionSubmit(e) {
+    const firebaseConfig = {
+      apiKey: "AIzaSyDJYtFDQ_NqeJ2rBQuOKe2gdDofYk8B6Jk",
+      authDomain: "taht-el-balata.firebaseapp.com",
+      projectId: "taht-el-balata",
+      storageBucket: "taht-el-balata.firebasestorage.app",
+      messagingSenderId: "750800732344",
+      appId: "1:750800732344:web:609c6cfdac43ba5aed744d"
+    };
+
+    let db = null;
+    try {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.firestore();
+    } catch (e) {
+      console.error('Firebase initialization error:', e);
+    }
+
+    async function handleDeletionSubmit(e) {
       e.preventDefault();
-      const email = document.getElementById('userEmail').value;
+      const submitBtn = document.getElementById('submitBtn');
+      const submitSpinner = document.getElementById('submitSpinner');
+      const submitText = document.getElementById('submitText');
+      const email = document.getElementById('userEmail').value.trim().toLowerCase();
       const app = document.getElementById('targetApp').value;
       const scope = document.getElementById('deletionScope').value;
-      const reason = document.getElementById('deletionReason').value;
+      const reason = document.getElementById('deletionReason').value.trim();
+
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      submitSpinner.classList.remove('hidden');
+      submitText.innerText = 'جاري إرسال وتوثيق الطلب سحابياً...';
 
       const ticket = 'DEL-' + Math.floor(100000 + Math.random() * 900000);
-      document.getElementById('ticketNumber').innerText = 'رقم المرجع: ' + ticket;
-      document.getElementById('deletionForm').classList.add('hidden');
-      document.getElementById('successBanner').classList.remove('hidden');
 
-      // Send mailto fallback for transparency
-      const subject = encodeURIComponent(`[Data Deletion Request] ${ticket} - ${email}`);
-      const body = encodeURIComponent(`Application: ${app}\nScope: ${scope}\nUser Email: ${email}\nReason: ${reason}\nTicket: ${ticket}`);
-      const mailtoUrl = `mailto:support@blotxtech.site?subject=${subject}&body=${body}`;
-      
-      console.log('Deletion requested:', { ticket, email, app, scope, reason });
+      try {
+        if (db) {
+          await db.collection('account_deletion_requests').add({
+            ticket: ticket,
+            email: email,
+            target_app: app,
+            deletion_scope: scope,
+            reason: reason || 'لا يوجد سبب محدد',
+            status: 'pending',
+            created_at: new Date().toISOString(),
+            source: 'blotx_tech_website'
+          });
+        } else {
+          // Fallback via Firestore REST API
+          const restUrl = 'https://firestore.googleapis.com/v1/projects/taht-el-balata/databases/(default)/documents/account_deletion_requests';
+          await fetch(restUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: {
+                ticket: { stringValue: ticket },
+                email: { stringValue: email },
+                target_app: { stringValue: app },
+                deletion_scope: { stringValue: scope },
+                reason: { stringValue: reason || 'لا يوجد سبب محدد' },
+                status: { stringValue: 'pending' },
+                created_at: { stringValue: new Date().toISOString() },
+                source: { stringValue: 'blotx_tech_website_rest' }
+              }
+            })
+          });
+        }
+
+        document.getElementById('ticketNumber').innerText = 'رقم المرجع والتذكرة: ' + ticket;
+        document.getElementById('deletionForm').classList.add('hidden');
+        document.getElementById('successBanner').classList.remove('hidden');
+      } catch (err) {
+        console.error('Error submitting deletion request:', err);
+        alert('حدث خطأ أثناء إرسال الطلب: ' + (err.message || err) + '. يرجى المحاولة مرة أخرى.');
+        submitBtn.disabled = false;
+        submitSpinner.classList.add('hidden');
+        submitText.innerText = 'تأكيد وإرسال طلب الحذف 🚀';
+      }
     }
   </script>
-
 </body>
 </html>
