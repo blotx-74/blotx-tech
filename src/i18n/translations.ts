@@ -224,6 +224,141 @@ export interface Translations {
   privacyPrintBtn: string;
   privacyCloseBtn: string;
 
+  // Blotx Tech Solutions Platform
+  techBrandTitle: string;
+  techBrandTagline: string;
+  navServices: string;
+  navProjects: string;
+  navStandards: string;
+  navProcess: string;
+  navContact: string;
+  startProjectBtn: string;
+
+  // Tech Hero
+  techHeroBadge: string;
+  techHeroTitle: string;
+  techHeroTitleHighlight: string;
+  techHeroSubtitle: string;
+  techHeroCtaProjects: string;
+  techHeroCtaContact: string;
+  techMetricProjectsVal: string;
+  techMetricProjectsLabel: string;
+  techMetricUsersVal: string;
+  techMetricUsersLabel: string;
+  techMetricUptimeVal: string;
+  techMetricUptimeLabel: string;
+  techMetricCodeVal: string;
+  techMetricCodeLabel: string;
+
+  // Services
+  servicesBadge: string;
+  servicesTitle: string;
+  servicesSubtitle: string;
+  serviceMobileTitle: string;
+  serviceMobileDesc: string;
+  serviceGamesTitle: string;
+  serviceGamesDesc: string;
+  serviceCloudTitle: string;
+  serviceCloudDesc: string;
+  serviceEnterpriseTitle: string;
+  serviceEnterpriseDesc: string;
+
+  // Projects / Portfolio
+  projectsBadge: string;
+  projectsTitle: string;
+  projectsSubtitle: string;
+  filterAll: string;
+  filterGames: string;
+  filterApps: string;
+  filterSystems: string;
+  downloadApkBtn: string;
+  viewGameDetailsBtn: string;
+  downloadPlayBtn: string;
+  openWebAppBtn: string;
+  featuredTag: string;
+
+  // Shella Habad
+  shellaHabadTitle: string;
+  shellaHabadBadge: string;
+  shellaHabadDesc: string;
+  shellaHabadOfflineTag: string;
+  shellaHabadModesCount: string;
+  shellaHabadMode1: string;
+  shellaHabadMode2: string;
+  shellaHabadMode3: string;
+  shellaHabadMode4: string;
+  shellaHabadMode5: string;
+  shellaHabadMode6: string;
+  shellaHabadMode7: string;
+
+  // Taht El Balata
+  tahtTitle: string;
+  tahtBadge: string;
+  tahtDesc: string;
+  tahtSecurityTag: string;
+
+  // Afteker
+  aftekerTitle: string;
+  aftekerBadge: string;
+  aftekerDesc: string;
+  aftekerSyncTag: string;
+
+  // Master Control
+  masterControlTitle: string;
+  masterControlBadge: string;
+  masterControlDesc: string;
+  masterControlDesktopTag: string;
+
+  // Standards & Tech Stack
+  standardsBadge: string;
+  standardsTitle: string;
+  standardsSubtitle: string;
+  standardCleanTitle: string;
+  standardCleanDesc: string;
+  standardOfflineTitle: string;
+  standardOfflineDesc: string;
+  standardSpeedTitle: string;
+  standardSpeedDesc: string;
+  standardPrivacyTitle: string;
+  standardPrivacyDesc: string;
+
+  // Process
+  processBadge: string;
+  processTitle: string;
+  processSubtitle: string;
+  processStep1Title: string;
+  processStep1Desc: string;
+  processStep2Title: string;
+  processStep2Desc: string;
+  processStep3Title: string;
+  processStep3Desc: string;
+  processStep4Title: string;
+  processStep4Desc: string;
+
+  // Contact / CTA
+  contactBadge: string;
+  contactTitle: string;
+  contactSubtitle: string;
+  contactWhatsappBtn: string;
+  contactEmailBtn: string;
+  contactConsultationBtn: string;
+
+  // Modals & Forms
+  inquiryModalTitle: string;
+  inquiryModalSubtitle: string;
+  inquiryTypeLabel: string;
+  inquiryTypeMobile: string;
+  inquiryTypeGame: string;
+  inquiryTypeWeb: string;
+  inquiryTypeSystem: string;
+  inquiryDescLabel: string;
+  inquiryDescPlaceholder: string;
+  inquirySendBtn: string;
+
+  gameModalTitle: string;
+  gameModalSubtitle: string;
+  gameModalClose: string;
+
   // Support & Docs Modal
   supportModalTitle: string;
   supportModalSubtitle: string;
@@ -481,6 +616,141 @@ export const translations: Record<Language, Translations> = {
     privacyPrintBtn: 'طباعة الوثيقة الرسمية',
     privacyCloseBtn: 'إغلاق ومتابعة التصفح',
 
+    // Blotx Tech Solutions Platform
+    techBrandTitle: 'Blotx Tech Solutions',
+    techBrandTagline: 'استوديو حلول برمجية وهندسة منتجات رقمية',
+    navServices: 'خدماتنا البرمجية',
+    navProjects: 'أعمالنا ومشاريعنا',
+    navStandards: 'المعايير والتقنيات',
+    navProcess: 'منهجية التطوير',
+    navContact: 'تواصل معنا',
+    startProjectBtn: 'ابدأ مشروعك معنا',
+
+    // Tech Hero
+    techHeroBadge: 'منصة البرمجيات والحلول الرقمية • BLOTX TECH SOLUTIONS',
+    techHeroTitle: 'نبتكر برمجيات استثنائية، تطبيقات متطورة،',
+    techHeroTitleHighlight: 'وألعاب تفاعلية تصنع الفارق',
+    techHeroSubtitle: 'استوديو متكامل لهندسة البرمجيات وتطوير المنتجات الرقمية الحديثة. نبني تطبيقات الموبايل الفائقة، المنصات السحابية الموثوقة، وتجارب الألعاب التي تأسر ملايين المستخدمين.',
+    techHeroCtaProjects: 'استكشف أعمالنا ومشاريعنا',
+    techHeroCtaContact: 'تواصل لبدء مشروعك البرمجي',
+    techMetricProjectsVal: '4+ مشاريع',
+    techMetricProjectsLabel: 'منتجات وأنظمة حية معتمدة',
+    techMetricUsersVal: '+15,000',
+    techMetricUsersLabel: 'مستخدم وتجربة تفاعلية',
+    techMetricUptimeVal: '99.9%',
+    techMetricUptimeLabel: 'جاهزية وكفاءة تشغيل',
+    techMetricCodeVal: '100%',
+    techMetricCodeLabel: 'أمان وتشفير محلي مستقل',
+
+    // Services
+    servicesBadge: 'قدراتنا البرمجية وهندسة الحلول',
+    servicesTitle: 'خدمات برمجية شاملة من الفكرة إلى الإنتاج',
+    servicesSubtitle: 'نقدم حلولاً برمجية مصممة خصيصاً للنمو العالي، الأمان الفائق، وأفضل تجربة مستخدم ممكنة.',
+    serviceMobileTitle: 'تطوير تطبيقات الموبايل (Mobile Apps)',
+    serviceMobileDesc: 'تطبيقات أندرويد وiOS فائقة السرعة مبنية بإطار عمل Flutter، تركز على العمل دون إنترنت (Offline-First) وتجربة تفاعلية سلسة بمعدل 120 إطاراً في الثانية.',
+    serviceGamesTitle: 'تطوير الألعاب والترفيه التفاعلي (Games Dev)',
+    serviceGamesDesc: 'ابتكار ألعاب بارتي وجماعية كارتونية ثلاثية الأبعاد تجمع الأصدقاء والعائلات، بفيزياء حركة مبتكرة وأداء رسومي رشيق متوافق مع كافة الهواتف.',
+    serviceCloudTitle: 'المنصات السحابية وهندسة الويب (Cloud & Web)',
+    serviceCloudDesc: 'بناء منصات ويب حديثة وتطبيقات تفاعلية متقدمة باستخدام React و Next.js و TypeScript، مع بنية تحتية سحابية مرنة قادرة على استيعاب آلاف الطلبات اللحظية.',
+    serviceEnterpriseTitle: 'الأنظمة الإدارية ولوحات التحكم (Desktop & Tools)',
+    serviceEnterpriseDesc: 'تطوير برمجيات سطح مكتب تنفيذية (Electron) لإدارة الأعمال، مراقبة قواعد البيانات، وتدفق الاشتراكات بواجهات قيادة مركزية مشفرة وآمنة.',
+
+    // Projects / Portfolio
+    projectsBadge: 'معرض الأعمال وسجل الإنجازات',
+    projectsTitle: 'مشاريع حقيقية ومنتجات رقمية طورناها',
+    projectsSubtitle: 'نظرة واقعية على التطبيقات والأنظمة والألعاب التي صممناها وهندسناها ونشرناها للمستخدمين.',
+    filterAll: 'كافة الأعمال',
+    filterGames: 'ألعاب تفاعلية',
+    filterApps: 'تطبيقات جوال',
+    filterSystems: 'أنظمة وتحكم',
+    downloadApkBtn: 'تحميل APK المباشر',
+    viewGameDetailsBtn: 'استكشاف تفاصيل اللعبة',
+    downloadPlayBtn: 'تحميل من Google Play',
+    openWebAppBtn: 'فتح تطبيق الويب',
+    featuredTag: 'مشروع مميز',
+
+    // Shella Habad
+    shellaHabadTitle: 'لعبة شلة هبد (Shella Habad)',
+    shellaHabadBadge: 'لعبة بارتي كارتونية 3D جديدة',
+    shellaHabadDesc: 'لعبة الأصدقاء والجلسات العائلية الأكثر مرحاً وجنوناً! تجمع بين الهبد والذكاء والضحك المتواصل عبر 7 ألعاب تفاعلية داخل تطبيق واحد، وتعمل بالكامل 100% دون إنترنت.',
+    shellaHabadOfflineTag: 'أوفلاين 100% بدون إنترنت',
+    shellaHabadModesCount: '7 أنماط لعب متنوعة',
+    shellaHabadMode1: '🕵️‍♂️ مين الجاسوس؟ (Imposter)',
+    shellaHabadMode2: '🤥 مين الكداب؟ (The Liar)',
+    shellaHabadMode3: '🎯 حكم وتحديات (Challenges)',
+    shellaHabadMode4: '🏆 أكتر واحد (Most Likely)',
+    shellaHabadMode5: '🤫 اعترافات صريحة (Confessions)',
+    shellaHabadMode6: '🍾 لفة الإزازة 3D (Spin Bottle)',
+    shellaHabadMode7: '🔒 باكيوسو الكارتوني (Bakyoso)',
+
+    // Taht El Balata
+    tahtTitle: 'تحت البلاطة (Taht El Balata)',
+    tahtBadge: 'منظومة الأمان المالي وإدارة الثروة',
+    tahtDesc: 'تطبيق الإدارة المالية الشخصية الأكثر أماناً؛ يحصن مدخراتك ومصروفاتك والذهب المحلي بتشفير AES-256 كامل على جهازك وبدون أي تتبع سحابي.',
+    tahtSecurityTag: 'تشفير AES-256 محلي صفر تتبع',
+
+    // Afteker
+    aftekerTitle: 'افتكر (Afteker)',
+    aftekerBadge: 'أداة الاسترجاع والصفاء الذهني',
+    aftekerDesc: 'تطبيق التدوين والتذكير السريع الخالي من التشتيت، مصمم لتوثيق الأفكار والفواتير والمهام اليومية بلمح البصر.',
+    aftekerSyncTag: 'تزامن ذكي فوري PWA',
+
+    // Master Control
+    masterControlTitle: 'Blotx Master Control',
+    masterControlBadge: 'لوحة القيادة والعمليات التنفيذية',
+    masterControlDesc: 'برنامج سطح مكتب متكامل مبني بـ Electron لإدارة المستخدمين، التراخيص، والاشتراكات لقواعد بيانات Firebase مركزياً.',
+    masterControlDesktopTag: 'Electron + TypeScript Desktop Suite',
+
+    // Standards & Tech Stack
+    standardsBadge: 'الهندسة والمعايير التقنية',
+    standardsTitle: 'كيف نبني برمجيات تصمد وتتفوق؟',
+    standardsSubtitle: 'نتبنى منهجيات هندسية صارمة تضمن أعلى مستويات الاستقرار، الخصوصية، وتجربة الاستخدام.',
+    standardCleanTitle: 'معمارية نظيفة (Clean Architecture)',
+    standardCleanDesc: 'فصل تام للمسؤوليات، كود معياري عالي القابلية للاختبار والتوسعة المستقبلية بدون ديون تقنية.',
+    standardOfflineTitle: 'الاعتماد على الأوفلاين (Offline-First)',
+    standardOfflineDesc: 'تطبيقاتنا لا تتعطل بانقطاع الشبكة؛ قواعد بيانات محلية سريعة ومزامنة مرنة تضمن استمرارية التجربة.',
+    standardSpeedTitle: 'أداء فائق واستجابة 120 FPS',
+    standardSpeedDesc: 'تحسين الرسوميات والذاكرة للعمل بسلاسة تامة واستهلاك بطارية منخفض حتى على الهواتف الاقتصادية.',
+    standardPrivacyTitle: 'خصوصية مقدسة وصفر تتبع',
+    standardPrivacyDesc: 'لا نجمع بيانات شخصية لأغراض إعلانية، وتطبيقاتنا الحساسة تعمل بتشفير محلي مستقل تماماً.',
+
+    // Process
+    processBadge: 'منهجية العمل',
+    processTitle: 'رحلتنا لتحويل فكرتك إلى منتج رقمي ناجح',
+    processSubtitle: 'خطوات واضحة ومرنة تضمن تسليم مشاريع متقنة في الموعد المحدد.',
+    processStep1Title: '1. الاستكشاف والتخطيط المعماري',
+    processStep1Desc: 'ندرس أهداف المشروع، نحدد المتطلبات البرمجية بدقة، ونرسم الهيكل التقني الأنسب للحل.',
+    processStep2Title: '2. التصميم وتجربة المستخدم (UI/UX & 3D)',
+    processStep2Desc: 'نبني نماذج تفاعلية حية تركز على راحة المستخدم وجاذبية العناصر البصرية مع تصميم الأصول ثلاثية الأبعاد.',
+    processStep3Title: '3. البرمجة والتطوير الرشيق (Agile Sprints)',
+    processStep3Desc: 'كتابة كود عالي الجودة عبر دورات تطويرية منتظمة مع مراجعات مستمرة وتحديثات حية لأصحاب القرار.',
+    processStep4Title: '4. الاختبار والضمان والإطلاق (QA & Launch)',
+    processStep4Desc: 'فحوصات أداء صارمة على أجهزة حقيقية، مراجعة الأمان، ونشر مباشر على المتاجر والخوادم مع دعم مستمر.',
+
+    // Contact / CTA
+    contactBadge: 'ابدأ مشروعك معنا',
+    contactTitle: 'هل لديك فكرة برمجية أو مشروع ترغب في تنفيذه؟',
+    contactSubtitle: 'فريق Blotx Tech Solutions جاهز لتحويل رؤيتك إلى تطبيق موبايل، لعبة تفاعلية، أو نظام سحابي متكامل.',
+    contactWhatsappBtn: 'تواصل عبر واتساب فوراً',
+    contactEmailBtn: 'إرسال بريد إلكتروني',
+    contactConsultationBtn: 'طلب استشارة أو تسعير مشروع',
+
+    // Modals & Forms
+    inquiryModalTitle: 'طلب استشارة أو تسعير مشروع برمجي',
+    inquiryModalSubtitle: 'اختر نوع مشروعك وسنتواصل معك خلال ساعات بخطة العمل والتكلفة التقديرية',
+    inquiryTypeLabel: 'نوع المشروع المطلوب',
+    inquiryTypeMobile: '📱 تطبيق موبايل (iOS / Android)',
+    inquiryTypeGame: '🎮 لعبة تفاعلية أو بارتي جيم',
+    inquiryTypeWeb: '🌐 منصة ويب أو نظام سحابي',
+    inquiryTypeSystem: '🖥️ لوحة تحكم أو نظام إداري مخصص',
+    inquiryDescLabel: 'نبذة مختصرة عن الفكرة أو المتطلبات',
+    inquiryDescPlaceholder: 'اكتب لنا فكرتك، الميزات الرئيسية التي تريدها، والوقت المتوقع للتسليم...',
+    inquirySendBtn: 'إرسال الطلب والتواصل عبر واتساب',
+
+    gameModalTitle: 'شلة هبد • Shella Habad Party Game',
+    gameModalSubtitle: 'التفاصيل الكاملة وأنماط اللعب التفاعلية',
+    gameModalClose: 'إغلاق ومتابعة التصفح',
+
     // Support & Docs Modal
     supportModalTitle: 'مركز الدعم الفني والتوثيق',
     supportModalSubtitle: 'نحن هنا لمساعدتك والإجابة عن أي استفسار حول إيكوسيستم Blotx Tech وتطبيقاته',
@@ -736,6 +1006,141 @@ export const translations: Record<Language, Translations> = {
     privacyLastUpdated: 'Last Updated: March 2026 • Legal Revision 2.4',
     privacyPrintBtn: 'Print Official Policy',
     privacyCloseBtn: 'Close & Continue Browsing',
+
+    // Blotx Tech Solutions Platform
+    techBrandTitle: 'Blotx Tech Solutions',
+    techBrandTagline: 'Software Engineering & Digital Product Studio',
+    navServices: 'Software Services',
+    navProjects: 'Our Projects',
+    navStandards: 'Standards & Tech',
+    navProcess: 'Our Process',
+    navContact: 'Contact Us',
+    startProjectBtn: 'Start a Project',
+
+    // Tech Hero
+    techHeroBadge: 'Software Solutions & Product Engineering • BLOTX TECH SOLUTIONS',
+    techHeroTitle: 'We engineer exceptional software, robust mobile apps,',
+    techHeroTitleHighlight: '& interactive games that inspire',
+    techHeroSubtitle: 'A specialized software development studio building high-performance mobile apps, resilient cloud architectures, and engaging interactive party games.',
+    techHeroCtaProjects: 'Explore Our Portfolio',
+    techHeroCtaContact: 'Contact Us for a Project',
+    techMetricProjectsVal: '4+ Projects',
+    techMetricProjectsLabel: 'Live production systems',
+    techMetricUsersVal: '+15,000',
+    techMetricUsersLabel: 'Engaged active users',
+    techMetricUptimeVal: '99.9%',
+    techMetricUptimeLabel: 'Uptime & performance',
+    techMetricCodeVal: '100%',
+    techMetricCodeLabel: 'Local-first zero-tracking privacy',
+
+    // Services
+    servicesBadge: 'Engineering Capabilities & Solutions',
+    servicesTitle: 'Comprehensive Software Services from Concept to Scale',
+    servicesSubtitle: 'Tailored technology solutions designed for rapid growth, bulletproof security, and seamless user experiences.',
+    serviceMobileTitle: 'Mobile App Engineering (Flutter)',
+    serviceMobileDesc: 'Ultra-fast native iOS & Android applications built with Flutter, focusing on local offline resilience, private cryptography, and fluid 120 FPS performance.',
+    serviceGamesTitle: 'Interactive Games & Entertainment (3D Games)',
+    serviceGamesDesc: 'Creative 3D cartoon party games and interactive casual entertainment built for social gatherings with custom motion physics and universal device compatibility.',
+    serviceCloudTitle: 'Cloud Platforms & Modern Web Systems',
+    serviceCloudDesc: 'High-scale web applications engineered with React, Next.js, and TypeScript, backed by elastic serverless cloud infrastructure built to handle millions of queries.',
+    serviceEnterpriseTitle: 'Executive Dashboards & Automation Suites',
+    serviceEnterpriseDesc: 'Custom cross-platform desktop control panels (Electron) for unified enterprise governance, live database telemetry, and real-time subscription pipelines.',
+
+    // Projects / Portfolio
+    projectsBadge: 'Portfolio & Shipped Products',
+    projectsTitle: 'Real Products & Systems Engineered by Blotx',
+    projectsSubtitle: 'A tangible showcase of applications, systems, and games we designed, built, and launched.',
+    filterAll: 'All Works',
+    filterGames: 'Interactive Games',
+    filterApps: 'Mobile Apps',
+    filterSystems: 'Enterprise Systems',
+    downloadApkBtn: 'Direct APK Download',
+    viewGameDetailsBtn: 'Explore Game Modes',
+    downloadPlayBtn: 'Get on Google Play',
+    openWebAppBtn: 'Launch Web App',
+    featuredTag: 'Featured Project',
+
+    // Shella Habad
+    shellaHabadTitle: 'Shella Habad (شلة هبد)',
+    shellaHabadBadge: 'New 3D Cartoon Party Game',
+    shellaHabadDesc: 'The ultimate party game for friends and family gatherings! 7 interactive mini-games in a single package filled with banter, deductive strategy, and laughter — 100% offline.',
+    shellaHabadOfflineTag: '100% Offline Gameplay',
+    shellaHabadModesCount: '7 Diverse Game Modes',
+    shellaHabadMode1: '🕵️‍♂️ Who is the Imposter? (مين الجاسوس)',
+    shellaHabadMode2: '🤥 The Liar (مين الكداب)',
+    shellaHabadMode3: '🎯 Rulings & Challenges (حكم وتحديات)',
+    shellaHabadMode4: '🏆 Most Likely To (أكتر واحد)',
+    shellaHabadMode5: '🤫 Honest Confessions (اعترافات صريحة)',
+    shellaHabadMode6: '🍾 3D Spin The Bottle (لفة الإزازة)',
+    shellaHabadMode7: '🔒 Bakyoso 3D (باكيوسو)',
+
+    // Taht El Balata
+    tahtTitle: 'Taht El Balata (تحت البلاطة)',
+    tahtBadge: 'Wealth Preservation & Personal Finance',
+    tahtDesc: 'The zero-compromise personal finance app protecting your savings, local gold assets, and daily cash flow with on-device AES-256 encryption and zero cloud telemetry.',
+    tahtSecurityTag: 'AES-256 Local Encryption Zero-Tracking',
+
+    // Afteker
+    aftekerTitle: 'Eftekir (افتكر)',
+    aftekerBadge: 'Cognitive Clarity & Instant Recall',
+    aftekerDesc: 'Distraction-free thought capture and receipt organization engine designed to declutter mental bandwidth in seconds.',
+    aftekerSyncTag: 'Instant Cloud Sync PWA',
+
+    // Master Control
+    masterControlTitle: 'Blotx Master Control',
+    masterControlBadge: 'Executive Management & Telemetry',
+    masterControlDesc: 'An enterprise desktop application engineered with Electron to centralize authentication, database governance, and user accounts across all Blotx apps.',
+    masterControlDesktopTag: 'Electron + TypeScript Desktop Suite',
+
+    // Standards & Tech Stack
+    standardsBadge: 'Engineering Principles & Tech Stack',
+    standardsTitle: 'How We Build Resilient Software',
+    standardsSubtitle: 'Strict engineering discipline ensuring superior stability, uncompromised privacy, and delightful user experiences.',
+    standardCleanTitle: 'Clean & Modular Architecture',
+    standardCleanDesc: 'Rigorous separation of concerns, test-driven logic, and scalable design patterns that eliminate technical debt.',
+    standardOfflineTitle: 'Offline-First Philosophy',
+    standardOfflineDesc: 'Our systems never break during network dropouts; instant local databases and graceful sync provide non-stop availability.',
+    standardSpeedTitle: 'Optimized 120 FPS Fluidity',
+    standardSpeedDesc: 'Hyper-tuned render pipelines, low memory footprints, and efficient resource allocation for smooth animations on every device.',
+    standardPrivacyTitle: 'Unconditional Privacy & Zero Tracking',
+    standardPrivacyDesc: 'Zero ad-tracking SDKs, zero invasive behavioral telemetry, and client-side encryption safeguarding user rights.',
+
+    // Process
+    processBadge: 'Engineering Workflow',
+    processTitle: 'From Abstract Vision to Scaled Reality',
+    processSubtitle: 'A structured, agile development cycle delivering precision software on schedule.',
+    processStep1Title: '1. Discovery & Architecture',
+    processStep1Desc: 'Deconstructing domain requirements, defining technical constraints, and architecting the optimal technology stack.',
+    processStep2Title: '2. UI/UX & Interactive 3D Prototyping',
+    processStep2Desc: 'Designing responsive interactive interfaces, custom 3D vector graphics, and engaging micro-interactions.',
+    processStep3Title: '3. Agile Engineering Sprints',
+    processStep3Desc: 'Iterative sprint development with continuous integration, automated testing, and transparent progress updates.',
+    processStep4Title: '4. QA, Security Audit & Launch',
+    processStep4Desc: 'Rigorous device testing, security profiling, store deployments, and continuous technical evolution.',
+
+    // Contact / CTA
+    contactBadge: 'Start Your Project',
+    contactTitle: 'Have a software idea or product you want to build?',
+    contactSubtitle: 'The Blotx Tech Solutions team is ready to bring your mobile app, interactive game, or cloud system to life.',
+    contactWhatsappBtn: 'Chat on WhatsApp Now',
+    contactEmailBtn: 'Send Direct Email',
+    contactConsultationBtn: 'Request a Project Consultation',
+
+    // Modals & Forms
+    inquiryModalTitle: 'Request a Software Project Consultation',
+    inquiryModalSubtitle: 'Select your project scope and we will reach out within hours with an architectural plan and estimate.',
+    inquiryTypeLabel: 'Project Category',
+    inquiryTypeMobile: '📱 Mobile Application (iOS / Android)',
+    inquiryTypeGame: '🎮 Interactive Party Game',
+    inquiryTypeWeb: '🌐 Web Platform or Cloud System',
+    inquiryTypeSystem: '🖥️ Custom Dashboard or Desktop Suite',
+    inquiryDescLabel: 'Project Overview / Requirements',
+    inquiryDescPlaceholder: 'Describe your vision, core features, expected timeline, and target audience...',
+    inquirySendBtn: 'Submit & Chat on WhatsApp',
+
+    gameModalTitle: 'Shella Habad • 3D Party Game Showcase',
+    gameModalSubtitle: 'Full details, gameplay modes, and technical specifications',
+    gameModalClose: 'Close & Continue Browsing',
 
     // Support & Docs Modal
     supportModalTitle: 'Support Center & Documentation',
