@@ -7,6 +7,7 @@ import { TechHero } from './components/sections/TechHero';
 import { TechServices } from './components/sections/TechServices';
 import { TechProjects } from './components/sections/TechProjects';
 import { TechStandards } from './components/sections/TechStandards';
+import { AppScreensGallery } from './components/sections/AppScreensGallery';
 import { TechProcess } from './components/sections/TechProcess';
 import { TechContactCta } from './components/sections/TechContactCta';
 import { TechFooter } from './components/layout/TechFooter';
@@ -83,6 +84,9 @@ export function App() {
 
               {/* Engineering Standards & Modern Tech Stack */}
               <TechStandards />
+
+              {/* Authentic Live Screenshots Showcase (Under the Hood Gallery) */}
+              <AppScreensGallery />
 
               {/* Development Process & Sprints */}
               <TechProcess />

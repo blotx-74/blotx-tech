@@ -112,19 +112,28 @@ export const AppScreensGalleryModal: FC<AppScreensGalleryModalProps> = ({
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            {/* Current Image */}
-            <div className="relative max-h-[55vh] flex items-center justify-center">
+            {/* Current Image & Caption */}
+            <div className="relative max-h-[62vh] flex flex-col items-center justify-center gap-3">
               <AnimatePresence mode="wait">
-                <motion.img
+                <motion.div
                   key={activeIndex}
-                  src={currentScreen.url}
-                  alt={currentScreen.caption || `Screen ${activeIndex + 1}`}
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
                   transition={{ duration: 0.2 }}
-                  className="max-h-[55vh] w-auto object-contain rounded-2xl shadow-2xl border border-slate-800/80"
-                />
+                  className="flex flex-col items-center gap-2.5"
+                >
+                  <img
+                    src={currentScreen.url}
+                    alt={currentScreen.caption || `Screen ${activeIndex + 1}`}
+                    className="max-h-[50vh] sm:max-h-[54vh] w-auto object-contain rounded-2xl shadow-2xl border border-slate-800/80"
+                  />
+                  {currentScreen.caption && (
+                    <p className="text-xs sm:text-sm font-semibold text-slate-300 text-center px-4 max-w-lg">
+                      {currentScreen.caption}
+                    </p>
+                  )}
+                </motion.div>
               </AnimatePresence>
             </div>
 

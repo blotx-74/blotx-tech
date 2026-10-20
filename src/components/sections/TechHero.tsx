@@ -32,16 +32,14 @@ export const TechHero: FC<TechHeroProps> = ({ onOpenInquiry }) => {
       <div className="absolute top-1/4 -left-36 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 -right-36 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Large Transparent Ambient Logo Watermark Behind Text */}
+      {/* Massive Architectural Typography Watermark "BLOTX" Behind Hero Content */}
       <div 
-        className="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 lg:right-1/4 w-[420px] sm:w-[620px] lg:w-[720px] aspect-square pointer-events-none select-none opacity-[0.045] -z-0 overflow-hidden flex items-center justify-center"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden z-0"
         aria-hidden="true"
       >
-        <img
-          src="/assets/logos/blotx-tech-logo.png"
-          alt=""
-          className="w-full h-full object-contain filter grayscale"
-        />
+        <span className="text-[17vw] sm:text-[19vw] lg:text-[21vw] font-black uppercase tracking-tighter text-slate-900/[0.03] leading-none whitespace-nowrap scale-y-105 select-none font-mono">
+          BLOTX
+        </span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

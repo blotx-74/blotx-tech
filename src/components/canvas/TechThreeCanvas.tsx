@@ -10,149 +10,253 @@ export const TechThreeCanvas: FC = () => {
 
     let animationFrameId: number;
     let isVisible = true;
+    let clock = new THREE.Clock();
 
-    // Scene
+    // Scene setup
     const scene = new THREE.Scene();
 
-    // Camera
+    // Camera setup with architectural FOV
     const camera = new THREE.PerspectiveCamera(
-      45,
+      38,
       container.clientWidth / container.clientHeight,
       0.1,
       100
     );
-    camera.position.z = 18;
+    camera.position.set(0, 0, 16);
 
-    // Renderer (lightweight, clamped pixel ratio, powerPreference)
+    // Renderer setup with optimized pixel ratio & power preference
     const renderer = new THREE.WebGLRenderer({
       alpha: true,
       antialias: true,
       powerPreference: 'high-performance',
+      stencil: false,
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
     container.appendChild(renderer.domElement);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    // Architectural Lighting
+    // 1. Crisp ambient base
+    const ambientLight = new THREE.AmbientLight(0xf8fafc, 0.9);
     scene.add(ambientLight);
 
-    const dirLight1 = new THREE.DirectionalLight(0x3b82f6, 2.0); // Cobalt blue
-    dirLight1.position.set(10, 15, 10);
-    scene.add(dirLight1);
+    // 2. Primary directional key light (Clean white with subtle warm cast)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2.2);
+    keyLight.position.set(12, 18, 14);
+    scene.add(keyLight);
 
-    const dirLight2 = new THREE.DirectionalLight(0x8b5cf6, 1.5); // Purple
-    dirLight2.position.set(-10, -10, 10);
-    scene.add(dirLight2);
+    // 3. Technical Cobalt rim light (Catches chamfered edges)
+    const rimLight = new THREE.DirectionalLight(0x2563eb, 3.0);
+    rimLight.position.set(-14, -10, 8);
+    scene.add(rimLight);
 
-    // Group for objects
-    const group = new THREE.Group();
-    scene.add(group);
+    // 4. Subtle cool fill light
+    const fillLight = new THREE.DirectionalLight(0x93c5fd, 1.2);
+    fillLight.position.set(0, -12, -8);
+    scene.add(fillLight);
 
-    // 1. Central floating core: Wireframe icosahedron
-    const coreGeo = new THREE.IcosahedronGeometry(4.2, 1);
+    // Master kinetic group
+    const masterGroup = new THREE.Group();
+    scene.add(masterGroup);
+
+    // Sub-groups for multi-layered rotation
+    const coreGroup = new THREE.Group();
+    const platesGroup = new THREE.Group();
+    const ringsGroup = new THREE.Group();
+
+    masterGroup.add(coreGroup);
+    masterGroup.add(platesGroup);
+    masterGroup.add(ringsGroup);
+
+    // ----------------------------------------------------
+    // GEOMETRIES & MATERIALS: Precision Software Monolith
+    // ----------------------------------------------------
+
+    // 1. Central Core: Dark Brushed Titanium Polyhedron
+    const coreGeo = new THREE.OctahedronGeometry(2.2, 0);
     const coreMat = new THREE.MeshStandardMaterial({
-      color: 0x2563eb,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.35,
-      roughness: 0.2,
-      metalness: 0.8,
+      color: 0x0f172a,
+      roughness: 0.25,
+      metalness: 0.9,
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
-    group.add(coreMesh);
+    coreGroup.add(coreMesh);
 
-    // 2. Inner smooth poly
-    const innerGeo = new THREE.OctahedronGeometry(2.4, 0);
-    const innerMat = new THREE.MeshStandardMaterial({
-      color: 0x6366f1,
-      roughness: 0.1,
-      metalness: 0.9,
+    // Subtle edge highlight for core
+    const coreEdgesGeo = new THREE.EdgesGeometry(coreGeo);
+    const coreEdgesMat = new THREE.LineBasicMaterial({
+      color: 0x3b82f6,
       transparent: true,
       opacity: 0.6,
     });
-    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
-    group.add(innerMesh);
+    const coreEdgesMesh = new THREE.LineSegments(coreEdgesGeo, coreEdgesMat);
+    coreGroup.add(coreEdgesMesh);
 
-    // 3. Ambient floating nodes (particles)
-    const particlesCount = 35;
-    const posArray = new Float32Array(particlesCount * 3);
-    for (let i = 0; i < particlesCount * 3; i += 3) {
-      posArray[i] = (Math.random() - 0.5) * 22;
-      posArray[i + 1] = (Math.random() - 0.5) * 14;
-      posArray[i + 2] = (Math.random() - 0.5) * 10;
-    }
-    const particlesGeo = new THREE.BufferGeometry();
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMat = new THREE.PointsMaterial({
-      size: 0.18,
-      color: 0x38bdf8,
+    // 2. Architectural Translucent Glass Prism Plates (Software Layers)
+    const plateGeo = new THREE.BoxGeometry(5.2, 0.18, 5.2);
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0xffffff,
+      metalness: 0.05,
+      roughness: 0.1,
+      transmission: 0.75, // Realistic frosted glass
+      thickness: 1.2,
       transparent: true,
-      opacity: 0.7,
+      opacity: 0.85,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.1,
+      ior: 1.52,
     });
-    const particlesMesh = new THREE.Points(particlesGeo, particlesMat);
-    scene.add(particlesMesh);
 
-    // Mouse movement parallax
-    let targetX = 0;
-    let targetY = 0;
+    const plateMeshes: THREE.Mesh[] = [];
+    const plateCount = 3;
+    const plateSpacings = [-1.4, 0, 1.4];
+
+    for (let i = 0; i < plateCount; i++) {
+      const plate = new THREE.Mesh(plateGeo, glassMat);
+      plate.position.y = plateSpacings[i];
+      plate.rotation.y = (i * Math.PI) / 6;
+      platesGroup.add(plate);
+      plateMeshes.push(plate);
+
+      // Fine chamfer edge lines for technical aesthetic
+      const edges = new THREE.EdgesGeometry(plateGeo);
+      const edgeLineMat = new THREE.LineBasicMaterial({
+        color: 0x2563eb,
+        transparent: true,
+        opacity: 0.45,
+      });
+      const edgeLine = new THREE.LineSegments(edges, edgeLineMat);
+      plate.add(edgeLine);
+    }
+
+    // 3. Technical Precision Caliper Ring (Rotates independently)
+    const ringGeo = new THREE.RingGeometry(4.8, 4.88, 64);
+    const ringMat = new THREE.MeshBasicMaterial({
+      color: 0x3b82f6,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.25,
+    });
+    const ringMesh1 = new THREE.Mesh(ringGeo, ringMat);
+    ringMesh1.rotation.x = Math.PI / 2.3;
+    ringsGroup.add(ringMesh1);
+
+    const ringMesh2 = new THREE.Mesh(
+      new THREE.RingGeometry(6.2, 6.26, 64),
+      new THREE.MeshBasicMaterial({
+        color: 0x64748b,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.15,
+      })
+    );
+    ringMesh2.rotation.x = -Math.PI / 2.8;
+    ringMesh2.rotation.y = Math.PI / 6;
+    ringsGroup.add(ringMesh2);
+
+    // Smooth Mouse Interaction State
+    let mouseTargetX = 0;
+    let mouseTargetY = 0;
+    let mouseCurrentX = 0;
+    let mouseCurrentY = 0;
+
     const handleMouseMove = (e: MouseEvent) => {
       const { innerWidth, innerHeight } = window;
-      targetX = ((e.clientX / innerWidth) - 0.5) * 1.5;
-      targetY = ((e.clientY / innerHeight) - 0.5) * 1.5;
+      mouseTargetX = (e.clientX / innerWidth - 0.5) * 0.8;
+      mouseTargetY = (e.clientY / innerHeight - 0.5) * 0.8;
     };
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    // Handle Resize
+    // Responsive Canvas Resize
     const handleResize = () => {
       if (!container) return;
-      camera.aspect = container.clientWidth / container.clientHeight;
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(width, height);
     };
     window.addEventListener('resize', handleResize);
 
-    // Visibility Observer to pause loop when not on screen
-    const observer = new IntersectionObserver(([entry]) => {
-      isVisible = entry.isIntersecting;
-    });
+    // Performance Optimization: Intersection Observer to pause rendering when offscreen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisible = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
     observer.observe(container);
 
-    // Render loop
+    // ----------------------------------------------------
+    // ANIMATION LOOP: Calm, Balanced & Engineered
+    // ----------------------------------------------------
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
       if (!isVisible) return;
 
-      coreMesh.rotation.x += 0.003;
-      coreMesh.rotation.y += 0.005;
+      const elapsedTime = clock.getElapsedTime();
 
-      innerMesh.rotation.x -= 0.004;
-      innerMesh.rotation.y -= 0.006;
+      // Calm breathing oscillation (Vertical float)
+      const breathOffset = Math.sin(elapsedTime * 0.7) * 0.25;
+      masterGroup.position.y = breathOffset;
 
-      particlesMesh.rotation.y += 0.0008;
+      // Slow, poised rotation of core and plates
+      coreGroup.rotation.y = elapsedTime * 0.15;
+      coreGroup.rotation.x = Math.sin(elapsedTime * 0.2) * 0.1;
 
-      // Parallax easing
-      group.rotation.y += (targetX - group.rotation.y) * 0.05;
-      group.rotation.x += (-targetY - group.rotation.x) * 0.05;
+      platesGroup.rotation.y = -elapsedTime * 0.08;
+      platesGroup.rotation.z = Math.cos(elapsedTime * 0.3) * 0.05;
+
+      // Smooth plate expansion pulsation
+      plateMeshes.forEach((mesh, idx) => {
+        mesh.position.y = plateSpacings[idx] + Math.sin(elapsedTime * 0.8 + idx) * 0.08;
+      });
+
+      // Rings subtle drift
+      ringMesh1.rotation.z = elapsedTime * 0.05;
+      ringMesh2.rotation.z = -elapsedTime * 0.03;
+
+      // Smooth damped mouse parallax (Inertia easing)
+      mouseCurrentX += (mouseTargetX - mouseCurrentX) * 0.04;
+      mouseCurrentY += (mouseTargetY - mouseCurrentY) * 0.04;
+
+      masterGroup.rotation.y = platesGroup.rotation.y + mouseCurrentX;
+      masterGroup.rotation.x = mouseCurrentY * 0.6;
 
       renderer.render(scene, camera);
     };
+
     animate();
 
+    // ----------------------------------------------------
+    // CLEANUP & MEMORY MANAGEMENT
+    // ----------------------------------------------------
     return () => {
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
       observer.disconnect();
+
       if (renderer.domElement && container.contains(renderer.domElement)) {
         container.removeChild(renderer.domElement);
       }
+
+      // Dispose geometries
       coreGeo.dispose();
+      coreEdgesGeo.dispose();
+      plateGeo.dispose();
+      ringGeo.dispose();
+      ringMesh2.geometry.dispose();
+
+      // Dispose materials
       coreMat.dispose();
-      innerGeo.dispose();
-      innerMat.dispose();
-      particlesGeo.dispose();
-      particlesMat.dispose();
+      coreEdgesMat.dispose();
+      glassMat.dispose();
+      ringMat.dispose();
+      ringMesh2.material.dispose();
+
       renderer.dispose();
     };
   }, []);
@@ -160,7 +264,7 @@ export const TechThreeCanvas: FC = () => {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden"
+      className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden select-none"
       aria-hidden="true"
     />
   );

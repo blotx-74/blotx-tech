@@ -28,12 +28,14 @@ export const TechProjects: FC = () => {
   ];
 
   const tahtScreens = [
-    { url: '/assets/apps/taht/screen_1.jpeg', caption: 'الخزنة المالية الرئيسية ومتابعة السيولة' },
-    { url: '/assets/apps/taht/screen_2.jpeg', caption: 'محفظة الذهب وحساب الأوزان والعيارات' },
-    { url: '/assets/apps/taht/screen_3.jpeg', caption: 'إدارة المصروفات الشهرية والميزانية' },
-    { url: '/assets/apps/taht/screen_4.jpeg', caption: 'تحديات التوفير الذكية' },
-    { url: '/assets/apps/taht/screen_5.jpeg', caption: 'تقارير وتحليلات التدفق النقدي' },
-    { url: '/assets/apps/taht/screen_6.jpeg', caption: 'أمان وتشفير محلي متكامل' },
+    { url: '/assets/apps/taht/screen_1.jpeg', caption: 'الخزنة المالية الرئيسية ومتابعة السيولة النقدية' },
+    { url: '/assets/apps/taht/screen_2.jpeg', caption: 'محفظة الذهب وحساب الأوزان والعيارات 24 و 21' },
+    { url: '/assets/apps/taht/screen_3.jpeg', caption: 'إدارة المصروفات الشهرية ورادار الميزانية' },
+    { url: '/assets/apps/taht/screen_4.jpeg', caption: 'تحديات التوفير الذكية وحصالة الأهداف' },
+    { url: '/assets/apps/taht/screen_5.jpeg', caption: 'تقارير وتحليلات التدفق النقدي بالأرقام' },
+    { url: '/assets/apps/taht/screen_6.jpeg', caption: 'أمان وتشفير محلي متكامل AES-256 بدون إنترنت' },
+    { url: '/assets/apps/taht/screen_7.jpeg', caption: 'إدارة الديون والالتزامات والدفاتر المحمية' },
+    { url: '/assets/apps/taht/screen_8.png', caption: 'التخصيص والخيارات المتقدمة للواجهة' },
   ];
 
   const aftekerScreens = [
@@ -398,25 +400,20 @@ export const TechProjects: FC = () => {
 
                   {/* Actions */}
                   <div className="pt-6 border-t border-white/15 flex flex-wrap items-center gap-3">
-                    <a
-                      href="/downloads/Shella_Habad_v1.0.apk"
-                      download="Shella_Habad_v1.0.apk"
-                      onClick={() => playAppleClick()}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 shadow-lg shadow-amber-400/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>{t.downloadApkBtn} (v1.0 APK)</span>
-                    </a>
-
                     <button
                       onClick={() => {
                         playAppleClick();
                         setIsGameModalOpen(true);
                       }}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-bold text-white bg-white/10 hover:bg-white/20 border border-white/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 shadow-lg shadow-amber-400/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
                     >
+                      <Sparkles className="w-4 h-4 text-slate-950" />
                       <span>{t.viewGameDetailsBtn}</span>
                     </button>
+
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-semibold bg-white/10 text-white/90 border border-white/15">
+                      <span>Google Play • قريباً</span>
+                    </span>
                   </div>
                 </div>
               </div>

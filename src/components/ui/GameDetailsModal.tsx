@@ -1,6 +1,6 @@
 import { type FC } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Download, Gamepad2, WifiOff, Sparkles, Trophy, EyeOff, HelpCircle, Flame, Heart, RotateCw } from 'lucide-react';
+import { X, Gamepad2, WifiOff, Sparkles, Trophy, EyeOff, HelpCircle, Flame, Heart, RotateCw, Smartphone } from 'lucide-react';
 import { playAppleClick } from '../../utils/soundEffects';
 import { useLanguage } from '../../LanguageContext';
 
@@ -158,14 +158,10 @@ export const GameDetailsModal: FC<GameDetailsModalProps> = ({ isOpen, onClose })
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-200">
-                  <a
-                    href="/downloads/Shella_Habad_v1.0.apk"
-                    download="Shella_Habad_v1.0.apk"
-                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 shadow-md shadow-purple-500/20 transition-all cursor-pointer"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>تحميل APK التجريبي (67 MB)</span>
-                  </a>
+                  <div className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200">
+                    <Smartphone className="w-4 h-4 text-emerald-600" />
+                    <span>متاح قريباً على Google Play & App Store</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -222,20 +218,12 @@ export const GameDetailsModal: FC<GameDetailsModalProps> = ({ isOpen, onClose })
               تم تطوير اللعبة بالكامل داخل استوديو Blotx Tech Solutions
             </span>
             <div className="flex items-center gap-3 w-full sm:w-auto">
-              <a
-                href="/downloads/Shella_Habad_v1.0.apk"
-                download="Shella_Habad_v1.0.apk"
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                <span>تحميل ملف APK</span>
-              </a>
               <button
                 onClick={() => {
                   playAppleClick();
                   onClose();
                 }}
-                className="px-4 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-200/60 transition-colors cursor-pointer"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 transition-colors cursor-pointer"
               >
                 {t.gameModalClose}
               </button>

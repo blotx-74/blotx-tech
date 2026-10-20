@@ -25,7 +25,7 @@ export const BlotxNavbar: FC<BlotxNavbarProps> = ({ onOpenInquiry }) => {
 
   // Scroll spy
   useEffect(() => {
-    const sectionIds = ['services', 'projects', 'standards', 'process', 'contact'];
+    const sectionIds = ['services', 'projects', 'standards', 'gallery', 'process', 'contact'];
     let rafId: number | null = null;
 
     const handleScroll = () => {
