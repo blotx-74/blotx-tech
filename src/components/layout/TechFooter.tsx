@@ -84,7 +84,7 @@ export const TechFooter: FC<TechFooterProps> = ({ onOpenPrivacy, onOpenSupport }
               </li>
               <li>
                 <a href="#services" onClick={(e) => handleSmoothScrollClick(e, '#services')} className="hover:text-white transition-colors">
-                  الأنظمة الإدارية ولوحات التحكم
+                  أتمتة الأعمال وتكامل النظم
                 </a>
               </li>
             </ul>
@@ -97,23 +97,18 @@ export const TechFooter: FC<TechFooterProps> = ({ onOpenPrivacy, onOpenSupport }
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <a href="#projects" onClick={(e) => handleSmoothScrollClick(e, '#projects')} className="hover:text-white transition-colors font-semibold text-amber-400">
-                  لعبة شلة هبد (Shella Habad 3D) 🎮
-                </a>
-              </li>
-              <li>
                 <a href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  تطبيق تحت البلاطة (Google Play) 📱
+                  تحت البلاطة (Google Play) 📱
                 </a>
               </li>
               <li>
-                <a href="https://eftekir-app-f9116.web.app" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                  منصة افتكر (Web PWA) 💡
+                <a href="https://play.google.com/store/apps/details?id=com.blotxtech.eftekir" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  افتكر (Google Play) 💡
                 </a>
               </li>
               <li>
-                <a href="#projects" onClick={(e) => handleSmoothScrollClick(e, '#projects')} className="hover:text-white transition-colors">
-                  منظومة Blotx Master Control 🖥️
+                <a href="#projects" onClick={(e) => handleSmoothScrollClick(e, '#projects')} className="hover:text-white transition-colors font-semibold text-amber-400">
+                  لعبة شلة هبد 3D (Shella Habad) 🎮
                 </a>
               </li>
             </ul>

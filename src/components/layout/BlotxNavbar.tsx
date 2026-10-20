@@ -1,7 +1,7 @@
 import { useState, useEffect, type FC } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X, Globe, Volume2, VolumeX, Sparkles, MessageSquareCode } from 'lucide-react';
-import { playAppleClick, setMuted, getIsMuted } from '../../utils/soundEffects';
+import { Menu, X, Globe, Sparkles, MessageSquareCode } from 'lucide-react';
+import { playAppleClick } from '../../utils/soundEffects';
 import { handleSmoothScrollClick } from '../../utils/smoothScroll';
 import { useLanguage } from '../../LanguageContext';
 
@@ -12,18 +12,8 @@ interface BlotxNavbarProps {
 
 export const BlotxNavbar: FC<BlotxNavbarProps> = ({ onOpenInquiry }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAudioMuted, setIsAudioMuted] = useState(getIsMuted());
   const [activeSection, setActiveSection] = useState<string>('');
   const { t, toggleLanguage } = useLanguage();
-
-  const toggleSound = () => {
-    const nextMuted = !isAudioMuted;
-    setMuted(nextMuted);
-    setIsAudioMuted(nextMuted);
-    if (!nextMuted) {
-      playAppleClick();
-    }
-  };
 
   const navLinks = [
     { href: '#services', label: t.navServices },
@@ -141,16 +131,6 @@ export const BlotxNavbar: FC<BlotxNavbarProps> = ({ onOpenInquiry }) => {
 
         {/* Actions & CTA */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Sound Toggle */}
-          <button
-            onClick={toggleSound}
-            className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
-            title={isAudioMuted ? 'تفعيل الصوت' : 'كتم الصوت'}
-            aria-label="Toggle Sound"
-          >
-            {isAudioMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-blue-600" />}
-          </button>
-
           {/* Language Toggle */}
           <button
             onClick={() => {

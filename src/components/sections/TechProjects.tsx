@@ -7,29 +7,49 @@ import {
   Gamepad2, 
   WifiOff, 
   Star,
-  CheckCircle2
+  CheckCircle2,
+  Images
 } from 'lucide-react';
 import { useLanguage } from '../../LanguageContext';
 import { playAppleClick } from '../../utils/soundEffects';
 import { GameDetailsModal } from '../ui/GameDetailsModal';
+import { AppScreensGalleryModal } from '../ui/AppScreensGalleryModal';
 
 export const TechProjects: FC = () => {
   const { t } = useLanguage();
-  const [filter, setFilter] = useState<'all' | 'games' | 'apps' | 'systems'>('all');
+  const [filter, setFilter] = useState<'all' | 'apps' | 'games'>('all');
   const [isGameModalOpen, setIsGameModalOpen] = useState(false);
+  const [activeGallery, setActiveGallery] = useState<'taht' | 'afteker' | null>(null);
 
   const filters = [
-    { key: 'all', label: t.filterAll },
-    { key: 'games', label: t.filterGames },
-    { key: 'apps', label: t.filterApps },
-    { key: 'systems', label: t.filterSystems },
+    { key: 'all', label: 'كافة الأعمال' },
+    { key: 'apps', label: 'تطبيقات الموبايل والويب' },
+    { key: 'games', label: 'ألعاب تفاعلية' },
+  ];
+
+  const tahtScreens = [
+    { url: '/assets/apps/taht/screen_1.jpeg', caption: 'الخزنة المالية الرئيسية ومتابعة السيولة' },
+    { url: '/assets/apps/taht/screen_2.jpeg', caption: 'محفظة الذهب وحساب الأوزان والعيارات' },
+    { url: '/assets/apps/taht/screen_3.jpeg', caption: 'إدارة المصروفات الشهرية والميزانية' },
+    { url: '/assets/apps/taht/screen_4.jpeg', caption: 'تحديات التوفير الذكية' },
+    { url: '/assets/apps/taht/screen_5.jpeg', caption: 'تقارير وتحليلات التدفق النقدي' },
+    { url: '/assets/apps/taht/screen_6.jpeg', caption: 'أمان وتشفير محلي متكامل' },
+  ];
+
+  const aftekerScreens = [
+    { url: '/assets/apps/afteker/screen_1.png', caption: 'خزنة الأفكار الرئيسية' },
+    { url: '/assets/apps/afteker/screen_2.png', caption: 'ماسح الفواتير بالذكاء الاصطناعي On-Device OCR' },
+    { url: '/assets/apps/afteker/screen_3.png', caption: 'التذكيرات الذكية والمهام' },
+    { url: '/assets/apps/afteker/screen_4.png', caption: 'الكبسولات الزمنية المحمية' },
+    { url: '/assets/apps/afteker/screen_5.png', caption: 'خريطة الذكريات والمناسبات الأولى' },
+    { url: '/assets/apps/afteker/screen_6.png', caption: 'المساحات المشتركة المشفرة' },
   ];
 
   return (
-    <section id="projects" className="py-20 md:py-28 bg-slate-50/60 relative border-t border-slate-200/80">
+    <section id="projects" className="py-20 md:py-28 bg-slate-50/70 relative border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-12">
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs font-bold mb-4 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-blue-600" />
             <span>{t.projectsBadge}</span>
@@ -64,28 +84,231 @@ export const TechProjects: FC = () => {
           </div>
         </div>
 
-        {/* Projects List */}
-        <div className="space-y-12">
-          {/* FEATURED PROJECT 1: شلة هبد (SHELLA HABAD GAME) */}
+        {/* Projects Grid */}
+        <div className="space-y-10">
+          {/* ROW 1: TOP BRANDS (تحت البلاطة & افتكر) SIDE BY SIDE */}
+          {(filter === 'all' || filter === 'apps') && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* TOP BRAND 1: تحت البلاطة (TAHT EL BALATA) */}
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="bg-white rounded-3xl p-6 sm:p-9 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between relative group"
+              >
+                <div>
+                  {/* Top Bar with Actual Logo */}
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-14 h-14 rounded-2xl bg-white p-1 border border-slate-200/90 shadow-md shrink-0 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                        <img
+                          src="/assets/apps/taht/logo.png"
+                          alt="لوجو تحت البلاطة"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
+                            {t.tahtBadge}
+                          </span>
+                        </div>
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                          {t.tahtTitle}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200/60 shrink-0">
+                      AES-256 OFFLINE
+                    </span>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
+                    {t.tahtDesc}
+                  </p>
+
+                  {/* Clean Feature Badges (No messy screen dumping) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>محفظة ذهب وحساب عيارات محلي</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>تشفير AES-256 كامل على الجهاز</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>صفر إعلانات وصفر تتبع بيانات</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <span>نسخ احتياطي محلي مشفر بكلمة سر</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="pt-5 border-t border-slate-100 flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playAppleClick()}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Google Play</span>
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      playAppleClick();
+                      setActiveGallery('taht');
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-200/80 transition-colors cursor-pointer"
+                  >
+                    <Images className="w-4 h-4 text-slate-600" />
+                    <span>معرض شاشات التطبيق</span>
+                  </button>
+
+                  <a
+                    href="https://taht-el-balata.web.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playAppleClick()}
+                    className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors ml-auto"
+                  >
+                    <span>نسخة الويب</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* TOP BRAND 2: افتكر (AFTEKER) */}
+              <motion.div
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="bg-white rounded-3xl p-6 sm:p-9 border border-slate-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between relative group"
+              >
+                <div>
+                  {/* Top Bar with Actual Logo */}
+                  <div className="flex items-start justify-between gap-4 mb-6">
+                    <div className="flex items-center gap-3.5">
+                      <div className="w-14 h-14 rounded-2xl bg-white p-1 border border-slate-200/90 shadow-md shrink-0 overflow-hidden flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                        <img
+                          src="/assets/apps/afteker/logo.jpg"
+                          alt="لوجو افتكر"
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="px-2.5 py-0.5 rounded-md text-[11px] font-bold bg-sky-50 text-sky-700 border border-sky-200/80">
+                            {t.aftekerBadge}
+                          </span>
+                          <span className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                            جديد Google Play
+                          </span>
+                        </div>
+                        <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+                          {t.aftekerTitle}
+                        </h3>
+                      </div>
+                    </div>
+
+                    <span className="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold bg-slate-100 text-slate-600 border border-slate-200/60 shrink-0">
+                      ON-DEVICE OCR
+                    </span>
+                  </div>
+
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
+                    {t.aftekerDesc}
+                  </p>
+
+                  {/* Clean Feature Badges (No messy screen dumping) */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 bg-slate-50/70 p-4 rounded-2xl border border-slate-100">
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+                      <span>فحص واستخراج الفواتير بالـ OCR الذكي</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+                      <span>تذكيرات فورية للمواعيد والضمانات</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+                      <span>كبسولات زمنية لتخليد المناسبات</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                      <CheckCircle2 className="w-4 h-4 text-sky-600 shrink-0" />
+                      <span>مساحات مشاركة مشفرة مع الأصدقاء</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="pt-5 border-t border-slate-100 flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.blotxtech.eftekir"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playAppleClick()}
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-sky-600 hover:bg-sky-700 shadow-md shadow-sky-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>Google Play</span>
+                  </a>
+
+                  <button
+                    onClick={() => {
+                      playAppleClick();
+                      setActiveGallery('afteker');
+                    }}
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-200/80 transition-colors cursor-pointer"
+                  >
+                    <Images className="w-4 h-4 text-slate-600" />
+                    <span>معرض شاشات التطبيق</span>
+                  </button>
+
+                  <a
+                    href="https://eftekir-app-f9116.web.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => playAppleClick()}
+                    className="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors ml-auto"
+                  >
+                    <span>نسخة الويب</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          {/* ROW 2: THIRD EXHIBIT — شلة هبد (SHELLA HABAD PARTY GAME) */}
           {(filter === 'all' || filter === 'games') && (
             <motion.div
               layout
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
-              className="relative bg-gradient-to-br from-purple-900 via-indigo-900 to-slate-900 rounded-3xl overflow-hidden shadow-xl text-white border border-purple-500/20"
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="relative bg-gradient-to-br from-purple-950 via-indigo-950 to-slate-900 rounded-3xl overflow-hidden shadow-xl text-white border border-purple-500/20"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-10 lg:p-12 items-center">
-                {/* Visual Showcase Side */}
+                {/* Visual Side */}
                 <div className="lg:col-span-6 relative">
-                  <div className="relative rounded-2xl overflow-hidden bg-slate-950/40 border border-white/10 shadow-2xl group aspect-[16/10] flex items-center justify-center">
+                  <div className="relative rounded-2xl overflow-hidden bg-slate-950/50 border border-white/10 shadow-2xl group aspect-[16/10] flex items-center justify-center">
                     <img
                       src="/assets/games/so7ab/home_hero.png"
                       alt="شلة هبد Party Game"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
                     
                     {/* Floating mascot badge */}
                     <div className="absolute bottom-4 right-4 left-4 flex items-center justify-between gap-3">
@@ -93,7 +316,7 @@ export const TechProjects: FC = () => {
                         <div className="w-12 h-12 rounded-xl bg-white p-1 shadow-lg shrink-0 overflow-hidden flex items-center justify-center">
                           <img
                             src="/assets/games/so7ab/logo.png"
-                            alt="Logo"
+                            alt="شلة هبد Logo"
                             className="w-full h-full object-contain"
                           />
                         </div>
@@ -101,7 +324,7 @@ export const TechProjects: FC = () => {
                           <h4 className="font-extrabold text-white text-base">شلة هبد • Shella Habad</h4>
                           <span className="text-xs text-amber-300 font-semibold flex items-center gap-1">
                             <Star className="w-3 h-3 fill-amber-300" />
-                            7 ألعاب تفاعلية داخل تطبيق واحد
+                            7 ألعاب بارتي داخل تطبيق واحد
                           </span>
                         </div>
                       </div>
@@ -113,7 +336,7 @@ export const TechProjects: FC = () => {
                         }}
                         className="px-3 py-1.5 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-md text-xs font-bold text-white transition-colors cursor-pointer shrink-0"
                       >
-                        معاينة الشاشات
+                        معاينة الألعاب
                       </button>
                     </div>
                   </div>
@@ -199,214 +422,6 @@ export const TechProjects: FC = () => {
               </div>
             </motion.div>
           )}
-
-          {/* PROJECT 2: تحت البلاطة (TAHT EL BALATA FINTECH APP) */}
-          {(filter === 'all' || filter === 'apps') && (
-            <motion.div
-              layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4 }}
-              className="bg-white rounded-3xl p-6 sm:p-10 border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                {/* Content Side */}
-                <div className="lg:col-span-7 flex flex-col justify-between order-2 lg:order-1">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-2 mb-3">
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/80">
-                        {t.tahtBadge}
-                      </span>
-                      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
-                        {t.tahtSecurityTag}
-                      </span>
-                    </div>
-
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
-                      {t.tahtTitle}
-                    </h3>
-
-                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal mb-6">
-                      {t.tahtDesc}
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>محفظة ذهب وعملات أوفلاين</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>تشفير AES-256 محلي مستقل</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>صفر إعلانات وصفر تتبع بيانات</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                        <span>نسخ احتياطي محلي مشفر بكلمة سر</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="pt-6 border-t border-slate-100 flex flex-wrap items-center gap-3">
-                    <a
-                      href="https://play.google.com/store/apps/details?id=com.blotxtech.taht_elbalata"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => playAppleClick()}
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 shadow-md shadow-emerald-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      <Download className="w-4 h-4" />
-                      <span>{t.downloadPlayBtn}</span>
-                    </a>
-
-                    <a
-                      href="https://taht-el-balata.web.app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => playAppleClick()}
-                      className="inline-flex items-center gap-2 px-5 py-3 rounded-xl text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
-                    >
-                      <span>{t.openWebAppBtn}</span>
-                      <ExternalLink className="w-4 h-4 text-slate-400" />
-                    </a>
-                  </div>
-                </div>
-
-                {/* Mockup Image Side */}
-                <div className="lg:col-span-5 order-1 lg:order-2 flex items-center justify-center">
-                  <div className="relative w-full max-w-sm rounded-2xl overflow-hidden border border-slate-200/80 shadow-lg bg-slate-100 p-2 group">
-                    <img
-                      src="/assets/mockups/taht-screen.png"
-                      alt="Taht El Balata Screen"
-                      className="w-full h-auto object-cover rounded-xl group-hover:scale-102 transition-transform duration-300"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
-          {/* PROJECT 3 & 4 IN TWO-COLUMN GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* PROJECT 3: افتكر (AFTEKER) */}
-            {(filter === 'all' || filter === 'apps') && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-sky-50 text-sky-700 border border-sky-200/80">
-                      {t.aftekerBadge}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                      {t.aftekerSyncTag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
-                    {t.aftekerTitle}
-                  </h3>
-
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                    {t.aftekerDesc}
-                  </p>
-
-                  <div className="rounded-xl overflow-hidden border border-slate-200 bg-slate-50 mb-6 aspect-video flex items-center justify-center p-2">
-                    <img
-                      src="/assets/mockups/afteker-screen.png"
-                      alt="Eftekir Screen"
-                      className="max-h-full object-contain rounded-lg"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100">
-                  <a
-                    href="https://eftekir-app-f9116.web.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => playAppleClick()}
-                    className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-slate-900 hover:bg-slate-800 transition-colors cursor-pointer"
-                  >
-                    <span>{t.openWebAppBtn}</span>
-                    <ExternalLink className="w-4 h-4 text-slate-300" />
-                  </a>
-                </div>
-              </motion.div>
-            )}
-
-            {/* PROJECT 4: BLOTX MASTER CONTROL */}
-            {(filter === 'all' || filter === 'systems') && (
-              <motion.div
-                layout
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
-                className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full text-xs font-bold bg-indigo-50 text-indigo-700 border border-indigo-200/80">
-                      {t.masterControlBadge}
-                    </span>
-                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700">
-                      {t.masterControlDesktopTag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
-                    {t.masterControlTitle}
-                  </h3>
-
-                  <p className="text-sm text-slate-600 leading-relaxed font-normal mb-6">
-                    {t.masterControlDesc}
-                  </p>
-
-                  <div className="bg-slate-900 rounded-2xl p-5 text-white font-mono text-xs space-y-2 mb-6 border border-slate-800">
-                    <div className="flex items-center gap-2 text-emerald-400">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>STATUS: OPERATIONAL & SECURED</span>
-                    </div>
-                    <div className="text-slate-400">
-                      $ blotx-master-control --telemetry live --firebase-admin
-                    </div>
-                    <div className="text-slate-300 pt-1 border-t border-slate-800">
-                      OAuth2 Token: Valid (expires in 3599s)
-                    </div>
-                    <div className="text-slate-400">
-                      Cross-Project Sync: taht-el-balata • eftekir-app
-                    </div>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-slate-500">
-                    نظام مكتبي داخلي لإدارة العمليات
-                  </span>
-                  <span className="px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
-                    معتمد ونشط
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </div>
         </div>
       </div>
 
@@ -414,6 +429,26 @@ export const TechProjects: FC = () => {
       <GameDetailsModal
         isOpen={isGameModalOpen}
         onClose={() => setIsGameModalOpen(false)}
+      />
+
+      {/* Taht El Balata Gallery Modal */}
+      <AppScreensGalleryModal
+        isOpen={activeGallery === 'taht'}
+        onClose={() => setActiveGallery(null)}
+        title="معرض شاشات تطبيق تحت البلاطة"
+        appName="تحت البلاطة • Taht El Balata"
+        logoUrl="/assets/apps/taht/logo.png"
+        screens={tahtScreens}
+      />
+
+      {/* Afteker Gallery Modal */}
+      <AppScreensGalleryModal
+        isOpen={activeGallery === 'afteker'}
+        onClose={() => setActiveGallery(null)}
+        title="معرض شاشات تطبيق افتكر"
+        appName="افتكر • Eftekir"
+        logoUrl="/assets/apps/afteker/logo.jpg"
+        screens={aftekerScreens}
       />
     </section>
   );
