@@ -1,10 +1,16 @@
-import { StrictMode } from 'react'
+import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+
+// كل جزء بيتحمّل لوحده: زائر /fahmny مش بيحمّل Three.js/Firebase بتوع الموقع الرئيسي، والعكس
+const App = lazy(() => import('./App.tsx').then((m) => ({ default: m.App })))
+const FahmnyApp = lazy(() => import('./fahmny/FahmnyApp.tsx'))
+const isFahmny = /^\/fahmny(\/|$)/.test(window.location.pathname)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <Suspense fallback={isFahmny ? <div style={{ minHeight: '100vh', background: '#fff9e0' }} /> : null}>
+      {isFahmny ? <FahmnyApp /> : <App />}
+    </Suspense>
   </StrictMode>,
 )
