@@ -1,0 +1,213 @@
+/* فهمني تكنولوجي — الهوية مستوحاة من اللوجو: كحلي ليلي + أصفر نيون + أبيض + حواف سودا */
+.fh {
+  --fh-bg: #0d101c;
+  --fh-bg2: #141829;
+  --fh-ink: #05060c;
+  --fh-yellow: #fbcb07;
+  --fh-yellow-d: #b88f00;
+  --fh-white: #ffffff;
+  --fh-mute: #a9afc6;
+  --fh-radius: 22px;
+  min-height: 100vh;
+  background: var(--fh-bg);
+  color: var(--fh-white);
+  direction: rtl;
+  position: relative;
+  overflow-x: clip;
+}
+.fh { --base-font-family: 'Tajawal'; }
+.fh .fh-display { --base-font-family: 'Lalezar'; font-weight: 400; }
+.fh a { color: inherit; text-decoration: none; }
+.fh ::selection { background: var(--fh-yellow); color: var(--fh-ink); }
+
+/* خلفية: توهّج أصفر + شبكة خفيفة */
+.fh::before {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(900px 500px at 85% -5%, rgba(251, 203, 7, 0.16), transparent 60%),
+    radial-gradient(700px 500px at 0% 40%, rgba(251, 203, 7, 0.07), transparent 60%),
+    linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px) 0 0 / 44px 44px;
+  mask-image: linear-gradient(#000 40%, transparent 100%);
+}
+.fh > * { position: relative; z-index: 1; }
+
+.fh-wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+/* ───── Navbar ───── */
+.fh-nav {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(13, 16, 28, 0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.fh-nav-in { display: flex; align-items: center; gap: 20px; height: 68px; }
+.fh-brand { display: flex; align-items: center; gap: 10px; font-size: 24px; line-height: 1; }
+.fh-brand img { width: 46px; height: 46px; object-fit: cover; border-radius: 12px; }
+.fh-brand b { color: var(--fh-yellow); }
+.fh-links { display: flex; gap: 4px; margin-inline-start: auto; }
+.fh-links a {
+  padding: 8px 14px; border-radius: 12px; font-weight: 700; font-size: 15px; color: var(--fh-mute);
+  transition: .2s;
+}
+.fh-links a:hover { color: #fff; background: rgba(255,255,255,.07); }
+.fh-links a.on { color: var(--fh-ink); background: var(--fh-yellow); }
+.fh-back { font-size: 13px; color: var(--fh-mute); font-weight: 700; white-space: nowrap; }
+.fh-back:hover { color: var(--fh-yellow); }
+
+/* ───── Buttons (3D مثل حروف اللوجو) ───── */
+.fh-btn {
+  display: inline-flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 14px 26px; border-radius: 16px; border: 2px solid var(--fh-ink);
+  background: var(--fh-yellow); color: var(--fh-ink); font-size: 18px; font-weight: 900;
+  box-shadow: 0 6px 0 var(--fh-yellow-d), 0 0 28px rgba(251,203,7,.35);
+  transition: transform .12s, box-shadow .12s;
+}
+.fh-btn:hover { transform: translateY(2px); box-shadow: 0 4px 0 var(--fh-yellow-d), 0 0 36px rgba(251,203,7,.5); }
+.fh-btn:active { transform: translateY(6px); box-shadow: 0 0 0 var(--fh-yellow-d); }
+.fh-btn.ghost {
+  background: var(--fh-ink); color: #fff; border-color: rgba(255,255,255,.9);
+  box-shadow: 0 6px 0 rgba(255,255,255,.18);
+}
+.fh-btn.sm { padding: 9px 18px; font-size: 15px; border-radius: 13px; }
+
+/* ───── Hero ───── */
+.fh-hero { padding: 64px 0 40px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+.fh-pill {
+  display: inline-flex; gap: 8px; align-items: center; padding: 6px 14px; border-radius: 99px;
+  background: rgba(251,203,7,.12); border: 1px solid rgba(251,203,7,.4); color: var(--fh-yellow);
+  font-weight: 800; font-size: 14px;
+}
+.fh-pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--fh-yellow); box-shadow: 0 0 10px var(--fh-yellow); animation: fh-pulse 1.6s infinite; }
+@keyframes fh-pulse { 50% { opacity: .3; transform: scale(.7); } }
+.fh-h1 { font-size: clamp(44px, 7.5vw, 86px); line-height: 1.12; margin: 18px 0 14px; text-shadow: 0 5px 0 #000; }
+.fh-h1 em { font-style: normal; color: var(--fh-yellow); text-shadow: 0 5px 0 #000, 0 0 40px rgba(251,203,7,.45); }
+.fh-lead { font-size: clamp(17px, 2.2vw, 21px); color: var(--fh-mute); line-height: 1.8; max-width: 540px; }
+.fh-cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+.fh-stats { display: flex; gap: 28px; margin-top: 34px; flex-wrap: wrap; }
+.fh-stats div b { display: block; font-size: 34px; color: var(--fh-yellow); line-height: 1; }
+.fh-stats div span { font-size: 13px; color: var(--fh-mute); font-weight: 700; }
+
+.fh-logo-stage { position: relative; display: grid; place-items: center; }
+.fh-logo-stage::before {
+  content: ''; position: absolute; width: 78%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle, rgba(251,203,7,.35), transparent 68%); filter: blur(30px);
+}
+.fh-logo-stage img { position: relative; width: min(460px, 100%); animation: fh-float 5s ease-in-out infinite; filter: drop-shadow(0 24px 40px rgba(0,0,0,.6)); border-radius: 36px; }
+@keyframes fh-float { 50% { transform: translateY(-12px) rotate(-1.2deg); } }
+
+/* ───── Sections ───── */
+.fh-sec { padding: 46px 0; }
+.fh-sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+.fh-h2 { font-size: clamp(30px, 4.5vw, 46px); line-height: 1.2; text-shadow: 0 4px 0 #000; }
+.fh-h2 span { color: var(--fh-yellow); }
+.fh-more { font-weight: 800; color: var(--fh-yellow); }
+.fh-more:hover { text-decoration: underline; }
+
+/* ───── Cards ───── */
+.fh-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.fh-card {
+  display: flex; flex-direction: column; gap: 12px; padding: 22px; border-radius: var(--fh-radius);
+  background: var(--fh-ink); border: 1.5px solid rgba(255,255,255,.85);
+  box-shadow: 0 7px 0 var(--fh-yellow), 0 18px 40px rgba(0,0,0,.45);
+  transition: transform .18s, box-shadow .18s;
+}
+.fh-card:hover { transform: translateY(4px); box-shadow: 0 3px 0 var(--fh-yellow), 0 22px 44px rgba(0,0,0,.5), 0 0 30px rgba(251,203,7,.2); }
+.fh-card h3 { font-size: 24px; line-height: 1.35; }
+.fh-card p { color: var(--fh-mute); line-height: 1.7; font-size: 15px; }
+.fh-card-top { display: flex; align-items: center; justify-content: space-between; }
+.fh-play {
+  width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center;
+  background: var(--fh-yellow); color: var(--fh-ink); font-weight: 900; font-size: 13px;
+  clip-path: polygon(0 0, 100% 50%, 0 100%); width: 40px; height: 40px; padding-inline-end: 8px;
+}
+.fh-tag { font-size: 13px; font-weight: 800; padding: 4px 12px; border-radius: 99px; background: rgba(255,255,255,.08); }
+.fh-meta { margin-top: auto; display: flex; justify-content: space-between; font-size: 13px; color: var(--fh-mute); font-weight: 700; }
+
+.fh-featured {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; padding: 34px;
+  border-radius: 30px; background: linear-gradient(135deg, #1a1f36, var(--fh-ink));
+  border: 1.5px solid rgba(255,255,255,.85); box-shadow: 0 9px 0 var(--fh-yellow), 0 0 60px rgba(251,203,7,.18);
+}
+.fh-featured h3 { font-size: clamp(30px, 4vw, 44px); line-height: 1.25; margin: 12px 0; }
+
+/* ───── Chips ───── */
+.fh-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 26px; }
+.fh-chip {
+  cursor: pointer; padding: 9px 18px; border-radius: 99px; font-weight: 800; font-size: 15px;
+  background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.25); transition: .15s;
+}
+.fh-chip:hover { border-color: var(--fh-yellow); }
+.fh-chip.on { background: var(--fh-yellow); color: var(--fh-ink); border-color: var(--fh-yellow); box-shadow: 0 0 20px rgba(251,203,7,.4); }
+
+/* ───── Episode page ───── */
+.fh-ep { display: grid; grid-template-columns: 380px 1fr; gap: 40px; padding: 40px 0 60px; align-items: start; }
+.fh-phone {
+  border-radius: 34px; padding: 10px; background: var(--fh-ink); border: 2px solid rgba(255,255,255,.85);
+  box-shadow: 0 10px 0 var(--fh-yellow), 0 0 60px rgba(251,203,7,.22); position: sticky; top: 90px;
+}
+.fh-phone iframe { width: 100%; height: 560px; border: 0; border-radius: 26px; background: #000; display: block; }
+.fh-box { padding: 24px; border-radius: var(--fh-radius); background: var(--fh-bg2); border: 1px solid rgba(255,255,255,.1); margin-top: 22px; }
+.fh-box h4 { font-size: 24px; color: var(--fh-yellow); margin-bottom: 14px; }
+.fh-points { list-style: none; display: grid; gap: 12px; padding: 0; }
+.fh-points li { display: flex; gap: 12px; line-height: 1.7; font-size: 17px; }
+.fh-points li::before { content: counter(p); counter-increment: p; flex: none; width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--fh-yellow); color: var(--fh-ink); font-weight: 900; }
+.fh-points { counter-reset: p; }
+
+.fh-q { margin-bottom: 20px; }
+.fh-q p { font-weight: 800; font-size: 18px; margin-bottom: 10px; }
+.fh-opts { display: grid; gap: 10px; }
+.fh-opt {
+  text-align: start; cursor: pointer; padding: 13px 18px; border-radius: 14px; font-size: 16px; font-weight: 700;
+  background: var(--fh-ink); color: #fff; border: 1.5px solid rgba(255,255,255,.2); transition: .15s;
+}
+.fh-opt:hover:not(:disabled) { border-color: var(--fh-yellow); }
+.fh-opt.ok { background: #0f3d22; border-color: #2ee27b; }
+.fh-opt.no { background: #4a1018; border-color: #ff5468; }
+.fh-score { font-weight: 900; font-size: 20px; color: var(--fh-yellow); }
+
+.fh-crumb { padding-top: 26px; color: var(--fh-mute); font-weight: 700; font-size: 14px; }
+.fh-crumb a:hover { color: var(--fh-yellow); }
+.fh-page-title { padding: 40px 0 8px; }
+.fh-page-title h1 { font-size: clamp(38px, 6vw, 62px); text-shadow: 0 5px 0 #000; }
+.fh-page-title p { color: var(--fh-mute); font-size: 18px; margin-top: 6px; }
+
+.fh-search {
+  width: 100%; max-width: 440px; padding: 14px 20px; border-radius: 16px; font-size: 17px; font-weight: 700;
+  background: var(--fh-ink); color: #fff; border: 1.5px solid rgba(255,255,255,.3); outline: none; margin-bottom: 24px;
+}
+.fh-search:focus { border-color: var(--fh-yellow); box-shadow: 0 0 22px rgba(251,203,7,.25); }
+
+.fh-term { padding: 20px 24px; }
+.fh-term b { font-size: 26px; color: var(--fh-yellow); display: block; direction: ltr; text-align: right; }
+
+/* ───── Footer ───── */
+.fh-foot { margin-top: 40px; padding: 34px 0; border-top: 1px solid rgba(255,255,255,.1); color: var(--fh-mute); font-weight: 700; }
+.fh-foot-in { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }
+.fh-foot a:hover { color: var(--fh-yellow); }
+
+/* شرارات اللوجو */
+.fh-spark { display: inline-block; color: var(--fh-yellow); transform: rotate(-12deg); }
+
+/* ───── Mobile ───── */
+@media (max-width: 860px) {
+  .fh-hero { grid-template-columns: 1fr; padding-top: 34px; text-align: center; }
+  .fh-lead { margin-inline: auto; }
+  .fh-cta, .fh-stats { justify-content: center; }
+  .fh-logo-stage { order: -1; }
+  .fh-logo-stage img { width: min(300px, 80%); }
+  .fh-featured { grid-template-columns: 1fr; padding: 22px; }
+  .fh-ep { grid-template-columns: 1fr; }
+  .fh-phone { position: static; max-width: 380px; margin-inline: auto; width: 100%; }
+}
+@media (max-width: 620px) {
+  .fh-nav-in { height: auto; padding: 10px 0; flex-wrap: wrap; gap: 8px; }
+  .fh-brand span { font-size: 20px; }
+  .fh-links { order: 3; width: 100%; margin: 0; overflow-x: auto; }
+  .fh-links a { padding: 7px 12px; white-space: nowrap; }
+  .fh-back { margin-inline-start: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fh *, .fh *::before { animation: none !important; transition: none !important; }
+}
