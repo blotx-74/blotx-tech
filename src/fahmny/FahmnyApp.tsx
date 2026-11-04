@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import './fahmny.css';
 import { About, EpisodePage, Episodes, Glossary, Home, Paths } from './pages';
 import { FB_PROFILE } from './data';
+
+const Admin = lazy(() => import('./admin/Admin'));
 
 const FONT_HREF = 'https://fonts.googleapis.com/css2?family=Lalezar&display=swap';
 
@@ -62,6 +64,7 @@ function Shell() {
           <Route path="/paths" element={<Paths />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/about" element={<About />} />
+          <Route path="/admin" element={<Suspense fallback={null}><Admin /></Suspense>} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>

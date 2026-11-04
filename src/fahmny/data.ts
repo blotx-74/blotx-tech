@@ -1,3 +1,11 @@
+import content from './content.json';
+
+// المحتوى (حلقات / قاموس / مسارات) في content.json، بيتعدّل من لوحة التحكم /fahmny/admin
+const c = content as Content;
+export const episodes: Episode[] = c.episodes;
+export const glossary: Term[] = c.glossary;
+export const paths: LearnPath[] = c.paths;
+
 export const FB_PROFILE = 'https://www.facebook.com/'; // TODO: حط لينك حسابك الشخصي
 
 export interface Category {
@@ -41,97 +49,11 @@ export const categories: Category[] = [
   { id: 'security', name: 'أمان رقمي', emoji: '🛡️' },
 ];
 
-// ⚠️ حلقات تجريبية: استبدل fbUrl بلينكات حلقاتك الحقيقية من فيسبوك
-export const episodes: Episode[] = [
-  {
-    slug: 'what-is-internet',
-    title: 'يعني إيه إنترنت؟',
-    hook: 'الإنترنت مش سحابة ولا سحر، دي كابلات تحت البحر!',
-    category: 'internet',
-    date: '2026-11-01',
-    minutes: 1.2,
-    fbUrl: 'https://www.facebook.com/watch/?v=0',
-    points: [
-      'الإنترنت شبكة ضخمة من الأجهزة المتوصلة ببعض.',
-      'أغلب الداتا بتعدي في كابلات ألياف ضوئية تحت البحار.',
-      'الراوتر بتاعك هو الباب اللي بيوصلك للشبكة دي.',
-    ],
-    quiz: [
-      { q: 'أغلب الإنترنت بيعدي من خلال؟', options: ['أقمار صناعية', 'كابلات تحت البحر', 'موجات راديو'], answer: 1 },
-      { q: 'الراوتر وظيفته؟', options: ['يخزن الملفات', 'يوصلك بالشبكة', 'يشحن الموبايل'], answer: 1 },
-    ],
-    terms: ['router', 'ip'],
-    video: { src: '/fahmny/videos/demo.mp4', poster: '/fahmny/videos/demo-poster.jpg', captions: '/fahmny/videos/demo.vtt' },
-    demo: 'binary',
-  },
-  {
-    slug: 'what-is-api',
-    title: 'يعني إيه API؟',
-    hook: 'الجرسون اللي بين المطبخ وبينك، ده هو الـ API.',
-    category: 'coding',
-    date: '2026-11-02',
-    minutes: 1.3,
-    fbUrl: 'https://www.facebook.com/watch/?v=0',
-    points: [
-      'API هو وسيط بين برنامجين عشان يتكلموا مع بعض.',
-      'إنت بتطلب، وهو بيوصّل الطلب ويرجعلك الرد.',
-      'تطبيق الطقس مثلًا بيسأل API عن درجة الحرارة.',
-    ],
-    quiz: [
-      { q: 'الـ API في مثال المطعم هو؟', options: ['الشيف', 'الجرسون', 'الفاتورة'], answer: 1 },
-    ],
-    terms: ['api'],
-    demo: 'api',
-  },
-  {
-    slug: 'how-ai-thinks',
-    title: 'الذكاء الاصطناعي بيفكر إزاي؟',
-    hook: 'هو مش بيفكر زيك، هو بيتوقع الكلمة اللي بعدها!',
-    category: 'ai',
-    date: '2026-11-03',
-    minutes: 1.4,
-    fbUrl: 'https://www.facebook.com/watch/?v=0',
-    points: [
-      'النموذج اتدرّب على كمية رهيبة من النصوص.',
-      'بيتوقع أنسب كلمة تيجي بعد اللي اتكتب.',
-      'ساعات بيغلط بثقة، فراجع المعلومات المهمة.',
-    ],
-    quiz: [
-      { q: 'النموذج اللغوي بيشتغل بإنه؟', options: ['بيبحث في جوجل', 'بيتوقع الكلمة التالية', 'بيسأل إنسان'], answer: 1 },
-    ],
-    terms: ['ai'],
-    demo: 'ai',
-  },
-  {
-    slug: 'two-factor-auth',
-    title: 'التحقق بخطوتين: درعك ضد الاختراق',
-    hook: 'الباسورد لوحده مش كفاية. اعمل ده النهاردة.',
-    category: 'security',
-    date: '2026-11-04',
-    minutes: 1.1,
-    fbUrl: 'https://www.facebook.com/watch/?v=0',
-    points: [
-      'خطوة تانية بعد الباسورد، زي كود على موبايلك.',
-      'لو الباسورد اتسرق، المخترق لسه مش قادر يدخل.',
-      'استخدم تطبيق مصادقة بدل الرسائل لو تقدر.',
-    ],
-    quiz: [
-      { q: 'التحقق بخطوتين بيحميك لو؟', options: ['الباسورد اتسرق', 'النت فصل', 'الموبايل فصل شحن'], answer: 0 },
-    ],
-    terms: ['2fa'],
-    demo: '2fa',
-  },
-];
-
-export const glossary: Term[] = [
-  { slug: 'api', word: 'API', meaning: 'وسيط بيخلي برنامجين يتكلموا مع بعض، زي الجرسون بين الزبون والمطبخ.' },
-  { slug: 'router', word: 'Router', meaning: 'الجهاز اللي بيوصل أجهزة بيتك بالإنترنت وبيوزعه عليهم.' },
-  { slug: 'ip', word: 'IP Address', meaning: 'عنوان كل جهاز على الشبكة، زي رقم بيتك بالظبط.' },
-  { slug: 'ai', word: 'AI', meaning: 'برامج بتتعلم من البيانات وتعمل مهام محتاجة ذكاء، زي الفهم والكتابة.' },
-  { slug: '2fa', word: '2FA', meaning: 'تحقق بخطوتين: باسورد + كود تاني عشان تدخل حسابك.' },
-  { slug: 'cloud', word: 'Cloud', meaning: 'سيرفرات في مكان بعيد بتخزن ملفاتك وتشغّل برامج بدل جهازك.' },
-  { slug: 'vpn', word: 'VPN', meaning: 'نفق مشفّر بيخبّي نشاطك على النت وبيغيّر مكانك الظاهري.' },
-];
+export interface Content {
+  episodes: Episode[];
+  glossary: Term[];
+  paths: LearnPath[];
+}
 
 export interface LearnPath {
   id: string;
@@ -139,27 +61,6 @@ export interface LearnPath {
   desc: string;
   steps: string[]; // episode slugs بالترتيب
 }
-
-export const paths: LearnPath[] = [
-  {
-    id: 'start',
-    title: 'ابدأ من الصفر 🚀',
-    desc: 'مسار للمبتدئ اللي لسه مبتدي: افهم الإنترنت وحمّي نفسك.',
-    steps: ['what-is-internet', 'two-factor-auth'],
-  },
-  {
-    id: 'dev',
-    title: 'عالم المبرمجين </>',
-    desc: 'المصطلحات اللي هتسمعها كل يوم في الشغل والكورسات.',
-    steps: ['what-is-api'],
-  },
-  {
-    id: 'ai',
-    title: 'الذكاء الاصطناعي 🤖',
-    desc: 'افهم اللي بيحصل ورا ChatGPT وأخواته.',
-    steps: ['how-ai-thinks'],
-  },
-];
 
 // تقدّم المستخدم: محفوظ في localStorage على جهازه (مجاني، بدون حسابات)
 const SEEN_KEY = 'fh_seen';

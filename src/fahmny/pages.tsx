@@ -7,7 +7,7 @@ import {
 import { Demo } from './demos';
 import { VideoPlayer } from './VideoPlayer';
 
-const isPlaceholder = (e: Episode) => e.fbUrl.endsWith('v=0');
+const isPlaceholder = (e: Episode) => !e.fbUrl || e.fbUrl.endsWith('v=0');
 const mins = (e: Episode) => String(e.minutes).replace('.', '٫');
 
 export function EpisodeCard({ e, seen }: { e: Episode; seen?: boolean }) {
