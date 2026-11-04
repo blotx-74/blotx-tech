@@ -19,7 +19,8 @@ export interface Episode {
   category: string;
   date: string; // YYYY-MM-DD
   minutes: number; // مدة الحلقة بالدقايق (<= 1.5)
-  fbUrl: string; // لينك الفيديو على فيسبوك
+  fbUrl: string; // لينك الفيديو على فيسبوك (احتياطي لو مفيش video)
+  video?: { src: string; poster?: string; captions?: string }; // فيديو داخلي: ملف mp4 + بوستر + ترجمة vtt
   points: string[];
   quiz: QuizQ[];
   terms?: string[]; // slugs في القاموس
@@ -60,6 +61,7 @@ export const episodes: Episode[] = [
       { q: 'الراوتر وظيفته؟', options: ['يخزن الملفات', 'يوصلك بالشبكة', 'يشحن الموبايل'], answer: 1 },
     ],
     terms: ['router', 'ip'],
+    video: { src: '/fahmny/videos/demo.mp4', poster: '/fahmny/videos/demo-poster.jpg', captions: '/fahmny/videos/demo.vtt' },
     demo: 'binary',
   },
   {

@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   FB_PROFILE, categories, episodes, glossary, paths, fbEmbed, fmtDate,
   getCategory, getEpisode, getSeen, getStats, markSeen, sortedEpisodes, termOfTheDay, type Episode,
 } from './data';
 import { Demo } from './demos';
+import { VideoPlayer } from './VideoPlayer';
 
 const isPlaceholder = (e: Episode) => e.fbUrl.endsWith('v=0');
 const mins = (e: Episode) => String(e.minutes).replace('.', '٫');
@@ -278,6 +279,7 @@ function ShareButton({ title }: { title: string }) {
 
 export function EpisodePage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const e = getEpisode(slug);
   useEffect(() => {
     if (!e) return;
@@ -308,7 +310,14 @@ export function EpisodePage() {
       </div>
       <div className="fh-ep">
         <div className="fh-phone">
-          {isPlaceholder(e) ? (
+          {e.video ? (
+            <VideoPlayer
+              key={e.slug}
+              {...e.video}
+              title={e.title}
+              next={{ title: next.title, onGo: () => navigate(`/episodes/${next.slug}`) }}
+            />
+          ) : isPlaceholder(e) ? (
             <div className="fh-ph">
               <div>
                 <img src="/fahmny/logo.webp" alt="" width={200} height={200} style={{ borderRadius: 24, marginBottom: 16 }} />
