@@ -126,7 +126,47 @@ export const glossary: Term[] = [
   { slug: 'vpn', word: 'VPN', meaning: 'نفق مشفّر بيخبّي نشاطك على النت وبيغيّر مكانك الظاهري.' },
 ];
 
-export const getEpisode = (slug?: string) => episodes.find((e) => e.slug === slug);
+export interface LearnPath {
+  id: string;
+  title: string;
+  desc: string;
+  steps: string[]; // episode slugs بالترتيب
+}
+
+export const paths: LearnPath[] = [
+  {
+    id: 'start',
+    title: 'ابدأ من الصفر 🚀',
+    desc: 'مسار للمبتدئ اللي لسه مبتدي: افهم الإنترنت وحمّي نفسك.',
+    steps: ['what-is-internet', 'two-factor-auth'],
+  },
+  {
+    id: 'dev',
+    title: 'عالم المبرمجين </>',
+    desc: 'المصطلحات اللي هتسمعها كل يوم في الشغل والكورسات.',
+    steps: ['what-is-api'],
+  },
+  {
+    id: 'ai',
+    title: 'الذكاء الاصطناعي 🤖',
+    desc: 'افهم اللي بيحصل ورا ChatGPT وأخواته.',
+    steps: ['how-ai-thinks'],
+  },
+];
+
+// تقدّم المستخدم: محفوظ في localStorage على جهازه (مجاني، بدون حسابات)
+const SEEN_KEY = 'fh_seen';
+export const getSeen = (): string[] => {
+  try { return JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { return []; }
+};
+export const markSeen = (slug: string) => {
+  try {
+    const seen = getSeen();
+    if (!seen.includes(slug)) localStorage.setItem(SEEN_KEY, JSON.stringify([...seen, slug]));
+  } catch { /* ignore */ }
+};
+
+export const getEpisode =(slug?: string) => episodes.find((e) => e.slug === slug);
 export const getCategory = (id: string) => categories.find((c) => c.id === id);
 export const sortedEpisodes = () => [...episodes].sort((a, b) => b.date.localeCompare(a.date));
 

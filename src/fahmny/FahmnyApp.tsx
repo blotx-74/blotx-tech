@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Link, NavLink, Route, Routes, useLocation } from 'react-router-dom';
 import './fahmny.css';
-import { About, EpisodePage, Episodes, Glossary, Home } from './pages';
+import { About, EpisodePage, Episodes, Glossary, Home, Paths } from './pages';
 import { FB_PROFILE } from './data';
 
 const FONT_HREF = 'https://fonts.googleapis.com/css2?family=Lalezar&display=swap';
@@ -13,7 +13,7 @@ function Shell() {
     window.scrollTo(0, 0);
     document.documentElement.lang = 'ar';
     document.documentElement.dir = 'rtl';
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('dark');
   }, [pathname]);
 
   useEffect(() => {
@@ -46,6 +46,7 @@ function Shell() {
           <nav className="fh-links">
             <NavLink to="/" end className={cls}>الرئيسية</NavLink>
             <NavLink to="/episodes" className={cls}>الحلقات</NavLink>
+            <NavLink to="/paths" className={cls}>المسارات</NavLink>
             <NavLink to="/glossary" className={cls}>القاموس</NavLink>
             <NavLink to="/about" className={cls}>عن البرنامج</NavLink>
           </nav>
@@ -58,6 +59,7 @@ function Shell() {
           <Route path="/" element={<Home />} />
           <Route path="/episodes" element={<Episodes />} />
           <Route path="/episodes/:slug" element={<EpisodePage />} />
+          <Route path="/paths" element={<Paths />} />
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Home />} />

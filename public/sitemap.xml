@@ -74,6 +74,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://blotxtech.site/fahmny/paths</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://blotxtech.site/fahmny/glossary</loc>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
