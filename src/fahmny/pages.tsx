@@ -2,8 +2,9 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
   FB_PROFILE, categories, episodes, glossary, paths, fbEmbed, fmtDate,
-  getCategory, getEpisode, getSeen, markSeen, sortedEpisodes, type Episode,
+  getCategory, getEpisode, getSeen, getStats, markSeen, sortedEpisodes, termOfTheDay, type Episode,
 } from './data';
+import { Demo } from './demos';
 
 const isPlaceholder = (e: Episode) => e.fbUrl.endsWith('v=0');
 const mins = (e: Episode) => String(e.minutes).replace('.', '٫');
@@ -30,6 +31,8 @@ export function Home() {
   const list = sortedEpisodes();
   const [latest, ...rest] = list;
   const [seen] = useState(getSeen);
+  const [stats] = useState(getStats);
+  const tod = termOfTheDay();
   return (
     <>
       <div className="fh-wrap fh-hero">
@@ -54,6 +57,46 @@ export function Home() {
         </div>
         <div className="fh-logo-stage">
           <img src="/fahmny/logo.webp" alt="شعار فهمني تكنولوجي" width={460} height={460} fetchPriority="high" />
+        </div>
+      </div>
+
+
+      <section className="fh-sec" style={{ paddingTop: 10 }}>
+        <div className="fh-wrap fh-strip">
+          <div className="fh-card fh-level">
+            <span className="fh-big">{stats.level.emoji}</span>
+            <div>
+              <small>مستواك</small>
+              <h3 className="fh-display">{stats.level.name}</h3>
+              {stats.next ? (
+                <>
+                  <div className="fh-bar"><i style={{ width: `${Math.min(100, ((stats.seen - stats.level.min) / (stats.next.min - stats.level.min)) * 100)}%` }} /></div>
+                  <small>باقي {stats.toNext} حلقات لمستوى «{stats.next.name}» {stats.next.emoji}</small>
+                </>
+              ) : <small>وصلت لأعلى مستوى 👑</small>}
+            </div>
+          </div>
+          <div className="fh-card fh-level">
+            <span className="fh-big">🔥</span>
+            <div>
+              <small>سلسلة الأيام</small>
+              <h3 className="fh-display">{stats.streak} {stats.streak === 1 ? 'يوم' : 'أيام'}</h3>
+              <small>{stats.streak ? 'كمّل كل يوم متقطعش السلسلة!' : 'اتفرج على حلقة النهارده وابدأ سلسلتك'}</small>
+            </div>
+          </div>
+          <Link to="/glossary" className="fh-card fh-tod">
+            <small>💡 مصطلح اليوم</small>
+            <h3 className="fh-display" dir="ltr">{tod.word}</h3>
+            <p>{tod.meaning}</p>
+          </Link>
+        </div>
+      </section>
+
+      <div className="fh-marquee" aria-hidden>
+        <div>
+          {[...glossary, ...glossary, ...glossary, ...glossary].map((t, i) => (
+            <span key={i}>✦ {t.word}</span>
+          ))}
         </div>
       </div>
 
@@ -237,7 +280,11 @@ export function EpisodePage() {
   const { slug } = useParams();
   const e = getEpisode(slug);
   useEffect(() => {
-    if (e) markSeen(e.slug);
+    if (!e) return;
+    markSeen(e.slug);
+    const prev = document.title;
+    document.title = `${e.title} | فهمني تكنولوجي!`;
+    return () => { document.title = prev; };
   }, [e]);
 
   if (!e) {
@@ -289,6 +336,8 @@ export function EpisodePage() {
             <h4 className="fh-display">خلاصة الحلقة</h4>
             <ul className="fh-points">{e.points.map((p) => <li key={p}>{p}</li>)}</ul>
           </div>
+
+          <Demo ep={e} />
 
           <Quiz key={e.slug} e={e} />
 

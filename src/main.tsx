@@ -9,7 +9,7 @@ const isFahmny = /^\/fahmny(\/|$)/.test(window.location.pathname)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <Suspense fallback={isFahmny ? <div style={{ minHeight: '100vh', background: '#0d101c' }} /> : null}>
+    <Suspense fallback={isFahmny ? <div style={{ minHeight: '100vh', background: '#fff9e0' }} /> : null}>
       {isFahmny ? <FahmnyApp /> : <App />}
     </Suspense>
   </StrictMode>,

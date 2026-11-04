@@ -23,6 +23,7 @@ export interface Episode {
   points: string[];
   quiz: QuizQ[];
   terms?: string[]; // slugs في القاموس
+  demo?: 'api' | 'ai' | '2fa' | 'binary'; // تجربة تفاعلية جوه الحلقة
 }
 
 export interface Term {
@@ -59,6 +60,7 @@ export const episodes: Episode[] = [
       { q: 'الراوتر وظيفته؟', options: ['يخزن الملفات', 'يوصلك بالشبكة', 'يشحن الموبايل'], answer: 1 },
     ],
     terms: ['router', 'ip'],
+    demo: 'binary',
   },
   {
     slug: 'what-is-api',
@@ -77,6 +79,7 @@ export const episodes: Episode[] = [
       { q: 'الـ API في مثال المطعم هو؟', options: ['الشيف', 'الجرسون', 'الفاتورة'], answer: 1 },
     ],
     terms: ['api'],
+    demo: 'api',
   },
   {
     slug: 'how-ai-thinks',
@@ -95,6 +98,7 @@ export const episodes: Episode[] = [
       { q: 'النموذج اللغوي بيشتغل بإنه؟', options: ['بيبحث في جوجل', 'بيتوقع الكلمة التالية', 'بيسأل إنسان'], answer: 1 },
     ],
     terms: ['ai'],
+    demo: 'ai',
   },
   {
     slug: 'two-factor-auth',
@@ -113,6 +117,7 @@ export const episodes: Episode[] = [
       { q: 'التحقق بخطوتين بيحميك لو؟', options: ['الباسورد اتسرق', 'النت فصل', 'الموبايل فصل شحن'], answer: 0 },
     ],
     terms: ['2fa'],
+    demo: '2fa',
   },
 ];
 
@@ -156,14 +161,50 @@ export const paths: LearnPath[] = [
 
 // تقدّم المستخدم: محفوظ في localStorage على جهازه (مجاني، بدون حسابات)
 const SEEN_KEY = 'fh_seen';
-export const getSeen = (): string[] => {
-  try { return JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch { return []; }
+const DAYS_KEY = 'fh_days';
+const read = (k: string): string[] => {
+  try { return JSON.parse(localStorage.getItem(k) || '[]'); } catch { return []; }
 };
+const write = (k: string, v: string[]) => {
+  try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* ignore */ }
+};
+const dayKey = (d: Date) => d.toISOString().slice(0, 10);
+
+export const getSeen = (): string[] => read(SEEN_KEY);
 export const markSeen = (slug: string) => {
-  try {
-    const seen = getSeen();
-    if (!seen.includes(slug)) localStorage.setItem(SEEN_KEY, JSON.stringify([...seen, slug]));
-  } catch { /* ignore */ }
+  const seen = read(SEEN_KEY);
+  if (!seen.includes(slug)) write(SEEN_KEY, [...seen, slug]);
+  const days = read(DAYS_KEY);
+  const today = dayKey(new Date());
+  if (!days.includes(today)) write(DAYS_KEY, [...days, today].slice(-120));
+};
+
+export const levels = [
+  { min: 0, name: 'مبتدئ', emoji: '🌱' },
+  { min: 2, name: 'فضولي', emoji: '🔍' },
+  { min: 4, name: 'مستكشف', emoji: '🧭' },
+  { min: 8, name: 'محترف', emoji: '🚀' },
+  { min: 15, name: 'خبير', emoji: '👑' },
+];
+
+export function getStats() {
+  const seen = read(SEEN_KEY).length;
+  const days = new Set(read(DAYS_KEY));
+  // سلسلة الأيام المتتالية لحد النهارده (أو لحد امبارح لو لسه ما اتفرجش النهارده)
+  let streak = 0;
+  const d = new Date();
+  if (!days.has(dayKey(d))) d.setDate(d.getDate() - 1);
+  while (days.has(dayKey(d))) { streak++; d.setDate(d.getDate() - 1); }
+  let li = 0;
+  levels.forEach((l, i) => { if (seen >= l.min) li = i; });
+  const next = levels[li + 1];
+  return { seen, streak, level: levels[li], next, toNext: next ? next.min - seen : 0 };
+}
+
+// مصطلح اليوم: ثابت طول اليوم، بيتغيّر كل يوم
+export const termOfTheDay = () => {
+  const day = Math.floor(Date.now() / 86400000);
+  return glossary[day % glossary.length];
 };
 
 export const getEpisode =(slug?: string) => episodes.find((e) => e.slug === slug);
