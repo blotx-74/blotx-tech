@@ -6,7 +6,7 @@ export const episodes: Episode[] = c.episodes;
 export const glossary: Term[] = c.glossary;
 export const paths: LearnPath[] = c.paths;
 
-export const FB_PROFILE = 'https://www.facebook.com/'; // TODO: حط لينك حسابك الشخصي
+export const FB_PROFILE = 'https://www.facebook.com/ziad.mo7amed.36';
 
 export interface Category {
   id: string;
