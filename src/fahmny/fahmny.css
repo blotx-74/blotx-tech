@@ -335,6 +335,63 @@ a.fh-card:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--fh-ink);
   .fhp-btn.seek { display: none; }
 }
 
+/* ───── Lesson (درس كامل) ───── */
+/* index.css بيفرض خط الموقع بـ !important عن طريق --base-font-family، فبنغيّره للكود */
+.fh-code, .fh-code *, .fh-ic, .fh-chapters .t, .fh-bits code, .fh-phone-mini b { --base-font-family: Consolas, Menlo, ui-monospace, monospace; }
+.fh-code { text-align: left; }
+.fh-epno { margin-inline-start: 8px; background: var(--fh-ink); color: var(--fh-yellow); }
+.fh-en { margin-top: 6px; color: var(--fh-mute); font-weight: 800; font-size: 15px; text-align: right; unicode-bidi: plaintext; }
+.fh-intro { margin-top: 16px; font-size: 19px; line-height: 1.9; font-weight: 600; background: var(--fh-yellow-l); border: 3px solid var(--fh-ink); border-radius: var(--fh-radius); padding: 16px 20px; box-shadow: 0 4px 0 var(--fh-ink); }
+.fh-ic { font: 700 .88em ui-monospace, Consolas, monospace !important; background: #f1f2f6; border: 1.5px solid #c9ccd8; border-radius: 6px; padding: 1px 6px; unicode-bidi: isolate; white-space: nowrap; }
+.fh-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.fh-toc a { font-size: 14px; font-weight: 800; padding: 6px 13px; border-radius: 99px; background: #fff; border: 2px solid var(--fh-ink); }
+.fh-toc a:hover { background: var(--fh-yellow); }
+[id^="ep-"] { scroll-margin-top: 90px; }
+
+.fh-chapters { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.fh-chapters button {
+  width: 100%; display: flex; gap: 12px; align-items: center; text-align: start; cursor: pointer; padding: 9px 12px; border-radius: 12px;
+  background: transparent; border: 2px solid transparent; color: var(--fh-ink); font-size: 16px; font-weight: 700; transition: .12s;
+}
+.fh-chapters button:hover { background: var(--fh-bg); border-color: var(--fh-ink); }
+.fh-chapters button.on { background: var(--fh-yellow); border-color: var(--fh-ink); box-shadow: 0 3px 0 var(--fh-ink); }
+.fh-chapters .t { flex: none; min-width: 52px; text-align: center; font: 800 14px ui-monospace, Consolas, monospace !important; background: var(--fh-ink); color: var(--fh-yellow); border-radius: 8px; padding: 3px 6px; }
+
+.fh-article section { margin-top: 26px; }
+.fh-article section:first-of-type { margin-top: 6px; }
+.fh-article h2 { font-size: 22px; font-weight: 900; margin-bottom: 10px; line-height: 1.5; }
+.fh-article p { font-size: 17px; line-height: 1.95; font-weight: 500; margin-bottom: 12px; }
+.fh-article ol { padding-inline-start: 24px; margin: 6px 0 14px; display: grid; gap: 8px; }
+.fh-article li { font-size: 17px; line-height: 1.85; font-weight: 500; }
+.fh-article .fh-code { margin: 6px 0 14px; min-height: 0; overflow-x: auto; white-space: pre; }
+.fh-article section.deeper { background: #fff8c9; border: 2.5px dashed var(--fh-ink); border-radius: 18px; padding: 16px 18px 6px; }
+.fh-deeper { display: inline-block; font-size: 13px; font-weight: 900; background: var(--fh-ink); color: var(--fh-yellow); padding: 3px 12px; border-radius: 99px; margin-bottom: 8px; }
+
+.fh-why { margin-top: 10px; font-weight: 700 !important; font-size: 15px !important; line-height: 1.75; background: var(--fh-bg); border-inline-start: 5px solid var(--fh-yellow-d); padding: 8px 12px; border-radius: 10px; }
+.fh-tf { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fh-tf .fh-opt { text-align: center; }
+
+.fh-acc { border: 2.5px solid var(--fh-ink); border-radius: 14px; background: #fff; margin-bottom: 10px; overflow: hidden; }
+.fh-acc summary { cursor: pointer; padding: 13px 16px; font-weight: 900; font-size: 17px; list-style: none; display: flex; gap: 10px; align-items: center; }
+.fh-acc summary::-webkit-details-marker { display: none; }
+.fh-acc summary::before { content: '+'; flex: none; width: 26px; height: 26px; display: grid; place-items: center; border-radius: 8px; background: var(--fh-yellow); border: 2px solid var(--fh-ink); font-weight: 900; transition: transform .15s; }
+.fh-acc[open] summary::before { content: '−'; }
+.fh-acc[open] summary { border-bottom: 2px dashed var(--fh-ink); background: var(--fh-yellow-l); }
+.fh-acc > p { padding: 12px 16px; line-height: 1.85; font-weight: 600; font-size: 16px; }
+.fh-transcript { border: 0; margin: 0; }
+.fh-transcript summary { font-size: 24px; padding: 0; font-weight: 400; }
+.fh-transcript[open] summary { background: none; padding-bottom: 12px; }
+.fh-transcript > p { padding: 6px 0; font-size: 17px; line-height: 2; }
+
+.fh-steps-txt { padding-inline-start: 24px; display: grid; gap: 10px; margin-bottom: 14px; }
+.fh-steps-txt li { font-size: 16px; line-height: 1.85; font-weight: 600; }
+.fh-bonus { background: #fff; border: 2.5px solid var(--fh-ink); border-radius: 14px; padding: 12px 16px; line-height: 1.85; font-weight: 600; margin-bottom: 16px; }
+.fh-sim .fh-search { max-width: 100%; margin-bottom: 12px; }
+.fh-sim label { display: block; }
+.fh-c-mute { color: #8a90a8; }
+.fh-c-out { color: #fff; }
+.fh-code .fh-c-ar { --base-font-family: 'Tajawal'; unicode-bidi: isolate; }
+
 /* ───── Footer ───── */
 .fh-foot { margin-top: 50px; padding: 26px 0; background: var(--fh-yellow); border-top: 3px solid var(--fh-ink); font-weight: 800; }
 .fh-foot-in { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: center; }

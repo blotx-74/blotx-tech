@@ -9,6 +9,9 @@ export interface VideoSource {
 interface Props extends VideoSource {
   title: string;
   next?: { title: string; onGo: () => void };
+  seekRef?: { current: ((t: number) => void) | null }; // للتحكم من بره (فصول الحلقة)
+  onTime?: (t: number) => void;
+  startAt?: number; // يبدأ من ثانية معينة (لينك فصل ?t=)
 }
 
 const RATES = [0.75, 1, 1.25, 1.5, 2];
@@ -22,7 +25,7 @@ const posKey = (src: string) => `fh_pos_${src}`;
 type FsEl = HTMLElement & { webkitRequestFullscreen?: () => void };
 type FsVideo = HTMLVideoElement & { webkitEnterFullscreen?: () => void };
 
-export function VideoPlayer({ src, poster, captions, title, next }: Props) {
+export function VideoPlayer({ src, poster, captions, title, next, seekRef, onTime, startAt }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const vid = useRef<HTMLVideoElement>(null);
   const hideTimer = useRef<number>(0);
@@ -46,6 +49,18 @@ export function VideoPlayer({ src, poster, captions, title, next }: Props) {
   const toastTimer = useRef<number>(0);
 
   useEffect(() => () => { clearTimeout(hideTimer.current); clearTimeout(toastTimer.current); }, []);
+
+  useEffect(() => {
+    if (!seekRef) return;
+    seekRef.current = (t: number) => {
+      const v = vid.current;
+      if (!v) return;
+      v.currentTime = t;
+      setTime(t);
+      if (v.paused) v.play().catch(() => undefined);
+    };
+    return () => { seekRef.current = null; };
+  }, [seekRef]);
 
   useEffect(() => {
     const onFs = () => setFull(document.fullscreenElement === wrap.current);
@@ -160,6 +175,7 @@ export function VideoPlayer({ src, poster, captions, title, next }: Props) {
     if (v.videoWidth && v.videoHeight) setRatio(v.videoWidth / v.videoHeight);
     if (v.textTracks[0] && v.textTracks[0].mode === 'disabled') v.textTracks[0].mode = 'hidden';
     if (v.currentTime > 0) return;
+    if (startAt && startAt > 0 && startAt < v.duration) { v.currentTime = startAt; return; }
     try {
       const p = parseFloat(localStorage.getItem(posKey(src)) || '0');
       if (p > 3 && p < v.duration - 3) v.currentTime = p;
@@ -197,6 +213,7 @@ export function VideoPlayer({ src, poster, captions, title, next }: Props) {
         onTimeUpdate={(e) => {
           const v = e.currentTarget;
           if (!dragging.current) setTime(v.currentTime);
+          onTime?.(v.currentTime);
           if (v.buffered.length) setBuffered(v.buffered.end(v.buffered.length - 1));
           const now = Date.now();
           if (now - lastSave.current > 2000) {
