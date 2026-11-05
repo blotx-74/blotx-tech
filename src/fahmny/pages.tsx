@@ -124,17 +124,19 @@ export function Home() {
         </section>
       )}
 
-      <section className="fh-sec">
-        <div className="fh-wrap">
-          <div className="fh-sec-head">
-            <h2 className="fh-h2 fh-display">الحلقات <span>الأخيرة</span></h2>
-            <Link to="/episodes" className="fh-more">كل الحلقات ←</Link>
+      {!!rest.length && (
+        <section className="fh-sec">
+          <div className="fh-wrap">
+            <div className="fh-sec-head">
+              <h2 className="fh-h2 fh-display">الحلقات <span>الأخيرة</span></h2>
+              <Link to="/episodes" className="fh-more">كل الحلقات ←</Link>
+            </div>
+            <div className="fh-grid">
+              {rest.map((e) => <EpisodeCard key={e.slug} e={e} seen={seen.includes(e.slug)} />)}
+            </div>
           </div>
-          <div className="fh-grid">
-            {(rest.length ? rest : list).map((e) => <EpisodeCard key={e.slug} e={e} seen={seen.includes(e.slug)} />)}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="fh-sec">
         <div className="fh-wrap">
@@ -311,7 +313,8 @@ export function EpisodePage() {
   }
   const list = sortedEpisodes();
   const idx = list.findIndex((x) => x.slug === e.slug);
-  const next = list[idx + 1] ?? list[0];
+  const nextEp = list[idx + 1] ?? list[0];
+  const next = nextEp && nextEp.slug !== e.slug ? nextEp : undefined; // مفيش «اللي بعدها» لو دي الحلقة الوحيدة
   const terms = glossary.filter((t) => e.terms?.includes(t.slug));
   const cat = getCategory(e.category);
   const L = e.lesson;
@@ -337,7 +340,7 @@ export function EpisodePage() {
               seekRef={seekRef}
               onTime={L ? setNow : undefined}
               startAt={startAt}
-              next={{ title: next.title, onGo: () => navigate(`/episodes/${next.slug}`) }}
+              next={next && { title: next.title, onGo: () => navigate(`/episodes/${next.slug}`) }}
             />
           ) : isPlaceholder(e) ? (
             <div className="fh-ph">
@@ -408,7 +411,11 @@ export function EpisodePage() {
           )}
 
           <div className="fh-cta">
-            <Link to={`/episodes/${next.slug}`} className="fh-btn">الحلقة اللي بعدها ←</Link>
+            {next ? (
+              <Link to={`/episodes/${next.slug}`} className="fh-btn">الحلقة اللي بعدها ←</Link>
+            ) : (
+              <span className="fh-pill">الحلقة الجاية قريب ✨</span>
+            )}
             <ShareButton title={e.title} />
           </div>
         </div>

@@ -94,24 +94,4 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://blotxtech.site/fahmny/episodes/what-is-internet</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://blotxtech.site/fahmny/episodes/what-is-api</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://blotxtech.site/fahmny/episodes/how-ai-thinks</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://blotxtech.site/fahmny/episodes/two-factor-auth</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>
