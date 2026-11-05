@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   FB_PROFILE, categories, episodes, glossary, paths, fbEmbed, fmtDate,
@@ -6,6 +6,9 @@ import {
 } from './data';
 import { Demo } from './demos';
 import { VideoPlayer } from './VideoPlayer';
+import {
+  Article, Challenge, Chapters, Faq, LessonExtras, LessonIntro, LessonNav, Rich, Transcript, useLessonHead,
+} from './lesson';
 
 const isPlaceholder = (e: Episode) => !e.fbUrl || e.fbUrl.endsWith('v=0');
 const mins = (e: Episode) => String(e.minutes).replace('.', '٫');
@@ -43,7 +46,7 @@ export function Home() {
             <span className="fh-spark">✦</span> فهمني <em>تكنولوجي!</em>
           </h1>
           <p className="fh-lead">
-            التكنولوجيا من الصفر، بالمصري وبدون تعقيد. كل حلقة أقل من دقيقة ونص، تفهم فيها حاجة جديدة
+            التكنولوجيا من الصفر، بالمصري وبدون تعقيد. كل حلقة في حوالي دقيقتين، تفهم فيها حاجة جديدة
             وتبدأ بيها خطوتك الأولى في المجال.
           </p>
           <div className="fh-cta">
@@ -52,7 +55,7 @@ export function Home() {
           </div>
           <div className="fh-stats">
             <div><b dir="ltr">{episodes.length}+</b><span>حلقة</span></div>
-            <div><b>أقل من ١٫٥</b><span>دقيقة للحلقة</span></div>
+            <div><b>≈ ٢</b><span>دقيقة للحلقة</span></div>
             <div><b>{seen.length}/{episodes.length}</b><span>اللي اتفرجت عليه</span></div>
           </div>
         </div>
@@ -121,17 +124,19 @@ export function Home() {
         </section>
       )}
 
-      <section className="fh-sec">
-        <div className="fh-wrap">
-          <div className="fh-sec-head">
-            <h2 className="fh-h2 fh-display">الحلقات <span>الأخيرة</span></h2>
-            <Link to="/episodes" className="fh-more">كل الحلقات ←</Link>
+      {!!rest.length && (
+        <section className="fh-sec">
+          <div className="fh-wrap">
+            <div className="fh-sec-head">
+              <h2 className="fh-h2 fh-display">الحلقات <span>الأخيرة</span></h2>
+              <Link to="/episodes" className="fh-more">كل الحلقات ←</Link>
+            </div>
+            <div className="fh-grid">
+              {rest.map((e) => <EpisodeCard key={e.slug} e={e} seen={seen.includes(e.slug)} />)}
+            </div>
           </div>
-          <div className="fh-grid">
-            {(rest.length ? rest : list).map((e) => <EpisodeCard key={e.slug} e={e} seen={seen.includes(e.slug)} />)}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="fh-sec">
         <div className="fh-wrap">
@@ -236,11 +241,11 @@ function Quiz({ e }: { e: Episode }) {
   const done = Object.keys(picked).length === e.quiz.length;
   const score = e.quiz.filter((q, i) => picked[i] === q.answer).length;
   return (
-    <div className="fh-box">
+    <div className="fh-box" id="ep-quiz">
       <h4 className="fh-display">اختبر نفسك</h4>
       {e.quiz.map((q, i) => (
         <div className="fh-q" key={q.q}>
-          <p>{q.q}</p>
+          <p><Rich text={q.q} /></p>
           <div className="fh-opts">
             {q.options.map((o, j) => {
               const has = picked[i] !== undefined;
@@ -252,6 +257,9 @@ function Quiz({ e }: { e: Episode }) {
               );
             })}
           </div>
+          {picked[i] !== undefined && q.why && (
+            <p className="fh-why">{picked[i] === q.answer ? '👏 ' : '💡 '}<Rich text={q.why} /></p>
+          )}
         </div>
       ))}
       {done && <p className="fh-score">نتيجتك: {score} / {e.quiz.length} {score === e.quiz.length ? '🔥 جامد!' : '— جرّب تتفرج تاني 😉'}</p>}
@@ -281,9 +289,15 @@ export function EpisodePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const e = getEpisode(slug);
+  const seekRef = useRef<((t: number) => void) | null>(null);
+  const phoneRef = useRef<HTMLDivElement>(null);
+  const [now, setNow] = useState(0);
+  const [startAt] = useState(() => Number(new URLSearchParams(location.search).get('t')) || 0);
+  useLessonHead(e);
   useEffect(() => {
     if (!e) return;
     markSeen(e.slug);
+    if (e.lesson) return; // الدرس الكامل بيظبط العنوان بنفسه
     const prev = document.title;
     document.title = `${e.title} | فهمني تكنولوجي!`;
     return () => { document.title = prev; };
@@ -299,9 +313,17 @@ export function EpisodePage() {
   }
   const list = sortedEpisodes();
   const idx = list.findIndex((x) => x.slug === e.slug);
-  const next = list[idx + 1] ?? list[0];
+  const nextEp = list[idx + 1] ?? list[0];
+  const next = nextEp && nextEp.slug !== e.slug ? nextEp : undefined; // مفيش «اللي بعدها» لو دي الحلقة الوحيدة
   const terms = glossary.filter((t) => e.terms?.includes(t.slug));
   const cat = getCategory(e.category);
+  const L = e.lesson;
+
+  const seek = (t: number) => {
+    seekRef.current?.(t);
+    const r = phoneRef.current?.getBoundingClientRect();
+    if (r && (r.top < 0 || r.bottom > window.innerHeight)) phoneRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className="fh-wrap">
@@ -309,13 +331,16 @@ export function EpisodePage() {
         <Link to="/">الرئيسية</Link> / <Link to="/episodes">الحلقات</Link> / {e.title}
       </div>
       <div className="fh-ep">
-        <div className="fh-phone">
+        <div className="fh-phone" ref={phoneRef}>
           {e.video ? (
             <VideoPlayer
               key={e.slug}
               {...e.video}
               title={e.title}
-              next={{ title: next.title, onGo: () => navigate(`/episodes/${next.slug}`) }}
+              seekRef={seekRef}
+              onTime={L ? setNow : undefined}
+              startAt={startAt}
+              next={next && { title: next.title, onGo: () => navigate(`/episodes/${next.slug}`) }}
             />
           ) : isPlaceholder(e) ? (
             <div className="fh-ph">
@@ -334,24 +359,41 @@ export function EpisodePage() {
             />
           )}
         </div>
-        <div>
+        <div style={{ minWidth: 0 }}>
           <span className="fh-tag">{cat?.emoji} {cat?.name}</span>
+          {L && <span className="fh-tag fh-epno">الحلقة {String(L.number).padStart(2, '0')}</span>}
           <h1 className="fh-display" style={{ fontSize: 'clamp(34px,5vw,58px)', lineHeight: 1.2, margin: '14px 0 8px' }}>
             {e.title}
           </h1>
           <p style={{ color: 'var(--fh-mute)', fontSize: 18, fontWeight: 700 }}>{fmtDate(e.date)} · ⏱ {mins(e)} دقيقة</p>
 
-          <div className="fh-box">
-            <h4 className="fh-display">خلاصة الحلقة</h4>
-            <ul className="fh-points">{e.points.map((p) => <li key={p}>{p}</li>)}</ul>
+          {L && (
+            <>
+              <LessonIntro L={L} />
+              <LessonNav />
+              <Chapters L={L} now={now} onSeek={seek} />
+              <Article L={L} />
+            </>
+          )}
+
+          <div className="fh-box" id="ep-points">
+            <h4 className="fh-display">{L ? `أهم ${e.points.length} نقاط` : 'خلاصة الحلقة'}</h4>
+            <ul className="fh-points">{e.points.map((p) => <li key={p}><span><Rich text={p} /></span></li>)}</ul>
           </div>
 
           <Demo ep={e} />
 
           <Quiz key={e.slug} e={e} />
 
+          {L && (
+            <>
+              <LessonExtras L={L} />
+              <Challenge L={L} />
+            </>
+          )}
+
           {!!terms.length && (
-            <div className="fh-box">
+            <div className="fh-box" id="ep-terms">
               <h4 className="fh-display">مصطلحات في الحلقة</h4>
               {terms.map((t) => (
                 <p key={t.slug} style={{ marginBottom: 10, lineHeight: 1.7, fontWeight: 600 }}>
@@ -361,8 +403,19 @@ export function EpisodePage() {
             </div>
           )}
 
+          {L && (
+            <>
+              <Faq L={L} />
+              <Transcript L={L} />
+            </>
+          )}
+
           <div className="fh-cta">
-            <Link to={`/episodes/${next.slug}`} className="fh-btn">الحلقة اللي بعدها ←</Link>
+            {next ? (
+              <Link to={`/episodes/${next.slug}`} className="fh-btn">الحلقة اللي بعدها ←</Link>
+            ) : (
+              <span className="fh-pill">الحلقة الجاية قريب ✨</span>
+            )}
             <ShareButton title={e.title} />
           </div>
         </div>
@@ -402,7 +455,7 @@ export function About() {
       <div className="fh-box" style={{ fontSize: 18, lineHeight: 1.9, fontWeight: 600 }}>
         <p>
           «فهمني تكنولوجي» برنامج شبه يومي على فيسبوك، هدفه يبسّط التكنولوجيا للمبتدئين والطلبة وكل
-          اللي عايز يبدأ في المجال. كل حلقة أقل من دقيقة ونص، وبالمجان.
+          اللي عايز يبدأ في المجال. كل حلقة في حوالي دقيقتين، وبالمجان.
         </p>
         <p style={{ marginTop: 12 }}>
           البرنامج جزء من <a href="/" style={{ background: 'var(--fh-yellow)', padding: '0 8px', borderRadius: 8, fontWeight: 900 }}>Blotx Tech Solutions</a>.
