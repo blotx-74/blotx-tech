@@ -46,7 +46,7 @@ export function Home() {
             <span className="fh-spark">✦</span> فهمني <em>تكنولوجي!</em>
           </h1>
           <p className="fh-lead">
-            التكنولوجيا من الصفر، بالمصري وبدون تعقيد. كل حلقة في حوالي دقيقتين، تفهم فيها حاجة جديدة
+            التكنولوجيا من الصفر، بالمصري وبدون تعقيد. كل حلقة في دقايق قليلة، تفهم فيها حاجة جديدة
             وتبدأ بيها خطوتك الأولى في المجال.
           </p>
           <div className="fh-cta">
@@ -55,7 +55,7 @@ export function Home() {
           </div>
           <div className="fh-stats">
             <div><b dir="ltr">{episodes.length}+</b><span>حلقة</span></div>
-            <div><b>≈ ٢</b><span>دقيقة للحلقة</span></div>
+            <div><b>٢–٤</b><span>دقايق للحلقة</span></div>
             <div><b>{seen.length}/{episodes.length}</b><span>اللي اتفرجت عليه</span></div>
           </div>
         </div>
@@ -311,10 +311,11 @@ export function EpisodePage() {
       </div>
     );
   }
-  const list = sortedEpisodes();
-  const idx = list.findIndex((x) => x.slug === e.slug);
-  const nextEp = list[idx + 1] ?? list[0];
-  const next = nextEp && nextEp.slug !== e.slug ? nextEp : undefined; // مفيش «اللي بعدها» لو دي الحلقة الوحيدة
+  // بالترتيب الزمني: «اللي بعدها» = الأحدث، و«اللي قبلها» = الأقدم
+  const chrono = [...sortedEpisodes()].reverse();
+  const idx = chrono.findIndex((x) => x.slug === e.slug);
+  const next: Episode | undefined = chrono[idx + 1];
+  const prev: Episode | undefined = chrono[idx - 1];
   const terms = glossary.filter((t) => e.terms?.includes(t.slug));
   const cat = getCategory(e.category);
   const L = e.lesson;
@@ -416,6 +417,7 @@ export function EpisodePage() {
             ) : (
               <span className="fh-pill">الحلقة الجاية قريب ✨</span>
             )}
+            {prev && <Link to={`/episodes/${prev.slug}`} className="fh-btn ghost">→ الحلقة اللي قبلها</Link>}
             <ShareButton title={e.title} />
           </div>
         </div>
@@ -455,7 +457,7 @@ export function About() {
       <div className="fh-box" style={{ fontSize: 18, lineHeight: 1.9, fontWeight: 600 }}>
         <p>
           «فهمني تكنولوجي» برنامج شبه يومي على فيسبوك، هدفه يبسّط التكنولوجيا للمبتدئين والطلبة وكل
-          اللي عايز يبدأ في المجال. كل حلقة في حوالي دقيقتين، وبالمجان.
+          اللي عايز يبدأ في المجال. كل حلقة في دقايق قليلة، وبالمجان.
         </p>
         <p style={{ marginTop: 12 }}>
           البرنامج جزء من <a href="/" style={{ background: 'var(--fh-yellow)', padding: '0 8px', borderRadius: 8, fontWeight: 900 }}>Blotx Tech Solutions</a>.

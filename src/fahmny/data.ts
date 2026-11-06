@@ -53,13 +53,13 @@ export interface Episode {
   hook: string;
   category: string;
   date: string; // YYYY-MM-DD
-  minutes: number; // مدة الحلقة بالدقايق (حوالي 2)
+  minutes: number; // مدة الحلقة بالدقايق
   fbUrl: string; // لينك الفيديو على فيسبوك (احتياطي لو مفيش video)
   video?: { src: string; poster?: string; captions?: string }; // فيديو داخلي: ملف mp4 + بوستر + ترجمة vtt
   points: string[];
   quiz: QuizQ[];
   terms?: string[]; // slugs في القاموس
-  demo?: 'api' | 'ai' | '2fa' | 'binary'; // تجربة تفاعلية جوه الحلقة
+  demo?: 'api' | 'ai' | '2fa' | 'binary' | 'rgb'; // تجربة تفاعلية جوه الحلقة
   lesson?: Lesson; // صفحة درس كاملة (مقال، تحدي، FAQ...)
 }
 

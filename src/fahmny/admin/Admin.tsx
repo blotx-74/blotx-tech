@@ -258,6 +258,7 @@ function EpisodeForm({
             <option value="ai">AI (توقّع الكلمة)</option>
             <option value="2fa">التحقق بخطوتين</option>
             <option value="binary">Binary (أصفار وواحدات)</option>
+            <option value="rgb">RGB (خلط الألوان)</option>
           </select>
         </div>
         <div>

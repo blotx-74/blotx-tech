@@ -261,6 +261,22 @@ a.fh-card:hover { transform: translateY(3px); box-shadow: 0 3px 0 var(--fh-ink);
 .fh-bits code { display: flex; gap: 2px; font: 800 15px ui-monospace, Consolas, monospace !important; color: #9aa0b8; }
 .fh-bits code span.one { color: var(--fh-ink); background: var(--fh-yellow); border-radius: 4px; }
 
+/* RGB demo */
+.fh-rgb { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; }
+.fh-rgb-px { aspect-ratio: 1; border-radius: 18px; border: 3px solid var(--fh-ink); box-shadow: 0 5px 0 var(--fh-ink); transition: background .1s; }
+.fh-rgb-ctl { display: grid; gap: 10px; min-width: 0; }
+.fh-rgb-row { display: grid; grid-template-columns: 18px 1fr 36px auto; gap: 10px; align-items: center; direction: ltr; }
+.fh-rgb-row b { font-size: 18px; font-weight: 900; }
+.fh-rgb-row input { width: 100%; min-width: 0; }
+.fh-rgb-v { font-weight: 900; text-align: end; }
+.fh-rgb-bin { font: 800 14px Consolas, Menlo, monospace; --base-font-family: Consolas, Menlo, ui-monospace, monospace; background: var(--fh-ink); color: var(--fh-yellow); border-radius: 8px; padding: 3px 8px; }
+.fh-rgb-out { font-weight: 900; text-align: left; --base-font-family: Consolas, Menlo, ui-monospace, monospace; }
+.fh-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--fh-ink); vertical-align: -2px; }
+@media (max-width: 520px) {
+  .fh-rgb { grid-template-columns: 1fr; }
+  .fh-rgb-px { width: 110px; margin-inline: auto; }
+}
+
 /* ظهور الأقسام مع السكرول (تحسين تدريجي) */
 @supports (animation-timeline: view()) {
   .fh-sec, .fh-box { animation: fh-rise both; animation-timeline: view(); animation-range: entry 0% entry 35%; }
