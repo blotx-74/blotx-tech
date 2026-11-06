@@ -20,7 +20,7 @@ function Shell() {
 
   useEffect(() => {
     const prevTitle = document.title;
-    document.title = 'فهمني تكنولوجي! | التكنولوجيا بالمصري في حوالي دقيقتين';
+    document.title = 'فهمني تكنولوجي! | التكنولوجيا بالمصري في دقايق قليلة';
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = FONT_HREF;

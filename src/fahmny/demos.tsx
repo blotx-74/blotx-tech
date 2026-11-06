@@ -174,9 +174,52 @@ function BinaryDemo() {
   );
 }
 
+/* ───── 5) RGB: اخلط الأحمر والأخضر والأزرق ───── */
+const PRESETS: [string, [number, number, number]][] = [
+  ['أحمر', [255, 0, 0]], ['أخضر', [0, 255, 0]], ['أزرق', [0, 0, 255]],
+  ['أصفر', [255, 255, 0]], ['أبيض', [255, 255, 255]], ['أسود', [0, 0, 0]],
+];
+const CH = [['R', 'أحمر', '#e11d48'], ['G', 'أخضر', '#16a34a'], ['B', 'أزرق', '#2563eb']] as const;
+
+function RgbDemo() {
+  const [rgb, setRgb] = useState<[number, number, number]>([255, 0, 0]);
+  const set = (i: number, v: number) => setRgb((p) => p.map((x, j) => (j === i ? v : x)) as [number, number, number]);
+  const css = `rgb(${rgb.join(', ')})`;
+  const hex = '#' + rgb.map((v) => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+  return (
+    <>
+      <p className="fh-demo-hint">حرّك الأرقام وشوف البيكسل لونه بيتغيّر إزاي، وكل رقم بيتخزن إزاي بالـBinary:</p>
+      <div className="fh-rgb">
+        <div className="fh-rgb-px" style={{ background: css }} aria-label={`اللون ${css}`} />
+        <div className="fh-rgb-ctl">
+          {CH.map(([k, name, color], i) => (
+            <label key={k} className="fh-rgb-row">
+              <b style={{ color }}>{k}</b>
+              <input
+                type="range" min={0} max={255} value={rgb[i]} dir="ltr" aria-label={name}
+                style={{ accentColor: color }} onChange={(e) => set(i, Number(e.target.value))}
+              />
+              <span className="fh-rgb-v" dir="ltr">{rgb[i]}</span>
+              <code className="fh-rgb-bin" dir="ltr">{rgb[i].toString(2).padStart(8, '0')}</code>
+            </label>
+          ))}
+          <p className="fh-rgb-out" dir="ltr">({rgb.join(', ')}) · {hex}</p>
+        </div>
+      </div>
+      <div className="fh-chips" style={{ marginTop: 14, marginBottom: 0 }}>
+        {PRESETS.map(([n, v]) => (
+          <button key={n} className={`fh-chip ${rgb.join() === v.join() ? 'on' : ''}`} onClick={() => setRgb(v)}>
+            <i className="fh-dot" style={{ background: `rgb(${v.join(',')})` }} /> {n}
+          </button>
+        ))}
+      </div>
+    </>
+  );
+}
+
 export function Demo({ ep }: { ep: Episode }) {
   if (!ep.demo) return null;
-  const body = { api: <ApiDemo />, ai: <AiDemo />, '2fa': <TwoFADemo />, binary: <BinaryDemo /> }[ep.demo];
+  const body = { api: <ApiDemo />, ai: <AiDemo />, '2fa': <TwoFADemo />, binary: <BinaryDemo />, rgb: <RgbDemo /> }[ep.demo];
   return (
     <div className="fh-box fh-demo">
       <h4 className="fh-display">🧪 جرّب بنفسك</h4>
